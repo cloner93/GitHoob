@@ -9,6 +9,7 @@ import com.milad.githoob.GithubConstants.AUTH_URL
 import com.milad.githoob.GithubConstants.CLIENT_ID
 import com.milad.githoob.GithubConstants.REDIRECT_URI
 import com.milad.githoob.GithubConstants.SCOPE
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
