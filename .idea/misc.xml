@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Android Project/GitHoob/app/src/main/res/drawable/rounded_corners.xml" value="0.3296296296296296" />
         <entry key="..\:/Android Project/GitHoob/app/src/main/res/layout/activity_details.xml" value="0.35989583333333336" />
+        <entry key="..\:/Android Project/GitHoob/app/src/main/res/layout/activity_launch.xml" value="0.14" />
         <entry key="..\:/Android Project/GitHoob/app/src/main/res/layout/activity_main.xml" value="0.3458333333333333" />
+        <entry key="..\:/Android Project/GitHoob/app/src/main/res/layout/fragment_profile.xml" value="0.35989583333333336" />
       </map>
     </option>
   </component>

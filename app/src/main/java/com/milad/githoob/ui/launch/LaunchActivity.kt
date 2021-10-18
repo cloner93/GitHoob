@@ -3,25 +3,19 @@ package com.milad.githoob.ui.launch
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.milad.githoob.R
 import com.milad.githoob.utils.AppConstants.AUTH_URL
 import com.milad.githoob.utils.AppConstants.CLIENT_ID
-import com.milad.githoob.utils.AppConstants.CLIENT_SECRET
 import com.milad.githoob.utils.AppConstants.REDIRECT_URI
 import com.milad.githoob.utils.AppConstants.SCOPE
-import com.milad.githoob.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_launch.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class LaunchActivity : AppCompatActivity() {
 
-    private val mainViewModel: LaunchViewModel by viewModels()
+//    private val mainViewModel: LaunchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +29,9 @@ class LaunchActivity : AppCompatActivity() {
                 "&state=" + state +
                 "&redirect_uri=" + REDIRECT_URI
 
-        github_login_btn.setOnClickListener {
-            openWebIntent(githubAuthURLFull)
-        }
+//        github_login_btn.setOnClickListener {
+//            openWebIntent(githubAuthURLFull)
+//        }
     }
 
     private fun openWebIntent(url: String) {
@@ -58,21 +52,21 @@ class LaunchActivity : AppCompatActivity() {
 
     private fun requestForAccessToken(code: String) {
 
-        mainViewModel.fetchToken(CLIENT_ID, CLIENT_SECRET, code).observe(this, {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    Log.d(TAG, "requestForAccessToken: ${it.data?.access_token}")
-                    Toast.makeText(this@LaunchActivity, it.data?.access_token, Toast.LENGTH_LONG)
-                        .show()
-                }
-                Status.LOADING -> {
-                    Log.d(TAG, "requestForAccessToken: ${it.status}")
-                }
-                Status.ERROR -> {
-                    Log.d(TAG, "requestForAccessToken: ${it.message}")
-                }
-            }
-        })
+//        mainViewModel.fetchToken(CLIENT_ID, CLIENT_SECRET, code).observe(this, {
+//            when (it.status) {
+//                Status.SUCCESS -> {
+//                    Log.d(TAG, "requestForAccessToken: ${it.data?.access_token}")
+//                    Toast.makeText(this@LaunchActivity, it.data?.access_token, Toast.LENGTH_LONG)
+//                        .show()
+//                }
+//                Status.LOADING -> {
+//                    Log.d(TAG, "requestForAccessToken: ${it.status}")
+//                }
+//                Status.ERROR -> {
+//                    Log.d(TAG, "requestForAccessToken: ${it.message}")
+//                }
+//            }
+//        })
     }
 
     companion object {
