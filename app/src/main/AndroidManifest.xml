@@ -13,7 +13,7 @@
         android:theme="@style/Theme.GitHoob">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.launch.LaunchActivity"
             android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>

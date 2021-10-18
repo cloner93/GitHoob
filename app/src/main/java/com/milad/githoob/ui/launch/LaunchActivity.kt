@@ -1,29 +1,31 @@
-package com.milad.githoob
+package com.milad.githoob.ui.launch
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.milad.githoob.GithubConstants.AUTH_URL
-import com.milad.githoob.GithubConstants.CLIENT_ID
-import com.milad.githoob.GithubConstants.REDIRECT_URI
-import com.milad.githoob.GithubConstants.SCOPE
+import com.milad.githoob.R
+import com.milad.githoob.utils.AppConstants.AUTH_URL
+import com.milad.githoob.utils.AppConstants.CLIENT_ID
+import com.milad.githoob.utils.AppConstants.CLIENT_SECRET
+import com.milad.githoob.utils.AppConstants.REDIRECT_URI
+import com.milad.githoob.utils.AppConstants.SCOPE
+import com.milad.githoob.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_launch.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class LaunchActivity : AppCompatActivity() {
+
+    private val mainViewModel: LaunchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_launch)
 
         val state = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
 
@@ -56,23 +58,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun requestForAccessToken(code: String) {
 
-        Retrofit.Builder()
-            .baseUrl("https://github.com/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(GithubClient::class.java).getAccessToken(
-                clientId = GithubConstants.CLIENT_ID,
-                clientSecret = GithubConstants.CLIENT_SECRET,
-                code = code
-            ).enqueue(object : Callback<AccessToken> {
-                override fun onResponse(call: Call<AccessToken>, response: Response<AccessToken>) {
-                    Log.d(TAG, "onResponse: ${response.body()?.access_token}")
+        mainViewModel.fetchToken(CLIENT_ID, CLIENT_SECRET, code).observe(this, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    Log.d(TAG, "requestForAccessToken: ${it.data?.access_token}")
+                    Toast.makeText(this@LaunchActivity, it.data?.access_token, Toast.LENGTH_LONG)
+                        .show()
                 }
-
-                override fun onFailure(call: Call<AccessToken>, t: Throwable) {
-                    Log.d(TAG, "onFailure: ${t.message}t")
+                Status.LOADING -> {
+                    Log.d(TAG, "requestForAccessToken: ${it.status}")
                 }
-            })
-
+                Status.ERROR -> {
+                    Log.d(TAG, "requestForAccessToken: ${it.message}")
+                }
+            }
+        })
     }
 
     companion object {
