@@ -20,6 +20,7 @@ class ProfileViewModel @Inject constructor(
         _user.value =
             User(
                 login = "Cloner93",
+                name= "cloner93",
                 id = 1,
                 bio = "I AM FU***NG ANDROID DEVELOPER",
                 followers = 1000000,
