@@ -1,10 +1,17 @@
 package com.milad.githoob.utils
 
+import androidx.datastore.preferences.core.stringPreferencesKey
+
+
 object AppConstants {
-    const val BASE_URL= "https://github.com/"
+    const val BASE_URL = "https://github.com/"
+    const val PREFERENCES_STORE_NAME = "APP_CONFIG"
     const val CLIENT_ID = "88cb6c5ead6be4051b86"
     const val CLIENT_SECRET = "dcec690b4903345416256eeee1a0e44846327b47"
     const val REDIRECT_URI = "githoob://callback"
     const val SCOPE = "user,repo,gist,notifications,admin"
     const val AUTH_URL = "https://github.com/login/oauth/authorize"
+
+    val KEY_DATA_STORE_TOKEN = stringPreferencesKey("KEY_DATA_STORE_TOKEN")
+
 }

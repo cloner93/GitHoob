@@ -1,10 +1,9 @@
 package com.milad.githoob.data.api
 
 import com.milad.githoob.data.model.AccessToken
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import com.milad.githoob.data.model.GithubUserModel
+import retrofit2.Response
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -16,5 +15,11 @@ interface ApiService {
         @Field("client_secret") clientSecret: String,
         @Field("code") code: String,
     ): AccessToken
+
+    @Headers("Content-Type: application/json")
+    @GET("/user")
+    suspend fun getUserInfo(
+        @Header("Authorization") token: String
+    ): Response<GithubUserModel>
 
 }
