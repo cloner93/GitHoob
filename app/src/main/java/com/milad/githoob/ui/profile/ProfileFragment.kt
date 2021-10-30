@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +24,10 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        binding = FragmentProfileBinding.bind(view).apply { viewmodel = viewModel }
+        binding = FragmentProfileBinding.bind(view).apply {
+            viewmodel = viewModel
+            lifecycleOwner = this@ProfileFragment
+        }
         val bundle = arguments
         if (bundle != null) {
             viewModel.loadUserProfile(bundle.getString("token", ""))
