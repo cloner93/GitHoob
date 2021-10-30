@@ -43,8 +43,10 @@ class SplashFragment : Fragment() {
 
                     } else {
                         Log.d(TAG, "Founded: $it")
+                        val directions =
+                            SplashFragmentDirections.actionSplashFragmentToProfileFragment(it)
                         NavHostFragment.findNavController(this@SplashFragment)
-                            .navigate(R.id.action_splashFragment_to_profileFragment)
+                            .navigate(directions)
                         this.cancel()
                     }
                 }

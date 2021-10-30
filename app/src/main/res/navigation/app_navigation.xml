@@ -9,7 +9,11 @@
         android:id="@+id/profileFragment"
         android:name="com.milad.githoob.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.milad.githoob.ui.splash.SplashFragment"

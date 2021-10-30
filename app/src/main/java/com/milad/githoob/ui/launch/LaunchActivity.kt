@@ -39,18 +39,18 @@ class LaunchActivity : AppCompatActivity() {
         mainViewModel.fetchToken(CLIENT_ID, CLIENT_SECRET, code).observe(this, {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Log.d(TAG, "requestForAccessToken: ${it.data?.access_token}")
+                    val token = "token ${it.data!!.access_token}"
 
-                    mainViewModel.saveToken(it.data!!.access_token)
-
-//                    NavHostFragment.findNavController().navigate(R.id.profileFragment)
+                    mainViewModel.saveToken(token)
 
                     val navController: NavController =
                         Navigation.findNavController(
                             this@LaunchActivity,
                             R.id.fragmentContainerView
                         )
-                    navController.navigate(R.id.profileFragment)
+                    val args = Bundle()
+                    args.putString("token", token)
+                    navController.navigate(R.id.profileFragment, args)
                 }
                 Status.LOADING -> {
                     Log.d(TAG, "requestForAccessToken: ${it.status}")
