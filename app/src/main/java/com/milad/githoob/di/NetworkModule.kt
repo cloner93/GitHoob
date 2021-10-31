@@ -1,6 +1,6 @@
 package com.milad.githoob.di
 
-import com.milad.githoob.utils.AppConstants.BASE_URL
+import com.milad.githoob.utils.AppConstants.BASE_URL_API
 import com.milad.githoob.data.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -19,7 +19,7 @@ object NetworkModule {
 
     @Provides
     fun providesBaseUrl(): String {
-        return BASE_URL
+        return BASE_URL_API
     }
 
     @Provides

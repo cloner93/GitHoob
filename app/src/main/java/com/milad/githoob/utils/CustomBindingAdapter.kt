@@ -3,8 +3,8 @@ package com.milad.githoob.utils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import jp.wasabeef.glide.transformations.BlurTransformation
+import com.milad.githoob.utils.contributions.ContributionsDay
+import com.milad.githoob.utils.contributions.GitHubContributionsView
 
 object CustomBindingAdapter {
     @JvmStatic
@@ -16,11 +16,19 @@ object CustomBindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("profileImageBlur")
-    fun profileImageBlur(view: ImageView, imageUrl: String?) {
-        Glide.with(view.context)
-            .load(imageUrl)
-            .apply(RequestOptions.bitmapTransform(BlurTransformation(25)))
-            .into(view)
+    @BindingAdapter("contributeGraphData")
+    fun contributeGraphData(
+        gitHubContributionsView: GitHubContributionsView,
+        contributions: List<ContributionsDay>?
+    ) {
+        if (contributions != null) {
+            val filter: List<ContributionsDay> =
+                gitHubContributionsView.getLastContributions(contributions)
+
+            val bitmap = gitHubContributionsView.drawOnCanvas(filter, contributions)
+            if (bitmap != null)
+                gitHubContributionsView.onResponse()
+        }
+
     }
 }

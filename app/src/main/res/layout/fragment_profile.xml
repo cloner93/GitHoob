@@ -8,32 +8,157 @@
         android:layout_height="match_parent"
         android:background="@color/back">
 
-        <View
-            android:id="@+id/profile_back_header"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/primary"
-            android:scaleType="fitCenter"
-
-            app:layout_constraintBottom_toTopOf="@+id/profile_main_gideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="24dp"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="@+id/profile_back_header"
-            app:layout_constraintStart_toStartOf="@+id/profile_back_header"
-            app:layout_constraintTop_toTopOf="@+id/profile_back_header"
-            tools:src="@tools:sample/avatars"
-            app:profileImage="@{viewmodel.user.avatar_url}"
-            tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:profileImage="@{viewmodel.user.avatar_url}"
+                tools:src="@tools:sample/avatars"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/divider"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:srcCompat="@drawable/ic_company" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:srcCompat="@drawable/ic_location" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="42dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:srcCompat="@drawable/ic_date" />
+
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:text="@{viewmodel.user.name}"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profile_image"
+                app:layout_constraintTop_toTopOf="@+id/profile_image"
+                tools:text="Milad Targholi" />
+
+            <TextView
+                android:id="@+id/profile_user_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewmodel.user.bio}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_login"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
+                tools:text="Google ❤️ Open Source" />
+
+            <TextView
+                android:id="@+id/profile_user_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.user.login}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/text"
+                app:layout_constraintBottom_toTopOf="@+id/profile_user_desc"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
+                app:layout_constraintStart_toStartOf="@+id/profile_user_name"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
+                tools:text="Cloner93" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{viewmodel.user.company}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                tools:text="Behsazan Mellat" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{viewmodel.user.location}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                tools:text="Tehran" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text= "@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                tools:text="joined :" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profile_user_desc"
+                app:layout_constraintStart_toStartOf="@+id/profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/profile_back_header_info"
@@ -42,10 +167,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/rect_info"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_back_header"
-            app:layout_constraintEnd_toEndOf="@+id/profile_back_header"
-            app:layout_constraintStart_toStartOf="@+id/profile_back_header"
-            app:layout_constraintTop_toBottomOf="@+id/profile_back_header" />
+            app:layout_constraintBottom_toBottomOf="@+id/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
 
         <LinearLayout
             android:id="@+id/profile_follower_li"
@@ -157,7 +283,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed-light"
                 android:lineSpacingExtra="8sp"
-                android:text="Repository"
+                android:text="Repositories"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/design_default_color_background"
@@ -230,41 +356,22 @@
                 tools:text="100" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/profile_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{viewmodel.user.name}"
-            android:textAlignment="textEnd"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/text"
-            app:layout_constraintEnd_toEndOf="@+id/profile_image"
-            app:layout_constraintStart_toStartOf="@+id/profile_image"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image"
-            tools:text="Google" />
-
-        <TextView
-            android:id="@+id/profile_user_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{viewmodel.user.bio}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/text"
-            app:layout_constraintBottom_toTopOf="@+id/profile_back_header_info"
-            app:layout_constraintEnd_toEndOf="@+id/profile_username"
-            app:layout_constraintStart_toStartOf="@+id/profile_username"
-            app:layout_constraintTop_toBottomOf="@+id/profile_username"
-            tools:text="Google ❤️ Open Source" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/profile_main_gideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+        <com.milad.githoob.utils.contributions.GitHubContributionsView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:backgroundBaseColor="@color/back"
+            app:baseColor="@color/accent"
+            app:baseEmptyColor="@color/white"
+            app:contributeGraphData="@{viewmodel.userContributes}"
+            app:displayMonth="true"
+            app:lastWeeks="50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_back_header_info"
+            app:textColor="#000000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

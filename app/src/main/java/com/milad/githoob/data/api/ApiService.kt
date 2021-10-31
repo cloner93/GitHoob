@@ -2,6 +2,7 @@ package com.milad.githoob.data.api
 
 import com.milad.githoob.data.model.AccessToken
 import com.milad.githoob.data.model.User
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -22,5 +23,8 @@ interface ApiService {
     suspend fun getUserInfo(
         @Header("Authorization") token: String
     ): Response<User>
+
+    @GET
+    suspend fun getUserContribute(@Url url: String) :ResponseBody
 
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="GitHubContributionsView">
+        <attr name="username" format="string"/>
+        <attr name="baseColor" format="color"/>
+        <attr name="baseEmptyColor" format="color"/>
+        <attr name="backgroundBaseColor" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="displayMonth" format="boolean"/>
+        <attr name="lastWeeks" format="integer"/>
+    </declare-styleable>
+
+</resources>

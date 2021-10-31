@@ -17,7 +17,6 @@ class ProfileFragment : Fragment() {
     private val TAG = "ProfileFragment@@"
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<ProfileViewModel>()
-//    private val dd :
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +31,6 @@ class ProfileFragment : Fragment() {
         if (bundle != null) {
             viewModel.loadUserProfile(bundle.getString("token", ""))
         }
-
-        viewModel.user.observe(viewLifecycleOwner, {
-            Log.d(TAG, "$it")
-        })
 
         return binding.root
     }
