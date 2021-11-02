@@ -1,5 +1,6 @@
 package com.milad.githoob.data.api
 
+import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.AccessToken
 import com.milad.githoob.data.model.User
 import okhttp3.ResponseBody
@@ -27,4 +28,11 @@ interface ApiService {
     @GET
     suspend fun getUserContribute(@Url url: String) :ResponseBody
 
+    @Headers("Content-Type: application/json")
+    @GET("/users/{username}/received_events?per_page=100")
+    suspend fun getEvents(
+        @Header("Authorization") token: String,
+        @Path("username") username: String,
+        @Query("page") page: Int
+    ): Response<ArrayList<Events>>
 }

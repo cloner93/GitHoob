@@ -1,10 +1,12 @@
 package com.milad.githoob.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.milad.githoob.data.MainRepository
+import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.User
 import com.milad.githoob.utils.AppConstants
 import com.milad.githoob.utils.contributions.ContributionsDay
@@ -28,12 +30,18 @@ class ProfileViewModel @Inject constructor(
     private val _userContributes = MutableLiveData<List<ContributionsDay>>()
     val userContributes: LiveData<List<ContributionsDay>> = _userContributes
 
+    private var _feedsList = MutableLiveData<ArrayList<Events>>()
+    val feedsList: LiveData<ArrayList<Events>> = _feedsList
+
     fun loadUserProfile(token: String) {
         viewModelScope.launch {
             withContext(ioDispatcher) {
                 val userInfo = mainRepository.getUserInfo(token)
                 _user.postValue(userInfo)
                 loadUserContribute(userInfo.login)
+
+                // TODO: 11/1/2021 Paging library most be handle soon.
+                getFeeds(token, userInfo.login,0)
             }
         }
     }
@@ -47,5 +55,19 @@ class ProfileViewModel @Inject constructor(
             )
         )
 
+    }
+
+    private suspend fun getFeeds(token: String, username: String, page: Int) {
+        try {
+            _feedsList.postValue(
+                mainRepository.getEvents(
+                    token,
+                    username,
+                    page
+                )
+            )
+        } catch (e: Exception) {
+            e.message?.let { Log.d("Get Feeds", it) }
+        }
     }
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/EventUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{event.actor.login}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/EventUserImage"
+                app:layout_constraintEnd_toStartOf="@+id/EventTime"
+                app:layout_constraintStart_toEndOf="@+id/EventUserImage"
+                app:layout_constraintTop_toTopOf="@+id/EventUserImage"
+                tools:text="Milad Targholi" />
+
+            <TextView
+                android:id="@+id/EventTime"
+                eventTimeText="@{event.created_at}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/EventUserName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/EventUserName"
+                tools:text="Now" />
+
+            <TextView
+                android:id="@+id/EnentTitle"
+                events="@{event}"
+                tvDesc="@{EventDesc}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/EventTime"
+                app:layout_constraintStart_toStartOf="@+id/EventUserImage"
+                app:layout_constraintTop_toBottomOf="@+id/EventUserImage"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/EventDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/EnentTitle"
+                app:layout_constraintStart_toStartOf="@+id/EnentTitle"
+                app:layout_constraintTop_toBottomOf="@+id/EnentTitle"
+                tools:text="TextView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/EventUserImage"
+                profileImage="@{event.actor.avatar_url}"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <data>
+        <variable
+            name="event"
+            type="com.milad.githoob.data.model.event.Events" />
+
+        <variable
+            name="viewmodel"
+            type="com.milad.githoob.ui.profile.ProfileViewModel" />
+    </data>
+</layout>

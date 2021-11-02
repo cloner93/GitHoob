@@ -21,4 +21,8 @@ class MainRepository @Inject constructor(
     suspend fun getUserContribute(url: String): ResponseBody {
         return apiService.getUserContribute(url)
     }
+
+    suspend fun getEvents(token: String, username: String, page: Int) =
+        apiRequest { apiService.getEvents(token, username, page) }
+
 }

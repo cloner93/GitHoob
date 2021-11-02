@@ -1,7 +1,6 @@
 package com.milad.githoob.ui.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,7 @@ class ProfileFragment : Fragment() {
     private val TAG = "ProfileFragment@@"
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<ProfileViewModel>()
+    private lateinit var adapter:ProfileActivityAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,16 @@ class ProfileFragment : Fragment() {
         if (bundle != null) {
             viewModel.loadUserProfile(bundle.getString("token", ""))
         }
+        setupRecyclerView()
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        val viewmodel = binding.viewmodel
+        if (viewmodel!= null) {
+            adapter = ProfileActivityAdapter(viewmodel)
+            binding.profileAllActivitesRecyclerview.adapter = adapter
+        }
     }
 }
