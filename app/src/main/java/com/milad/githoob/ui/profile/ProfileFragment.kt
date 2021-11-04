@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
         }
         val bundle = arguments
         if (bundle != null) {
-            viewModel.loadUserProfile(bundle.getString("token", ""))
+            viewModel.setToken(bundle.getString("token", ""))
         }
         setupRecyclerView()
 
