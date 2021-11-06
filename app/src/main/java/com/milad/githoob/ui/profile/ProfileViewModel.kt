@@ -11,7 +11,6 @@ import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,28 +20,26 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
     private val TAG = "ProfileViewModel@@"
 
-    private val token = MutableLiveData<String>()
-    private lateinit var tokenTemp :String
+    private lateinit var token: String
+    private lateinit var tokenTemp: String
 
-    fun setToken(token: String) {
-        this.token.postValue(token)
-        this.tokenTemp= token
-    }
+    // TODO: setValue() method must be called from the main thread. But if you need set a value from a background thread, postValue() should be used.
 
-    private val _user = token.switchMap { token ->
+    private val _forceUpdate = MutableLiveData<Boolean>(false)
+
+    private val _user = _forceUpdate.switchMap { bool ->
         val user = MutableLiveData<User>()
-        _dataLoading.postValue(true)
+        if (bool) {
+            _dataLoading.postValue(true)
+            viewModelScope.launch {
+                val userInfo = mainRepository.getUserInfo(token)
+                user.value = (userInfo)
 
-        viewModelScope.launch {
-            val userInfo = mainRepository.getUserInfo(token)
-            user.value = (userInfo)
-
-            loadUserContribute(userInfo.login)
-            // TODO: 11/1/2021 Paging library most be handle soon.
-            getFeeds(token, userInfo.login, 0)
-
-
-            _dataLoading.postValue(false)
+                loadUserContribute(userInfo.login)
+                // TODO: 11/1/2021 Paging library most be handle soon.
+                getFeeds(token, userInfo.login, 0)
+                _dataLoading.postValue(false)
+            }
         }
         return@switchMap user
     }
@@ -54,10 +51,13 @@ class ProfileViewModel @Inject constructor(
     private var _feedsList = MutableLiveData<ArrayList<Events>>()
     val feedsList: LiveData<ArrayList<Events>> = _feedsList
 
-    private val _forceUpdate = MutableLiveData<Boolean>(false)
-
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
+
+    fun setToken(token: String) {
+        this.token = token
+        _forceUpdate.postValue(true)
+    }
 
     private suspend fun loadUserContribute(id: String) {
         val url = String.format(AppConstants.CONTRIBUTE_URL, id)
@@ -90,6 +90,5 @@ class ProfileViewModel @Inject constructor(
 
     fun refresh() {
         _forceUpdate.value = true
-        token.postValue(tokenTemp)
     }
 }
