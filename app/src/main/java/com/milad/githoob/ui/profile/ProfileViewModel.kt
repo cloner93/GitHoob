@@ -21,7 +21,6 @@ class ProfileViewModel @Inject constructor(
     private val TAG = "ProfileViewModel@@"
 
     private lateinit var token: String
-    private lateinit var tokenTemp: String
 
     // TODO: setValue() method must be called from the main thread. But if you need set a value from a background thread, postValue() should be used.
 
@@ -35,9 +34,6 @@ class ProfileViewModel @Inject constructor(
                 val userInfo = mainRepository.getUserInfo(token)
                 user.value = (userInfo)
 
-                loadUserContribute(userInfo.login)
-                // TODO: 11/1/2021 Paging library most be handle soon.
-                getFeeds(token, userInfo.login, 0)
                 _dataLoading.postValue(false)
             }
         }
@@ -45,47 +41,12 @@ class ProfileViewModel @Inject constructor(
     }
     val user: LiveData<User?> = _user
 
-    private val _userContributes = MutableLiveData<List<ContributionsDay>>()
-    val userContributes: LiveData<List<ContributionsDay>> = _userContributes
-
-    private var _feedsList = MutableLiveData<ArrayList<Events>>()
-    val feedsList: LiveData<ArrayList<Events>> = _feedsList
-
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
     fun setToken(token: String) {
         this.token = token
         _forceUpdate.postValue(true)
-    }
-
-    private suspend fun loadUserContribute(id: String) {
-        val url = String.format(AppConstants.CONTRIBUTE_URL, id)
-
-        _userContributes.postValue(
-            ContributionsProvider().getContributions(
-                mainRepository.getUserContribute(url).string()
-            )
-        )
-
-    }
-
-    private suspend fun getFeeds(token: String, username: String, page: Int) {
-        try {
-            _feedsList.postValue(
-                mainRepository.getEvents(
-                    token,
-                    username,
-                    page
-                )
-            )
-        } catch (e: Exception) {
-            e.message?.let { Log.d("Get Feeds", it) }
-        }
-    }
-
-    fun getUserProfile(event: Events) {
-        Log.d(TAG, "getUserProfile: ${event.actor.login}")
     }
 
     fun refresh() {

@@ -3,7 +3,6 @@ package com.milad.githoob.utils
 import android.graphics.Color
 import android.text.SpannableStringBuilder
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,7 +20,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("profileImage")
-fun profileImage(view: ImageView, imageUrl: String?) {
+fun profileImage(
+    view: ImageView,
+    imageUrl: String?
+) {
     Glide.with(view.context)
         .load(imageUrl)
         .circleCrop()
@@ -45,8 +47,10 @@ fun contributeGraphData(
 }
 
 @BindingAdapter("items")
-fun setItems(recyclerView: RecyclerView, items: List<Events>?) {
-    Log.d("TAG", "setItems: ${items?.size}")
+fun setItems(
+    recyclerView: RecyclerView,
+    items: List<Events>?
+) {
     items?.let {
         (recyclerView.adapter as ProfileActivityAdapter).submitList(items)
     }
@@ -54,7 +58,11 @@ fun setItems(recyclerView: RecyclerView, items: List<Events>?) {
 
 
 @BindingAdapter(value = ["tvDesc", "events"], requireAll = false)
-fun setItemTitle(tvTitle: TextView, tvDesc: TextView, events: Events) {
+fun setItemTitle(
+    tvTitle: TextView,
+    tvDesc: TextView,
+    events: Events
+) {
 
     when (events.type) {
         "WatchEvent" -> {
@@ -242,7 +250,10 @@ fun setItemTitle(tvTitle: TextView, tvDesc: TextView, events: Events) {
 }
 
 @BindingAdapter("eventTimeText")
-fun setEventTimeText(tvTime: TextView, created_at: String) {
+fun setEventTimeText(
+    tvTime: TextView,
+    created_at: String
+) {
     val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
     sdf.timeZone = TimeZone.getTimeZone("GMT")
 

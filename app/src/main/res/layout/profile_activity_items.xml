@@ -105,6 +105,6 @@
 
         <variable
             name="viewmodel"
-            type="com.milad.githoob.ui.profile.ProfileViewModel" />
+            type="com.milad.githoob.ui.profile.overview.ProfileOverviewViewModel" />
     </data>
 </layout>

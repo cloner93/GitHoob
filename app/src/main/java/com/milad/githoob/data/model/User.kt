@@ -1,5 +1,6 @@
 package com.milad.githoob.data.model
 
+import java.io.Serializable
 import java.util.*
 
 data class User(
@@ -42,11 +43,11 @@ data class User(
     val collaborators: Long,
     val two_factor_authentication: Boolean,
     val plan: Plan
-)
+):Serializable
 
 class Plan(
     val name: String,
     val space: Long,
     val private_repos: Long,
     val collaborators: Long
-)
+):Serializable

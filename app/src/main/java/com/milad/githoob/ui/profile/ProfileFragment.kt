@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.tabs.TabLayoutMediator
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +17,7 @@ class ProfileFragment : Fragment() {
     private val TAG = "ProfileFragment@@"
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<ProfileViewModel>()
-    private lateinit var adapter:ProfileActivityAdapter
+    private lateinit var viewPagerAdapter: ProfileViewPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,17 +31,40 @@ class ProfileFragment : Fragment() {
         val bundle = arguments
         if (bundle != null) {
             viewModel.setToken(bundle.getString("token", ""))
+            viewModel.user.observe(viewLifecycleOwner, { user ->
+                if (user != null) {
+                    val data = Bundle()
+                    data.putString("token", bundle.getString("token", ""))
+                    data.putSerializable("user", user)
+
+                    viewPagerAdapter = ProfileViewPagerAdapter(this, data)
+                    binding.profilePager.adapter = viewPagerAdapter
+
+                    TabLayoutMediator(
+                        binding.profileTabLayout,
+                        binding.profilePager
+                    ) { tab, position ->
+                        tab.text = when (position) {
+                            0 -> {
+                                "OverView"
+                            }
+                            1 -> {
+                                "Repositories"
+                            }
+                            2 -> {
+                                "Projects"
+                            }
+                            3 -> {
+                                "Package"
+                            }
+                            else -> "N/A"
+                        }
+                    }.attach()
+
+                }
+            })
         }
-        setupRecyclerView()
 
         return binding.root
-    }
-
-    private fun setupRecyclerView() {
-        val viewmodel = binding.viewmodel
-        if (viewmodel!= null) {
-            adapter = ProfileActivityAdapter(viewmodel)
-            binding.profileAllActivitesRecyclerview.adapter = adapter
-        }
     }
 }

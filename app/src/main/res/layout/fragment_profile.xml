@@ -5,15 +5,15 @@
 
     <com.milad.githoob.utils.ScrollChildSwipeRefreshLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:onRefreshListener="@{viewmodel::refresh}"
-        app:refreshing="@{viewmodel.dataLoading}"
-        android:layout_height="match_parent">
+        app:refreshing="@{viewmodel.dataLoading}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:background="@color/back"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/back">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_header_info"
@@ -183,11 +183,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_header_details"
                 android:layout_width="match_parent"
-                android:elevation="8dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/rect_info"
+                android:elevation="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_header_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -391,7 +391,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_all_contribute"
+                android:id="@+id/profile_header_tab_layout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="38dp"
@@ -400,79 +400,42 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_header_info">
 
-                <TextView
-                    android:id="@+id/profile_all_contributions_graph_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Contributions Graph"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/profile_all_activites_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Events"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/profile_all_contributions_divider" />
-
-                <View
-                    android:id="@+id/profile_all_contributions_divider"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/profile_all_activites_recyclerview"
-                    android:layout_width="0dp"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/profile_pager"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/back"
-                    app:items="@{viewmodel.feedsList}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_activites_title"
-                    tools:itemCount="20"
-                    tools:listitem="@layout/profile_activity_items" />
+                    app:layout_constraintTop_toBottomOf="@id/profile_tab_layout" />
 
-                <com.milad.githoob.utils.contributions.GitHubContributionsView
-                    android:id="@+id/profile_all_contributions_graph"
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:elevation="8dp"
-                    app:backgroundBaseColor="@color/back"
-                    app:baseColor="#2fbb4f"
-                    app:baseEmptyColor="#2AFFFFFF"
-                    app:contributeGraphData="@{viewmodel.userContributes}"
-                    app:displayMonth="true"
-                    app:lastWeeks="50"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/profile_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/back"
+                    android:elevation="2dp"
+                    android:textSize="12sp"
+                    android:theme="@style/Theme.GitHoob"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
-                    app:textColor="#000000" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabBackground="@color/back"
+                    app:tabIndicator="@color/back"
+                    app:tabIndicatorColor="@color/primary_dark"
+                    app:tabIndicatorGravity="bottom"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="@color/primary_dark"
+                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:tabTextColor="@color/accent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

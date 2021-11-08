@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.databinding.ProfileActivityItemsBinding
+import com.milad.githoob.ui.profile.overview.ProfileOverviewViewModel
 
-class ProfileActivityAdapter(private val viewModel: ProfileViewModel) :
+class ProfileActivityAdapter(private val viewModel: ProfileOverviewViewModel) :
     ListAdapter<Events, ProfileActivityAdapter.ViewHolder>(EventDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,7 +25,7 @@ class ProfileActivityAdapter(private val viewModel: ProfileViewModel) :
     class ViewHolder private constructor(val binding: ProfileActivityItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: ProfileViewModel, item: Events) {
+        fun bind(viewModel: ProfileOverviewViewModel, item: Events) {
 
             binding.viewmodel = viewModel
             binding.event = item
