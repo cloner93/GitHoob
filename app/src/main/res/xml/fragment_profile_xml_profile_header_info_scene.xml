@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/profile_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/profile_image"
+            motion:layout_constraintTop_toTopOf="@+id/profile_image">
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="18sp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/profile_user_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/profile_user_desc"
+            motion:layout_constraintEnd_toEndOf="@+id/profile_user_name"
+            motion:layout_constraintStart_toStartOf="@+id/profile_user_name"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_user_name">
+
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="12sp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/profile_user_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            motion:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+            motion:layout_constraintStart_toStartOf="@+id/profile_user_login"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_user_login" />
+        <Constraint
+            android:id="@+id/profile_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/profile_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toEndOf="@+id/profile_image"
+            motion:layout_constraintTop_toTopOf="@+id/profile_image">
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="10sp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/profile_user_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_user_name"
+            motion:layout_constraintStart_toEndOf="@+id/profile_user_name"
+            motion:layout_constraintTop_toTopOf="@id/profile_user_name"
+            motion:layout_constraintEnd_toEndOf="parent">
+
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="8sp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/profile_user_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            motion:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+            motion:layout_constraintStart_toStartOf="@+id/profile_user_name"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_user_name" />
+        <Constraint
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="10dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/profile_header_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintEnd_toEndOf="@+id/profile_user_desc"
+            motion:layout_constraintStart_toStartOf="@+id/profile_image"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_user_desc" />
+        <Constraint
+            android:id="@+id/profile_header_company_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            motion:layout_constraintStart_toStartOf="@+id/profile_header_divider"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="3000">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_divider" />
+        </KeyFrameSet>
+        <KeyFrameSet>
+<!--            <KeyAttribute-->
+<!--                android:alpha="0"-->
+<!--                motion:framePosition="100"-->
+<!--                motion:motionTarget="@+id/profile_user_desc" />-->
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_company" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_location" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_create_at" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_company_icon" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_location_icon" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/profile_header_create_at_icon" />
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>

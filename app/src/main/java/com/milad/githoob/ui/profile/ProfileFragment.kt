@@ -1,11 +1,14 @@
 package com.milad.githoob.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
@@ -38,11 +41,11 @@ class ProfileFragment : Fragment() {
                     data.putSerializable("user", user)
 
                     viewPagerAdapter = ProfileViewPagerAdapter(this, data)
-                    binding.profilePager.adapter = viewPagerAdapter
+                    binding.profileInclude.profilePager.adapter = viewPagerAdapter
 
                     TabLayoutMediator(
-                        binding.profileTabLayout,
-                        binding.profilePager
+                        binding.profileInclude.profileTabLayout,
+                        binding.profileInclude.profilePager
                     ) { tab, position ->
                         tab.text = when (position) {
                             0 -> {
@@ -64,7 +67,22 @@ class ProfileFragment : Fragment() {
                 }
             })
         }
+        coordinateMotion()
+
 
         return binding.root
+    }
+
+    private fun coordinateMotion() {
+        val appBarLayout: AppBarLayout = binding.appbarLayout
+        val motionLayout: MotionLayout = binding.profileHeaderInfo
+
+        val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
+            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            motionLayout.progress = seekPosition
+            Log.d(TAG, "coordinateMotion: $seekPosition")
+        }
+
+        appBarLayout.addOnOffsetChangedListener(listener)
     }
 }

@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.milad.githoob.utils.ScrollChildSwipeRefreshLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:onRefreshListener="@{viewmodel::refresh}"
-        app:refreshing="@{viewmodel.dataLoading}">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:fillViewport="true"
             android:layout_height="match_parent"
-            android:background="@color/back">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/profile_include"
+                layout="@layout/profile_layout_content" />
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
                 android:id="@+id/profile_header_info"
                 android:layout_width="match_parent"
+                app:motionDebug="SHOW_PATH"
                 android:layout_height="wrap_content"
+                android:minHeight="80dp"
                 android:background="@color/primary"
+                app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
+                app:layoutDescription="@xml/fragment_profile_xml_profile_header_info_scene"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -34,13 +46,13 @@
                     android:singleLine="true"
                     android:text="@{viewmodel.user.name}"
                     android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/text"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
                     app:layout_constraintTop_toTopOf="@+id/profile_image"
-                    tools:text="Milad Targholi" />
+                    tools:text="33" />
 
                 <TextView
                     android:id="@+id/profile_user_desc"
@@ -57,7 +69,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_login"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
-                    tools:text="Google ❤️ Open Source" />
+                    tools:text="11" />
 
                 <TextView
                     android:id="@+id/profile_user_login"
@@ -66,13 +78,13 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{viewmodel.user.login}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/text"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/profile_user_desc"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
-                    tools:text="Cloner93" />
+                    tools:text="22" />
 
                 <TextView
                     android:id="@+id/profile_header_company"
@@ -130,7 +142,7 @@
                     android:background="#5EFFFFFF"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_desc"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+                    app:layout_constraintTop_toBottomOf="@+id/profile_user_desc" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_image"
@@ -172,274 +184,15 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="42dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/profile_header_location_icon"
                     app:layout_constraintTop_toBottomOf="@+id/profile_header_location_icon"
                     app:srcCompat="@drawable/ic_date" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_header_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/rect_info"
-                android:elevation="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_header_info"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_header_info">
-
-                <LinearLayout
-                    android:id="@+id/profile_follower_li"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_header_details"
-                    app:layout_constraintEnd_toStartOf="@+id/profile_following_li"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/profile_header_details"
-                    app:layout_constraintTop_toTopOf="@+id/profile_header_details">
-
-                    <TextView
-                        android:id="@+id/profile_followers_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:lineSpacingExtra="8sp"
-                        android:text="Followers"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:typeface="normal"
-                        tools:layout_editor_absoluteX="-3dp"
-                        tools:layout_editor_absoluteY="346dp" />
-
-                    <TextView
-                        android:id="@+id/profile_followers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-smallcaps"
-                        android:text="@{numberUtils.format(viewmodel.user.followers) }"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="21dp"
-                        tools:layout_editor_absoluteY="365dp"
-                        tools:text="100" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/profile_following_li"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_follower_li"
-                    app:layout_constraintEnd_toStartOf="@+id/profile_repository_li"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/profile_follower_li"
-                    app:layout_constraintTop_toTopOf="@+id/profile_follower_li">
-
-                    <TextView
-                        android:id="@+id/profile_following_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:lineSpacingExtra="8sp"
-                        android:text="Following"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:typeface="normal"
-                        tools:layout_editor_absoluteX="87dp"
-                        tools:layout_editor_absoluteY="346dp" />
-
-                    <TextView
-                        android:id="@+id/profile_following"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-smallcaps"
-                        android:text="@{numberUtils.format(viewmodel.user.following) }"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="111dp"
-                        tools:layout_editor_absoluteY="365dp"
-                        tools:text="100" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/profile_repository_li"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_following_li"
-                    app:layout_constraintEnd_toStartOf="@+id/profile_star_li"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/profile_following_li"
-                    app:layout_constraintTop_toTopOf="@+id/profile_following_li">
-
-                    <TextView
-                        android:id="@+id/profile_repository_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:lineSpacingExtra="8sp"
-                        android:text="Repositories"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:typeface="normal"
-                        tools:layout_editor_absoluteX="177dp"
-                        tools:layout_editor_absoluteY="346dp" />
-
-                    <TextView
-                        android:id="@+id/profile_repository"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-smallcaps"
-                        android:text="@{numberUtils.format(viewmodel.user.public_repos) }"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="209dp"
-                        tools:layout_editor_absoluteY="365dp"
-                        tools:text="100" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/profile_star_li"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="9dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_repository_li"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_header_details"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/profile_repository_li"
-                    app:layout_constraintTop_toTopOf="@+id/profile_repository_li">
-
-                    <TextView
-                        android:id="@+id/profile_stars_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:lineSpacingExtra="8sp"
-                        android:text="Stars"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:typeface="normal"
-                        tools:layout_editor_absoluteX="283dp"
-                        tools:layout_editor_absoluteY="346dp" />
-
-                    <TextView
-                        android:id="@+id/profile_stars"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-smallcaps"
-                        android:text="@{numberUtils.format(viewmodel.user.public_gists) }"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/design_default_color_background"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="313dp"
-                        tools:layout_editor_absoluteY="365dp"
-                        tools:text="100" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_header_tab_layout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="38dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_header_info">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/profile_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/profile_tab_layout" />
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/profile_tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@color/back"
-                    android:elevation="2dp"
-                    android:textSize="12sp"
-                    android:theme="@style/Theme.GitHoob"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tabBackground="@color/back"
-                    app:tabIndicator="@color/back"
-                    app:tabIndicatorColor="@color/primary_dark"
-                    app:tabIndicatorGravity="bottom"
-                    app:tabIndicatorHeight="4dp"
-                    app:tabSelectedTextColor="@color/primary_dark"
-                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
-                    app:tabTextColor="@color/accent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.milad.githoob.utils.ScrollChildSwipeRefreshLayout>
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
 
