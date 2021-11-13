@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -41,28 +42,30 @@ class ProfileFragment : Fragment() {
                     data.putSerializable("user", user)
 
                     viewPagerAdapter = ProfileViewPagerAdapter(this, data)
-                    binding.profileInclude.profilePager.adapter = viewPagerAdapter
+                    binding.profileInclude?.profilePager?.adapter = viewPagerAdapter
 
-                    TabLayoutMediator(
-                        binding.profileInclude.profileTabLayout,
-                        binding.profileInclude.profilePager
-                    ) { tab, position ->
-                        tab.text = when (position) {
-                            0 -> {
-                                "OverView"
+                    binding.profileInclude?.let {
+                        TabLayoutMediator(
+                            it.profileTabLayout,
+                            binding.profileInclude!!.profilePager
+                        ) { tab, position ->
+                            tab.text = when (position) {
+                                0 -> {
+                                    "OverView"
+                                }
+                                1 -> {
+                                    "Repositories"
+                                }
+                                2 -> {
+                                    "Projects"
+                                }
+                                3 -> {
+                                    "Package"
+                                }
+                                else -> "N/A"
                             }
-                            1 -> {
-                                "Repositories"
-                            }
-                            2 -> {
-                                "Projects"
-                            }
-                            3 -> {
-                                "Package"
-                            }
-                            else -> "N/A"
-                        }
-                    }.attach()
+                        }.attach()
+                    }
 
                 }
             })
@@ -74,15 +77,17 @@ class ProfileFragment : Fragment() {
     }
 
     private fun coordinateMotion() {
-        val appBarLayout: AppBarLayout = binding.appbarLayout
-        val motionLayout: MotionLayout = binding.profileHeaderInfo
+        val appBarLayout: AppBarLayout? = binding.appbarLayout
+        val motionLayout: MotionLayout = binding.profileHeaderInfo as MotionLayout
+
+        val p = DecimalFormat("0.0");
 
         val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
-            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            val seekPosition = -verticalOffset / appBarLayout?.totalScrollRange!!.toFloat()
             motionLayout.progress = seekPosition
             Log.d(TAG, "coordinateMotion: $seekPosition")
         }
 
-        appBarLayout.addOnOffsetChangedListener(listener)
+        appBarLayout?.addOnOffsetChangedListener(listener)
     }
 }
