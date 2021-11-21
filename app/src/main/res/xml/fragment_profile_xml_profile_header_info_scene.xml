@@ -148,7 +148,9 @@
                 motion:motionTarget="@+id/profile_header_create_at_icon" />
         </KeyFrameSet>
 
-        <OnSwipe />
+        <OnSwipe
+            motion:dragDirection="dragDown"
+            />
 
     </Transition>
 </MotionScene>

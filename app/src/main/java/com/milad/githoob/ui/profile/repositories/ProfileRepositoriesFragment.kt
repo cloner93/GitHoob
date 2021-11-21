@@ -1,4 +1,4 @@
-package com.milad.githoob.ui.profile.overview
+package com.milad.githoob.ui.profile.repositories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,34 +8,35 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.milad.githoob.R
 import com.milad.githoob.data.model.User
-import com.milad.githoob.databinding.FragmentProfileOverviewBinding
-import com.milad.githoob.ui.profile.ProfileOverviewAdapter
+import com.milad.githoob.databinding.ProfileRepositoriesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileOverviewFragment : Fragment() {
+class ProfileRepositoriesFragment : Fragment() {
+
     private lateinit var user: User
     private lateinit var token: String
-    private lateinit var binding: FragmentProfileOverviewBinding
+    private lateinit var adapter: ProfileRepositoryAdapter
 
-    private val viewModel by viewModels<ProfileOverviewViewModel>()
-    private lateinit var adapter: ProfileOverviewAdapter
-
-    fun newInstance(bundle: Bundle): ProfileOverviewFragment {
-        val instance = ProfileOverviewFragment()
+    fun newInstance(bundle: Bundle): ProfileRepositoriesFragment {
+        val instance = ProfileRepositoriesFragment()
         instance.arguments = bundle
 
         return instance
     }
 
+    private val viewModel by viewModels<ProfileRepositoriesViewModel>()
+
+    private lateinit var binding: ProfileRepositoriesFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile_overview, container, false)
-        binding = FragmentProfileOverviewBinding.bind(view).apply {
+        val view = inflater.inflate(R.layout.profile_repositories_fragment, container, false)
+        binding = ProfileRepositoriesFragmentBinding.bind(view).apply {
             viewmodel = viewModel
-            lifecycleOwner= this@ProfileOverviewFragment
+            lifecycleOwner = this@ProfileRepositoriesFragment
         }
 
         if (arguments != null) {
@@ -49,14 +50,12 @@ class ProfileOverviewFragment : Fragment() {
         return binding.root
     }
 
-
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
-        if (viewmodel!= null) {
-            adapter = ProfileOverviewAdapter(viewmodel)
-            binding.profileAllActivitesRecyclerview.adapter = adapter
+        if (viewmodel != null) {
+            adapter = ProfileRepositoryAdapter(viewmodel)
+            binding.profileRepositoriesList.adapter = adapter
         }
     }
-
 
 }

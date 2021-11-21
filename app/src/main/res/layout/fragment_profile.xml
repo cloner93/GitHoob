@@ -26,15 +26,14 @@
             <androidx.constraintlayout.motion.widget.MotionLayout
                 android:id="@+id/profile_header_info"
                 android:layout_width="match_parent"
-                app:motionDebug="SHOW_PATH"
-                android:layout_height="wrap_content"
-                android:minHeight="80dp"
+                android:layout_height="match_parent"
                 android:background="@color/primary"
-                app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
+                android:minHeight="80dp"
                 app:layoutDescription="@xml/fragment_profile_xml_profile_header_info_scene"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed|snap">
 
                 <TextView
                     android:id="@+id/profile_user_name"

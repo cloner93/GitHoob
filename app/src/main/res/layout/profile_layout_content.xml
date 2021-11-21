@@ -29,6 +29,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/profile_pager"
         android:layout_width="match_parent"
-        android:layout_height="0px"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="0dp"
         android:layout_weight="1"/>
 </LinearLayout>

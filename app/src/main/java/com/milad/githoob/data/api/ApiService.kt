@@ -3,6 +3,7 @@ package com.milad.githoob.data.api
 import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.AccessToken
 import com.milad.githoob.data.model.User
+import com.milad.githoob.data.model.event.Repo
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -35,4 +36,11 @@ interface ApiService {
         @Path("username") username: String,
         @Query("page") page: Int
     ): Response<ArrayList<Events>>
+
+    @Headers("Content-Type: application/json")
+    @GET("/user/repos?sort=updated&per_page=100")
+    suspend fun getMyRepositories(
+        @Header("Authorization") user: String,
+        @Query("page") page: Int
+    ): Response<ArrayList<Repo>>
 }

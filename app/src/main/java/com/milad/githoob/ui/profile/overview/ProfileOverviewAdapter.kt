@@ -9,8 +9,8 @@ import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.databinding.ProfileActivityItemsBinding
 import com.milad.githoob.ui.profile.overview.ProfileOverviewViewModel
 
-class ProfileActivityAdapter(private val viewModel: ProfileOverviewViewModel) :
-    ListAdapter<Events, ProfileActivityAdapter.ViewHolder>(EventDiffCallback()) {
+class ProfileOverviewAdapter(private val viewModel: ProfileOverviewViewModel) :
+    ListAdapter<Events, ProfileOverviewAdapter.ViewHolder>(EventDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -22,7 +22,7 @@ class ProfileActivityAdapter(private val viewModel: ProfileOverviewViewModel) :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ProfileActivityItemsBinding) :
+    class ViewHolder(val binding: ProfileActivityItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(viewModel: ProfileOverviewViewModel, item: Events) {

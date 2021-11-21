@@ -4,15 +4,21 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.milad.githoob.ui.profile.overview.ProfileOverviewFragment
+import com.milad.githoob.ui.profile.repositories.ProfileRepositoriesFragment
 
-class ProfileViewPagerAdapter(
-    val fragment: Fragment,
-    val bundle: Bundle
-) :
+class ProfileViewPagerAdapter(val fragment: Fragment, val bundle: Bundle) :
     FragmentStateAdapter(fragment) {
-    override fun getItemCount() = 4
 
-    override fun createFragment(position: Int): Fragment {
-        return ProfileOverviewFragment().newInstance(bundle)
+    val list: List<Fragment> = listOf(
+        ProfileOverviewFragment().newInstance(bundle),
+        ProfileRepositoriesFragment().newInstance(bundle)
+    )
+
+    override fun getItemCount() = list.size
+
+    override fun createFragment(position: Int) = when (position) {
+        0 -> list[position]
+        1 -> list[position]
+        else -> throw IllegalArgumentException()
     }
 }

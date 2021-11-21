@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_repositories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.repositories.ProfileRepositoriesFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_repositories_list"
+            android:layout_width="409dp"
+            android:layout_height="729dp"
+            android:layout_marginStart="1dp"
+            repositories_items="@{viewmodel.repoList}"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            tools:listitem="@layout/profile_repositories_item"
+            android:fillViewport="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.milad.githoob.ui.profile.repositories.ProfileRepositoriesViewModel" />
+    </data>
+</layout>

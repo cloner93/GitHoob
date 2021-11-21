@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_owerview"
+        android:id="@+id/profile_overview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.profile.overview.ProfileOverviewFragment">
@@ -56,7 +56,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/profile_all_activites_recyclerview"
-                items="@{viewmodel.feedsList}"
+                overview_items="@{viewmodel.feedsList}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"

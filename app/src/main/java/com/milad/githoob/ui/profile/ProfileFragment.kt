@@ -83,9 +83,12 @@ class ProfileFragment : Fragment() {
         val p = DecimalFormat("0.0");
 
         val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
+            Log.d(TAG, "coordinateMotion: $verticalOffset / ${appBarLayout?.totalScrollRange!!.toFloat()}")
+            Log.d(TAG, "coordinateMotion: ${appBarLayout.height } : ${appBarLayout.width}")
+
             val seekPosition = -verticalOffset / appBarLayout?.totalScrollRange!!.toFloat()
-            motionLayout.progress = seekPosition
             Log.d(TAG, "coordinateMotion: $seekPosition")
+                motionLayout.progress = seekPosition
         }
 
         appBarLayout?.addOnOffsetChangedListener(listener)
