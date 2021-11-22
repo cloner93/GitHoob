@@ -11,6 +11,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="joined">Joined: %s</string>
+    <string name="forked">Forked from: %s</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="private_">Private</string>
+    <string name="public_">Public</string>
+
 </resources>
