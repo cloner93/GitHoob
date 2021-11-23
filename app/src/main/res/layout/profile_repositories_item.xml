@@ -4,221 +4,198 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="8dp"
-        android:elevation="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/material_motion_duration_long_1"
+                    android:ellipsize="end"
+                    android:text="@{repo.name}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Flutter_UI_Challenge" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{repo.private? @string/private_: @string/public_}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/accent"
+                    android:textSize="12dp"
+                    tools:text="Private" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"
+                    android:visibility="@{repo.fork ? View.VISIBLE : View.GONE}"
+                    tools:text="Forked from: Milad\Targholi" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@{repo.description}"
+                    android:textAlignment="textStart"
+                    android:visibility="@{repo.description != null ? View.VISIBLE : View.GONE}"
+                    tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6">
+                android:visibility="@{repo.topics.empty ? View.GONE:View.VISIBLE}">
 
-                <com.google.android.material.chip.ChipGroup
+                <HorizontalScrollView
+                    android:id="@+id/horizontalScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.chip.ChipGroup
+                        repositories_item_chip="@{repo.topics}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:singleLine="true" />
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:id="@+id/la1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:singleLine="true">
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="@{repo.language == null ? View.GONE: View.VISIBLE}">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip6"
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <TextView
+                        android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="false"
-                        android:checked="false"
-                        android:text="Kotlin"
-                        android:textColor="@color/primary_dark"
-                        app:checkedIconEnabled="false"
-                        app:checkedIconVisible="false"
-                        app:chipBackgroundColor="@color/primary_light"
-                        app:chipIconEnabled="false"
-                        app:chipIconVisible="false" />
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="@{repo.language}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        tools:text="Kotlin" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip5"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/la2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="@{repo.stargazers_count == 0 ? View.GONE: View.VISIBLE}">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <TextView
+                        android:id="@+id/textView72"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Java"
-                        android:textColor="@color/primary_dark"
-                        app:checkedIconEnabled="false"
-                        app:checkedIconVisible="false"
-                        app:chipBackgroundColor="@color/primary_light"
-                        app:chipIconEnabled="false"
-                        app:chipIconVisible="false" />
-                </com.google.android.material.chip.ChipGroup>
-            </HorizontalScrollView>
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="@{numberUtils.format(repo.stargazers_count) }"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        tools:text="300" />
 
-            <LinearLayout
-                android:id="@+id/la1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+                </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_github" />
-
-                <TextView
-                    android:id="@+id/textView7"
+                <LinearLayout
+                    android:id="@+id/la3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:text="@{repo.language}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="Kotlin" />
+                    android:layout_marginEnd="8dp"
+                    android:visibility="@{repo.forks_count == 0 ? View.GONE: View.VISIBLE}">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imageView32"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_github" />
 
-            <LinearLayout
-                android:id="@+id/la2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/la1"
-                app:layout_constraintStart_toEndOf="@+id/la1"
-                app:layout_constraintTop_toTopOf="@+id/la1">
+                    <TextView
+                        android:id="@+id/textView372"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="@{numberUtils.format(repo.forks_count) }"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        tools:text="300" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_github" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView72"
-                    android:layout_width="wrap_content"
+                    repositories_item_updateTime="@{repo.updated_at}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="300" />
-
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Updated on Oct 31, 2020"
+                    android:textAlignment="textEnd"
+                    android:visibility="@{repo.updated_at == null ? View.GONE: View.VISIBLE}" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/la3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/la2"
-                app:layout_constraintStart_toEndOf="@+id/la2"
-                app:layout_constraintTop_toTopOf="@+id/la2">
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageView32"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_github" />
-
-                <TextView
-                    android:id="@+id/textView372"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="300" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:text="@{repo.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Flutter_UI_Challenge" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@{repo.private? @string/private_: @string/public_}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/accent"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView3"
-                app:layout_constraintVertical_bias="1.0"
-                tools:text="Private" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"
-                android:visibility="@{repo.fork ? View.VISIBLE : View.INVISIBLE}"
-                app:layout_constraintEnd_toEndOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                tools:text="Forked from: Milad\Targholi" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@{repo.description}"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="@+id/textView5"
-                app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Updated on Oct 31, 2020"
-                app:layout_constraintBottom_toBottomOf="@+id/la3"
-                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
-                app:layout_constraintStart_toEndOf="@+id/la3"
-                app:layout_constraintTop_toTopOf="@+id/la3"
-                app:layout_constraintVertical_bias="0.5" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <data>
