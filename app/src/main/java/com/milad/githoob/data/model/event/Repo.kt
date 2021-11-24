@@ -75,5 +75,6 @@ data class Repo (
 	val forks : Int,
 	val open_issues : Int,
 	val watchers : Int,
-	val default_branch : String
+	val default_branch : String,
+	var language_color: String
 )

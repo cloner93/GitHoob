@@ -1,6 +1,8 @@
 package com.milad.githoob.ui.profile.repositories
 
+import android.graphics.Color
 import android.text.format.DateUtils
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -57,5 +59,15 @@ fun setRepoUpdateTimeText(
     } catch (e: ParseException) {
         e.printStackTrace()
         tvTime.text = "N/A"
+    }
+}
+
+@BindingAdapter("repositories_item_langColor")
+fun setRepositoriesItemLangColor(
+    linearLayout: LinearLayout,
+    color: Int
+) {
+    color.let {
+        linearLayout.setBackgroundColor(color)
     }
 }
