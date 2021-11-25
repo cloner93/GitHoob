@@ -1,8 +1,8 @@
 package com.milad.githoob.data.api
 
-import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.AccessToken
 import com.milad.githoob.data.model.User
+import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.event.Repo
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -27,7 +27,7 @@ interface ApiService {
     ): Response<User>
 
     @GET
-    suspend fun getUserContribute(@Url url: String) :ResponseBody
+    suspend fun getUserContribute(@Url url: String): ResponseBody
 
     @Headers("Content-Type: application/json")
     @GET("/users/{username}/received_events?per_page=100")
@@ -40,7 +40,16 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("/user/repos?sort=updated&per_page=100")
     suspend fun getMyRepositories(
-        @Header("Authorization") user: String,
+        @Header("Authorization") token: String,
         @Query("page") page: Int
     ): Response<ArrayList<Repo>>
+
+    @Headers("Content-Type: application/json")
+        @GET("/users/{username}/events")
+    suspend fun getMyEvents(
+        @Header("Authorization") token: String,
+        @Path("username") username: String,
+        @Query("page") page: Int
+    ): Response<ArrayList<Events>>
+
 }

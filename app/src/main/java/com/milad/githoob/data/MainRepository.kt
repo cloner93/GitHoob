@@ -27,4 +27,7 @@ class MainRepository @Inject constructor(
 
     suspend fun getMyRepositories(token: String, page: Int) =
         apiRequest { apiService.getMyRepositories(token, page) }
+
+    suspend fun getMyEvents(token: String, username: String, page: Int) =
+        apiRequest { apiService.getMyEvents(token, username, page) }
 }

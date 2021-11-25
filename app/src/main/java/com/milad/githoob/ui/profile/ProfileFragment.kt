@@ -54,10 +54,10 @@ class ProfileFragment : Fragment() {
                                     "OverView"
                                 }
                                 1 -> {
-                                    "Repositories"
+                                    "Feeds"
                                 }
                                 2 -> {
-                                    "Projects"
+                                    "Repositories"
                                 }
                                 3 -> {
                                     "Package"
