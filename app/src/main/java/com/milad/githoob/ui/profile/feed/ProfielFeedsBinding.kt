@@ -1,5 +1,8 @@
 package com.milad.githoob.ui.profile.feed
 
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.data.model.event.Event
@@ -12,4 +15,12 @@ fun setFeedsItems(
     items?.let {
         (recyclerView.adapter as ProfileFeedsAdapter).submitList(items)
     }
+}
+
+@BindingAdapter("feed_item_icon")
+fun setFeedItemIcon(imageView: ImageView, @DrawableRes drawableRes: Int) {
+
+    val drawable = ContextCompat.getDrawable(imageView.context, drawableRes)
+    imageView.setImageDrawable(drawable)
+
 }

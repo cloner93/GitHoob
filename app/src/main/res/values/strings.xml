@@ -18,4 +18,29 @@
     <string name="private_">Private</string>
     <string name="public_">Public</string>
 
+    <string name="forked2">Forked</string>
+    <string name="starred">Starred</string>
+    <string name="pull_request">Pull Request</string>
+    <string name="created_gist">Gist</string>
+    <string name="gollum">Wiki</string>
+    <string name="created_issue">Issue</string>
+    <string name="public_event">Open-sourced</string>
+    <string name="organization_event">Organization</string>
+    <string name="card_event">Card</string>
+    <string name="project_event">Project</string>
+    <string name="pr_review_event">Pull Request</string>
+    <string name="repo_event">Repository</string>
+    <string name="released">Released</string>
+    <string name="created_repo">Created</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="followed">Followed</string>
+    <string name="commented_on_issue">Comment on Issue</string>
+    <string name="member">Member</string>
+    <string name="pr_comment_review">Pull Request comment</string>
+    <string name="pushed">Pushed to</string>
+    <string name="team_event">Team</string>
+    <string name="deleted">Deleted</string>
+    <string name="unknown">Unknown</string>
+    <string name="commented_on_commit">Commented on commit</string>
+
 </resources>

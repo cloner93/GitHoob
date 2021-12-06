@@ -1,13 +1,8 @@
 package com.milad.githoob.ui.profile
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.event.Events
 import com.milad.githoob.data.model.User
-import com.milad.githoob.utils.AppConstants
-import com.milad.githoob.utils.contributions.ContributionsDay
-import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
