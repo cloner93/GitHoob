@@ -37,5 +37,5 @@ data class Comment (
 	val created_at : String,
 	val updated_at : String,
 	val author_association : String,
-	val body : String
+	val body : String? = ""
 )

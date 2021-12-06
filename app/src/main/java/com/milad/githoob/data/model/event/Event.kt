@@ -1,5 +1,7 @@
 package com.milad.githoob.data.model.event
 
+import com.milad.githoob.data.model.type.EventType
+
 /*
  * MIT License
  *
@@ -25,13 +27,17 @@ package com.milad.githoob.data.model.event
  */
 
 
-data class Events (
+data class Event(
 
-    val id : Number,
-    val type : String,
-    val actor : Actor,
-    val repo : Repo,
-    val payload : Payload,
-    val public : Boolean,
-    val created_at : String
+    val id: Number,
+    val type: String,
+    var eventType: EventType,
+    val repo: Repo,
+    val payload: Payload,
+    val public: Boolean,
+    val actor: Actor,
+    val created_at: String,
+
+    var title: String = "",
+    var desc: String = ""
 )

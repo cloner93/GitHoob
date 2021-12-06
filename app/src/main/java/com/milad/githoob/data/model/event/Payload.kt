@@ -29,7 +29,7 @@ data class Payload (
     val distinct_size : Number,
     val ref : String,
     val ref_type : String,
-    val description: String,
+    val description: String? = "",
     val head : String,
     val before : String,
     val commits : List<Commits>,
