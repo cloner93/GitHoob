@@ -9,7 +9,7 @@ import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.event.Events
+import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.ui.profile.ProfileOverviewAdapter
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.GitHubContributionsView
@@ -42,7 +42,7 @@ fun setEventTimeText(
 fun setItemTitle(
     tvTitle: TextView,
     tvDesc: TextView,
-    events: Events
+    events: Event
 ) {
 
     when (events.type) {
@@ -234,7 +234,7 @@ fun setItemTitle(
 @BindingAdapter("overview_items")
 fun setItems(
     recyclerView: RecyclerView,
-    items: List<Events>?
+    items: List<Event>?
 ) {
     items?.let {
         (recyclerView.adapter as ProfileOverviewAdapter).submitList(items)

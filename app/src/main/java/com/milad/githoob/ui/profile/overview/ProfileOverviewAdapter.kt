@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.event.Events
+import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.databinding.ProfileActivityItemsBinding
 import com.milad.githoob.ui.profile.overview.ProfileOverviewViewModel
 
 class ProfileOverviewAdapter(private val viewModel: ProfileOverviewViewModel) :
-    ListAdapter<Events, ProfileOverviewAdapter.ViewHolder>(EventDiffCallback()) {
+    ListAdapter<Event, ProfileOverviewAdapter.ViewHolder>(EventDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -25,7 +25,7 @@ class ProfileOverviewAdapter(private val viewModel: ProfileOverviewViewModel) :
     class ViewHolder(val binding: ProfileActivityItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: ProfileOverviewViewModel, item: Events) {
+        fun bind(viewModel: ProfileOverviewViewModel, item: Event) {
 
             binding.viewmodel = viewModel
             binding.event = item
@@ -43,12 +43,12 @@ class ProfileOverviewAdapter(private val viewModel: ProfileOverviewViewModel) :
     }
 }
 
-class EventDiffCallback : DiffUtil.ItemCallback<Events>() {
-    override fun areItemsTheSame(oldItem: Events, newItem: Events): Boolean {
+class EventDiffCallback : DiffUtil.ItemCallback<Event>() {
+    override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Events, newItem: Events): Boolean {
+    override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
         return oldItem == newItem
     }
 }

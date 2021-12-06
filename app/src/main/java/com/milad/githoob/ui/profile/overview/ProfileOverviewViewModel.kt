@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
-import com.milad.githoob.data.model.event.Events
+import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.utils.AppConstants
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
@@ -26,8 +26,8 @@ class ProfileOverviewViewModel @Inject constructor(
     private val _userContributes = MutableLiveData<List<ContributionsDay>>()
     val userContributes: LiveData<List<ContributionsDay>> = _userContributes
 
-    private var _feedsList = MutableLiveData<ArrayList<Events>>()
-    val feedsList: LiveData<ArrayList<Events>> = _feedsList
+    private var _feedsList = MutableLiveData<ArrayList<Event>>()
+    val feedsList: LiveData<ArrayList<Event>> = _feedsList
 
     fun setUser(token: String, user: User) {
         viewModelScope.launch {
@@ -65,7 +65,7 @@ class ProfileOverviewViewModel @Inject constructor(
         }
     }
 
-    fun getUserProfile(event: Events) {
+    fun getUserProfile(event: Event) {
         Log.d(TAG, "getUserProfile: ${event.actor.login}")
     }
 }

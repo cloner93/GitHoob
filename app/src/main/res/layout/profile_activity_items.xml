@@ -49,7 +49,7 @@
                 tools:text="Now" />
 
             <TextView
-                android:id="@+id/EnentTitle"
+                android:id="@+id/EventTitle"
                 events="@{event}"
                 tvDesc="@{EventDesc}"
                 android:layout_width="0dp"
@@ -78,9 +78,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/EnentTitle"
-                app:layout_constraintStart_toStartOf="@+id/EnentTitle"
-                app:layout_constraintTop_toBottomOf="@+id/EnentTitle"
+                app:layout_constraintEnd_toEndOf="@+id/EventTitle"
+                app:layout_constraintStart_toStartOf="@+id/EventTitle"
+                app:layout_constraintTop_toBottomOf="@+id/EventTitle"
                 tools:text="TextView" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -101,7 +101,7 @@
     <data>
         <variable
             name="event"
-            type="com.milad.githoob.data.model.event.Events" />
+            type="com.milad.githoob.data.model.event.Event" />
 
         <variable
             name="viewmodel"
