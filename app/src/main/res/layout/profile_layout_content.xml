@@ -10,21 +10,15 @@
         android:id="@+id/profile_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/back"
         android:elevation="2dp"
         android:textSize="12sp"
         android:theme="@style/Theme.GitHoob"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabBackground="@color/back"
-        app:tabIndicator="@color/back"
-        app:tabIndicatorColor="@color/primary_dark"
         app:tabIndicatorGravity="bottom"
         app:tabIndicatorHeight="4dp"
-        app:tabSelectedTextColor="@color/primary_dark"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:tabTextColor="@color/accent" />
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/profile_pager"

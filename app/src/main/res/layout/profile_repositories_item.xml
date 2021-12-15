@@ -106,6 +106,7 @@
 
                 <com.google.android.material.chip.ChipGroup
                     repositories_item_chip="@{repo.topics}"
+                    app:lineSpacing="1dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 

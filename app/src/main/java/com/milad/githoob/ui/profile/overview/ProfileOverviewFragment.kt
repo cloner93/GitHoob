@@ -42,7 +42,7 @@ class ProfileOverviewFragment : Fragment() {
             user = requireArguments().getSerializable("user") as User
             token = requireArguments().getString("token") as String
         }
-        setupRecyclerView()
+//        setupRecyclerView()
 
         viewModel.setUser(token, user)
 
@@ -54,7 +54,7 @@ class ProfileOverviewFragment : Fragment() {
         val viewmodel = binding.viewmodel
         if (viewmodel!= null) {
             adapter = ProfileOverviewAdapter(viewmodel)
-            binding.profileAllActivitesRecyclerview.adapter = adapter
+            binding.profileAllActivitesRecyclerview?.adapter = adapter
         }
     }
 
