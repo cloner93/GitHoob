@@ -23,13 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.motion.widget.MotionLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_header_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primary"
+                android:background="?colorSecondaryContainer"
                 android:minHeight="80dp"
-                app:layoutDescription="@xml/fragment_profile_xml_profile_header_info_scene"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,13 +44,13 @@
                     android:singleLine="true"
                     android:text="@{viewmodel.user.name}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
                     app:layout_constraintTop_toTopOf="@+id/profile_image"
-                    tools:text="33" />
+                    tools:text="Milad Targholi" />
 
                 <TextView
                     android:id="@+id/profile_user_desc"
@@ -61,14 +60,14 @@
                     android:singleLine="true"
                     android:text="@{viewmodel.user.bio}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_login"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
-                    tools:text="11" />
+                    tools:text="Android Dev is ♥" />
 
                 <TextView
                     android:id="@+id/profile_user_login"
@@ -77,13 +76,13 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{viewmodel.user.login}"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/profile_user_desc"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
-                    tools:text="22" />
+                    tools:text="Cloner93" />
 
                 <TextView
                     android:id="@+id/profile_header_company"
@@ -93,7 +92,7 @@
                     android:ellipsize="end"
                     android:text="@{viewmodel.user.company}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_header_company_icon"
                     app:layout_constraintStart_toEndOf="@+id/profile_header_company_icon"
@@ -109,7 +108,7 @@
                     android:ellipsize="end"
                     android:text="@{viewmodel.user.location}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_header_location_icon"
                     app:layout_constraintStart_toEndOf="@+id/profile_header_location_icon"
@@ -123,9 +122,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
+                    android:visibility="@{viewmodel.user.created_at == null ? View.GONE : View.VISIBLE}"
                     android:text="@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/text"
+                    android:textColor="?colorOnPrimaryContainer"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_header_create_at_icon"
                     app:layout_constraintStart_toEndOf="@+id/profile_header_create_at_icon"
@@ -138,7 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="#5EFFFFFF"
+                    android:background="?colorOnPrimaryContainer"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_desc"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_desc" />
@@ -189,13 +189,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/profile_header_location_icon"
                     app:srcCompat="@drawable/ic_date" />
 
-            </androidx.constraintlayout.motion.widget.MotionLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
 
         <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="android.view.View" />
 
         <variable
             name="viewmodel"

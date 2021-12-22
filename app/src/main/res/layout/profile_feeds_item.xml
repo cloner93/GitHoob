@@ -34,7 +34,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/primary_dark"
+                android:textColor="?colorPrimary"
                 android:textSize="10dp"
                 android:textStyle="bold"
                 tools:text="2015-10-01T12:14:20Z" />

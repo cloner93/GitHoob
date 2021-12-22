@@ -51,7 +51,7 @@
                         android:text="@{repo.private? @string/private_: @string/public_}"
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/accent"
+                        android:textColor="@color/md_theme_light_primaryContainer"
                         android:textSize="13sp"
                         android:textStyle="bold|italic"
                         tools:text="Private" />
@@ -148,7 +148,7 @@
                             android:layout_weight="1"
                             android:text="@{repo.language}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="@color/black"
+                            android:textColor="?colorOnPrimary"
                             android:textSize="12dp"
                             tools:text="Kotlin" />
 
@@ -177,7 +177,7 @@
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.stargazers_count) }"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="@color/black"
+                            android:textColor="?colorOnPrimary"
                             android:textSize="12dp"
                             tools:text="300" />
 
@@ -206,7 +206,7 @@
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.forks_count) }"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="@color/black"
+                            android:textColor="?colorOnPrimary"
                             android:textSize="12dp"
                             tools:text="300" />
 
@@ -222,7 +222,7 @@
                         android:text="Updated on Oct 31, 2020"
                         android:textAlignment="textEnd"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/black"
+                        android:textColor="?colorOnPrimary"
                         android:textSize="12dp"
                         android:visibility="@{repo.updated_at == null ? View.GONE: View.VISIBLE}" />
                 </LinearLayout>

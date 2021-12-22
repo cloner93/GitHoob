@@ -41,7 +41,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/primary"
+                android:textColor="?colorPrimary"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/EventUserName"
                 app:layout_constraintEnd_toEndOf="parent"

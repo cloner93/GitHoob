@@ -1,5 +1,6 @@
 package com.milad.githoob.ui.profile.repositories
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.text.format.DateUtils
 import android.widget.LinearLayout
@@ -24,6 +25,7 @@ fun setRepoItems(
     }
 }
 
+@SuppressLint("ResourceType")
 @BindingAdapter("repositories_item_chip")
 fun setItemChip(
     chipGroup: ChipGroup,
@@ -33,7 +35,7 @@ fun setItemChip(
         for (topic in items) {
             val chipChild: Chip = Chip(chipGroup.context).apply {
                 text = topic
-                setChipBackgroundColorResource(R.color.primary_light)
+                setChipBackgroundColorResource(R.attr.colorTertiary)
             }
 
             chipGroup.addView(chipChild)

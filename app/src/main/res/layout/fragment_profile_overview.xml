@@ -85,9 +85,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:elevation="8dp"
-                app:backgroundBaseColor="@color/back"
-                app:baseColor="#2fbb4f"
-                app:baseEmptyColor="#2AFFFFFF"
+                app:backgroundBaseColor="?android:colorBackground"
+                app:baseColor="?colorTertiaryContainer"
+                app:baseEmptyColor="?android:colorBackground"
                 app:displayMonth="true"
                 app:lastWeeks="50"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -101,10 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/created_issue"
-
-                app:icon="@drawable/ic_issues"
-                style="?attr/materialButtonOutlinedStyle"
                 android:textAlignment="textStart"
+                app:icon="@drawable/ic_issues"
                 app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
                 app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
                 app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
@@ -116,11 +114,8 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/pull_request"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="@+id/button"
-
                 app:icon="@drawable/ic_pull_requests"
-                style="?attr/materialButtonOutlinedStyle"
-
+                app:layout_constraintEnd_toEndOf="@+id/button"
                 app:layout_constraintStart_toStartOf="@+id/button"
                 app:layout_constraintTop_toBottomOf="@+id/button" />
 
@@ -128,12 +123,10 @@
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
-                app:icon="@drawable/ic_company"
-                style="?attr/materialButtonOutlinedStyle"
                 android:layout_marginTop="4dp"
                 android:text="@string/organization_event"
                 android:textAlignment="textStart"
+                app:icon="@drawable/ic_company"
                 app:layout_constraintEnd_toEndOf="@+id/button2"
                 app:layout_constraintStart_toStartOf="@+id/button2"
                 app:layout_constraintTop_toBottomOf="@+id/button2" />

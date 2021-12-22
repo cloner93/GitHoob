@@ -80,7 +80,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:elevation="8dp"
-                app:backgroundBaseColor="@color/back"
+                app:backgroundBaseColor="@color/md_theme_light_background"
                 app:baseColor="#2fbb4f"
                 app:baseEmptyColor="#2AFFFFFF"
                 app:displayMonth="true"

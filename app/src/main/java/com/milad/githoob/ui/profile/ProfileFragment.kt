@@ -70,7 +70,7 @@ class ProfileFragment : Fragment() {
                 }
             })
         }
-        coordinateMotion()
+//        coordinateMotion()
 
 
         return binding.root
