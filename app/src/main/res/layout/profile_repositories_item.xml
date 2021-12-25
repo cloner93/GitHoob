@@ -29,6 +29,7 @@
                     android:text="@{repo.name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="14sp"
+                    android:textColor="?colorOnSurface"
                     android:textStyle="bold"
                     tools:text="Flutter_UI_Challenge" />
 
@@ -51,7 +52,7 @@
                         android:text="@{repo.private? @string/private_: @string/public_}"
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/md_theme_light_primaryContainer"
+                        android:textColor="?colorTertiary"
                         android:textSize="13sp"
                         android:textStyle="bold|italic"
                         tools:text="Private" />
@@ -73,6 +74,7 @@
                     android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"
                     android:textSize="11sp"
                     android:textStyle="italic"
+                    android:textColor="?colorOnSurface"
                     android:visibility="@{repo.fork ? View.VISIBLE : View.GONE}"
                     tools:text="Forked from: Milad\Targholi" />
             </LinearLayout>
@@ -92,6 +94,7 @@
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textSize="12dp"
+                    android:textColor="?colorOnSurface"
                     android:visibility="@{repo.description != null ? View.VISIBLE : View.GONE}"
                     tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
 
@@ -148,7 +151,7 @@
                             android:layout_weight="1"
                             android:text="@{repo.language}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnPrimary"
+                            android:textColor="?colorOnSurface"
                             android:textSize="12dp"
                             tools:text="Kotlin" />
 
@@ -177,7 +180,7 @@
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.stargazers_count) }"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnPrimary"
+                            android:textColor="?colorOnSurface"
                             android:textSize="12dp"
                             tools:text="300" />
 
@@ -206,7 +209,7 @@
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.forks_count) }"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnPrimary"
+                            android:textColor="?colorOnSurface"
                             android:textSize="12dp"
                             tools:text="300" />
 
@@ -222,7 +225,7 @@
                         android:text="Updated on Oct 31, 2020"
                         android:textAlignment="textEnd"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="?colorOnPrimary"
+                        android:textColor="?colorOnSurface"
                         android:textSize="12dp"
                         android:visibility="@{repo.updated_at == null ? View.GONE: View.VISIBLE}" />
                 </LinearLayout>

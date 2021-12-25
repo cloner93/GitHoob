@@ -35,7 +35,6 @@ fun setItemChip(
         for (topic in items) {
             val chipChild: Chip = Chip(chipGroup.context).apply {
                 text = topic
-                setChipBackgroundColorResource(R.attr.colorTertiary)
             }
 
             chipGroup.addView(chipChild)
