@@ -77,7 +77,7 @@ public class GitHubContributionsView extends View {
     }
 
     private void initAttributes(TypedArray attributes) {
-        baseColor = attributes.getColor(R.styleable.GitHubContributionsView_baseColor, baseColor);
+//        baseColor = attributes.getColor(R.styleable.GitHubContributionsView_baseColor, baseColor);
         baseEmptyColor = attributes.getColor(R.styleable.GitHubContributionsView_baseEmptyColor, baseEmptyColor);
         backgroundBaseColor = attributes.getColor(R.styleable.GitHubContributionsView_backgroundBaseColor, backgroundBaseColor);
         textColor = attributes.getColor(R.styleable.GitHubContributionsView_textColor, textColor);

@@ -1,15 +1,14 @@
 package com.milad.githoob.ui.profile.repositories
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.text.format.DateUtils
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.milad.githoob.R
 import com.milad.githoob.data.model.event.Repo
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -29,15 +28,17 @@ fun setRepoItems(
 @BindingAdapter("repositories_item_chip")
 fun setItemChip(
     chipGroup: ChipGroup,
-    items: List<String>?
+    items: List<String>
 ) {
-    items?.let {
-        for (topic in items) {
-            val chipChild: Chip = Chip(chipGroup.context).apply {
-                text = topic
+    items.let {
+        if (items.size != 0 && chipGroup.childCount == 0) {
+            Log.d("TAG", "setItemChip: ${items.size}")
+            for (topic in items) {
+                val chipChild: Chip = Chip(chipGroup.context).apply {
+                    text = topic
+                }
+                chipGroup.addView(chipChild)
             }
-
-            chipGroup.addView(chipChild)
         }
     }
 }
