@@ -1,11 +1,15 @@
 package com.milad.githoob.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
+import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,7 +17,6 @@ class ProfileViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val TAG = "ProfileViewModel@@"
 
     private lateinit var token: String
 
@@ -25,11 +28,23 @@ class ProfileViewModel @Inject constructor(
         val user = MutableLiveData<User>()
         if (bool) {
             _dataLoading.postValue(true)
-            viewModelScope.launch {
-                val userInfo = mainRepository.getUserInfo(token)
-                user.value = (userInfo)
+            viewModelScope.launch(ioDispatcher) {
 
-                _dataLoading.postValue(false)
+                mainRepository.getUserInfo(token).collect {
+                    when (it.status) {
+                        Status.SUCCESS -> {
+                            _dataLoading.postValue(false)
+                            user.postValue(it.data)
+                        }
+                        Status.LOADING -> {
+                            _dataLoading.postValue(false)
+                        }
+                        Status.ERROR -> {
+                            _dataLoading.postValue(false)
+                            Timber.d(it.message.toString())
+                        }
+                    }
+                }
             }
         }
         return@switchMap user

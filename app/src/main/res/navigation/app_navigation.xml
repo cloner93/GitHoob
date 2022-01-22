@@ -35,4 +35,9 @@
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.milad.githoob.ui.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" />
 </navigation>

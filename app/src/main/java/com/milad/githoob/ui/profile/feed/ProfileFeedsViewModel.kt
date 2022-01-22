@@ -10,9 +10,12 @@ import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
 import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.data.model.type.EventType
+import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -206,14 +209,17 @@ class ProfileFeedsViewModel @Inject constructor(
     fun setUser(token: String, user: User) {
 
         viewModelScope.launch(ioDispatcher) {
-            try {
-                _eventsList.postValue(
-                    mainRepository.getMyEvents(token, user.login, 1)
-                )
-            } catch (ex: Exception) {
-                ex.message?.let { Log.d("Get events", it) }
+            mainRepository.getMyEvents(token, user.login, 1).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        _eventsList.postValue(it.data!!)
+                    }
+                    Status.LOADING -> {}
+                    Status.ERROR -> {
+                        Timber.d(it.message.toString())
+                    }
+                }
             }
         }
-
     }
 }

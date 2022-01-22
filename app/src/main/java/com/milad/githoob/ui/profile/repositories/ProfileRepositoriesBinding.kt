@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.milad.githoob.data.model.event.Repo
+import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,7 +33,7 @@ fun setItemChip(
 ) {
     items.let {
         if (items.size != 0 && chipGroup.childCount == 0) {
-            Log.d("TAG", "setItemChip: ${items.size}")
+            Timber.d("setItemChip: " + items.size)
             for (topic in items) {
                 val chipChild: Chip = Chip(chipGroup.context).apply {
                     text = topic

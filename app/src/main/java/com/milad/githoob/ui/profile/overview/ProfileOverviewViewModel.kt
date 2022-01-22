@@ -9,12 +9,15 @@ import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
 import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.utils.AppConstants
+import com.milad.githoob.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +25,6 @@ class ProfileOverviewViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val TAG = "ProfileOverviewViewMode"
     private val _userContributes = MutableLiveData<List<ContributionsDay>>()
     val userContributes: LiveData<List<ContributionsDay>> = _userContributes
 
@@ -50,22 +52,26 @@ class ProfileOverviewViewModel @Inject constructor(
     }
 
     private suspend fun getFeeds(token: String, username: String, page: Int) {
-        try {
-            withContext(ioDispatcher) {
-                _feedsList.postValue(
-                    mainRepository.getEvents(
-                        token,
-                        username,
-                        page
-                    )
-                )
+        viewModelScope.launch(ioDispatcher) {
+            mainRepository.getEvents(
+                token,
+                username,
+                page
+            ).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        _feedsList.postValue(it.data!!)
+                    }
+                    Status.LOADING -> {}
+                    Status.ERROR -> {
+                        Timber.d(it.message)
+                    }
+                }
             }
-        } catch (e: Exception) {
-            e.message?.let { Log.d("Get Feeds", it) }
         }
     }
 
     fun getUserProfile(event: Event) {
-        Log.d(TAG, "getUserProfile: ${event.actor.login}")
+        Timber.d("getUserProfile: " + event.actor.login)
     }
 }

@@ -1,18 +1,19 @@
 package com.milad.githoob.ui.profile.repositories
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
 import com.milad.githoob.data.model.event.Repo
 import com.milad.githoob.utils.JsonUtils
+import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 @HiltViewModel
 class ProfileRepositoriesViewModel @Inject constructor(
@@ -34,23 +35,26 @@ class ProfileRepositoriesViewModel @Inject constructor(
             it.language_color = jsonUser.getColor(it.language)
         }
 
-        d.postValue(list)
+        d.value = list
         return d
     }
 
     fun setUser(token: String, user: User) {
-        viewModelScope.launch {
-
-            getRepositories(token, 1)
-        }
+        getRepositories(token, 1)
     }
 
     private fun getRepositories(token: String, page: Int) {
         viewModelScope.launch(ioDispatcher) {
-            try {
-                _repoList.postValue(mainRepository.getMyRepositories(token, page))
-            } catch (e: Exception) {
-                e.message?.let { Log.d("Get Repositories", it) }
+            mainRepository.getMyRepositories(token, page).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        _repoList.postValue(it.data!!)
+                    }
+                    Status.LOADING -> {}
+                    Status.ERROR -> {
+                        Timber.d(it.message.toString())
+                    }
+                }
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.milad.githoob.ui.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.text.DecimalFormat
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-    private val TAG = "ProfileFragment@@"
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<ProfileViewModel>()
     private lateinit var viewPagerAdapter: ProfileViewPagerAdapter
@@ -83,12 +82,12 @@ class ProfileFragment : Fragment() {
         val p = DecimalFormat("0.0");
 
         val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
-            Log.d(TAG, "coordinateMotion: $verticalOffset / ${appBarLayout?.totalScrollRange!!.toFloat()}")
-            Log.d(TAG, "coordinateMotion: ${appBarLayout.height } : ${appBarLayout.width}")
+            Timber.d("coordinateMotion: " + verticalOffset + " / " + appBarLayout?.totalScrollRange!!.toFloat())
+            Timber.d("coordinateMotion: " + appBarLayout.height + " : " + appBarLayout.width)
 
             val seekPosition = -verticalOffset / appBarLayout?.totalScrollRange!!.toFloat()
-            Log.d(TAG, "coordinateMotion: $seekPosition")
-                motionLayout.progress = seekPosition
+            Timber.d("coordinateMotion: $seekPosition")
+            motionLayout.progress = seekPosition
         }
 
         appBarLayout?.addOnOffsetChangedListener(listener)

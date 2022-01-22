@@ -3,14 +3,18 @@ package com.milad.githoob.ui.launch
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.utils.AppConstants.KEY_DATA_STORE_TOKEN
-import com.milad.githoob.utils.Resource
+import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -21,34 +25,43 @@ class LaunchViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
+    private var _token = MutableLiveData<String>()
+    var token: LiveData<String> = _token
+
     fun fetchToken(
         clientId: String,
         clientSecret: String,
         code: String
-    ) = liveData(ioDispatcher) {
-        emit(Resource.loading(null))
-        try {
-            emit(
-                Resource.success(
-                    data = mainRepository.getAccessToken(
-                        clientId,
-                        clientSecret,
-                        code
-                    )
-                )
-            )
-        } catch (exception: Exception) {
-            emit(Resource.error(exception.message ?: "Error Occurred!", data = null))
+    ) {
+        viewModelScope.launch(ioDispatcher) {
+            mainRepository.getAccessToken(
+                clientId,
+                clientSecret,
+                code
+            ).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        it.data.let {
+                            if (it?.access_token != null && !it.access_token.equals("")) {
+                                val token = "token ${it.access_token}"
+                                _token.postValue(token)
+                                saveToken(token)
+                            }
+                        }
+                    }
+                    Status.LOADING -> {
+                    }
+                    Status.ERROR -> {
+                        Timber.d(it.message.toString())
+                    }
+                }
+            }
         }
     }
 
-    fun saveToken(token: String) {
-        viewModelScope.launch {
-            withContext(ioDispatcher) {
-                dataStore.edit {
-                    it[KEY_DATA_STORE_TOKEN] = token
-                }
-            }
+    suspend fun saveToken(token: String) {
+        dataStore.edit {
+            it[KEY_DATA_STORE_TOKEN] = token
         }
     }
 }

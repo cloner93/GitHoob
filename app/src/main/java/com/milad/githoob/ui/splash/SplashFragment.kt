@@ -14,13 +14,12 @@ import com.milad.githoob.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
     private val viewModel by viewModels<SplashViewModel>()
-    private val TAG = "SplashFragment@@"
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +32,7 @@ class SplashFragment : Fragment() {
             viewModel.checkUserAuth().collect {
                 withContext(Dispatchers.Main) {
                     if (it.equals("")) {
-                        Log.d(TAG, "not found!")
+                        Timber.d("not found!")
                         delay(3000)
                         binding.progressBar.visibility = View.GONE
 
@@ -42,7 +41,7 @@ class SplashFragment : Fragment() {
                         this.cancel()
 
                     } else {
-                        Log.d(TAG, "Founded: $it")
+                        Timber.d("Founded: $it")
                         val directions =
                             SplashFragmentDirections.actionSplashFragmentToProfileFragment(it)
                         NavHostFragment.findNavController(this@SplashFragment)
