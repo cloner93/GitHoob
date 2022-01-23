@@ -11,6 +11,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="joined">Joined: %s</string>
+    <string name="followers">Followers: </string>
+    <string name="following">Following: </string>
+    <string name="at">\u0040%s</string>
     <string name="forked">Forked from: %s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
