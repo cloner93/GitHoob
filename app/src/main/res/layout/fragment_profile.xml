@@ -13,9 +13,132 @@
             android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <include
-                android:id="@+id/profile_include"
-                layout="@layout/profile_layout_content" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_all_contribute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/profile_all_contributions_graph_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Contributions Graph"
+                    android:textColor="?colorOnBackground"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/profile_all_contributions_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph" />
+
+                <!--
+
+                <TextView
+                    android:id="@+id/profile_all_activites_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Events"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/profile_all_contributions_divider" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profile_all_activites_recyclerview"
+                    overview_items="@{viewmodel.feedsList}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fillViewport="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_activites_title"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/profile_activity_items" />
+    -->
+
+                <com.milad.githoob.utils.contributions.GitHubContributionsView
+                    android:id="@+id/profile_all_contributions_graph"
+                    contributeGraphData="@{viewmodel.userContributes}"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:elevation="8dp"
+                    app:backgroundBaseColor="?android:colorBackground"
+                    app:baseColor="?colorContainer"
+                    app:baseEmptyColor="?android:colorBackground"
+                    app:displayMonth="true"
+                    app:lastWeeks="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
+                    app:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/created_issue"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_issues"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
+                    app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/pull_request"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_pull_requests"
+                    app:layout_constraintEnd_toEndOf="@+id/button"
+                    app:layout_constraintStart_toStartOf="@+id/button"
+                    app:layout_constraintTop_toBottomOf="@+id/button" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/organization_event"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_company"
+                    app:layout_constraintEnd_toEndOf="@+id/button2"
+                    app:layout_constraintStart_toStartOf="@+id/button2"
+                    app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.appbar.AppBarLayout

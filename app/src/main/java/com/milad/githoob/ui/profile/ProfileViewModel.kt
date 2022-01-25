@@ -1,10 +1,12 @@
 package com.milad.githoob.ui.profile
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
+import com.milad.githoob.utils.AppConstants
 import com.milad.githoob.utils.Status
+import com.milad.githoob.utils.contributions.ContributionsDay
+import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
@@ -20,10 +22,7 @@ class ProfileViewModel @Inject constructor(
 
     private lateinit var token: String
 
-    // TODO: setValue() method must be called from the main thread. But if you need set a value from a background thread, postValue() should be used.
-
-    private val _forceUpdate = MutableLiveData<Boolean>(false)
-
+    private val _forceUpdate = MutableLiveData(false)
     private val _user = _forceUpdate.switchMap { bool ->
         val user = MutableLiveData<User>()
         if (bool) {
@@ -46,20 +45,39 @@ class ProfileViewModel @Inject constructor(
                     }
                 }
             }
+        } else {
+            _dataLoading.postValue(false)
         }
         return@switchMap user
     }
+
+    val userContributes: LiveData<List<ContributionsDay>> = Transformations.switchMap(_user) {
+        val list = MutableLiveData<List<ContributionsDay>>()
+
+        _dataLoading.postValue(true)
+        val url = String.format(AppConstants.CONTRIBUTE_URL, it.login)
+
+        viewModelScope.launch(ioDispatcher) {
+            list.postValue(
+                ContributionsProvider().getContributions(
+
+                    mainRepository.getUserContribute(
+                        url
+                    ).string()
+                )
+            )
+        }
+
+        return@switchMap list
+    }
+
     val user: LiveData<User?> = _user
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    fun setToken(token: String) {
+    fun refresh(token: String) {
         this.token = token
         _forceUpdate.postValue(true)
-    }
-
-    fun refresh() {
-        _forceUpdate.value = true
     }
 }
