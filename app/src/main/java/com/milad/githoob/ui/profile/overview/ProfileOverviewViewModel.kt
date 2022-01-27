@@ -45,7 +45,7 @@ class ProfileOverviewViewModel @Inject constructor(
         withContext(ioDispatcher) {
             _userContributes.postValue(
                 ContributionsProvider().getContributions(
-                    mainRepository.getUserContribute(url).string()
+                    "mainRepository.getUserContribute(url).string()"
                 )
             )
         }

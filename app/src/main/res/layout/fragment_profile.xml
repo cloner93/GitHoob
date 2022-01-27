@@ -104,11 +104,11 @@
                     android:id="@+id/button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_marginTop="8dp"
-                    android:text="@string/created_issue"
+                    android:text="@string/starred"
                     android:textAlignment="textStart"
-                    app:icon="@drawable/ic_issues"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
                     app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
                     app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
                     app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
@@ -118,9 +118,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@string/pull_request"
+                    android:text="@string/repo_event"
                     android:textAlignment="textStart"
-                    app:icon="@drawable/ic_pull_requests"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
                     app:layout_constraintEnd_toEndOf="@+id/button"
                     app:layout_constraintStart_toStartOf="@+id/button"
                     app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -132,7 +133,8 @@
                     android:layout_marginTop="4dp"
                     android:text="@string/organization_event"
                     android:textAlignment="textStart"
-                    app:icon="@drawable/ic_company"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
                     app:layout_constraintEnd_toEndOf="@+id/button2"
                     app:layout_constraintStart_toStartOf="@+id/button2"
                     app:layout_constraintTop_toBottomOf="@+id/button2" />
@@ -252,11 +254,13 @@
                             android:ellipsize="end"
                             android:paddingStart="8dp"
                             android:paddingEnd="2dp"
-                            android:text="@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="?colorOnPrimaryContainer"
                             android:textSize="12sp"
                             tools:text="joined :" />
+<!--                        android:text="@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"-->
+<!--                        repositories_item_updateTime="@{viewmodel.user.created_at}"-->
+
 
                     </LinearLayout>
 

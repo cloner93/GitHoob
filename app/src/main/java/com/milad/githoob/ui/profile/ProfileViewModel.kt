@@ -36,7 +36,7 @@ class ProfileViewModel @Inject constructor(
                             user.postValue(it.data)
                         }
                         Status.LOADING -> {
-                            _dataLoading.postValue(false)
+                            _dataLoading.postValue(true)
                         }
                         Status.ERROR -> {
                             _dataLoading.postValue(false)
@@ -58,14 +58,21 @@ class ProfileViewModel @Inject constructor(
         val url = String.format(AppConstants.CONTRIBUTE_URL, it.login)
 
         viewModelScope.launch(ioDispatcher) {
-            list.postValue(
-                ContributionsProvider().getContributions(
-
-                    mainRepository.getUserContribute(
-                        url
-                    ).string()
-                )
-            )
+            mainRepository.getUserContribute(url).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        _dataLoading.postValue(false)
+                        val listCont = ContributionsProvider().getContributions(it.data?.string())
+                        list.postValue(listCont)
+                    }
+                    Status.LOADING -> {
+                        _dataLoading.postValue(true)
+                    }
+                    Status.ERROR -> {
+                        _dataLoading.postValue(false)
+                    }
+                }
+            }
         }
 
         return@switchMap list
@@ -76,8 +83,12 @@ class ProfileViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    fun refresh(token: String) {
+    fun setToken(token: String) {
         this.token = token
-        _forceUpdate.postValue(true)
+        _forceUpdate.value = true
+    }
+
+    fun refresh() {
+        _forceUpdate.value = true
     }
 }

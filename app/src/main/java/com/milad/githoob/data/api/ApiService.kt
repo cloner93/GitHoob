@@ -27,7 +27,7 @@ interface ApiService {
     ): Response<User>
 
     @GET
-    suspend fun getUserContribute(@Url url: String): ResponseBody
+    suspend fun getUserContribute(@Url url: String): Response<ResponseBody>
 
     @Headers("Content-Type: application/json")
     @GET("/users/{username}/received_events?per_page=100")

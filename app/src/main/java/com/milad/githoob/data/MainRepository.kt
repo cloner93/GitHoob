@@ -20,8 +20,7 @@ class MainRepository @Inject constructor(
     suspend fun getUserInfo(token: String) =
         apiRequest { apiService.getUserInfo(token) }
 
-    suspend fun getUserContribute(url: String) =
-        apiService.getUserContribute(url)
+    suspend fun getUserContribute(url: String) = apiRequest { apiService.getUserContribute(url) }
 
     suspend fun getEvents(token: String, username: String, page: Int) =
         apiRequest { apiService.getEvents(token, username, page) }

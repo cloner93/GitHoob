@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
         val bundle = arguments
         if (bundle != null) {
             val token = bundle.getString("token", "")
-            viewModel.refresh(token)
+            viewModel.setToken(token)
         }
 
         return binding.root
