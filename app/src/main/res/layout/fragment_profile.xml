@@ -101,7 +101,7 @@
                     app:textColor="#000000" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/profile_btn_started"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -114,7 +114,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/profile_btn_repository"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -122,12 +122,12 @@
                     android:textAlignment="textStart"
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/button"
-                    app:layout_constraintStart_toStartOf="@+id/button"
-                    app:layout_constraintTop_toBottomOf="@+id/button" />
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_started"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_started"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_started" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/profile_btn_organization"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -135,9 +135,9 @@
                     android:textAlignment="textStart"
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/button2"
-                    app:layout_constraintStart_toStartOf="@+id/button2"
-                    app:layout_constraintTop_toBottomOf="@+id/button2" />
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_repository"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
