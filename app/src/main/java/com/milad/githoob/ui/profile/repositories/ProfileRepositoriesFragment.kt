@@ -40,12 +40,12 @@ class ProfileRepositoriesFragment : Fragment() {
         }
 
         if (arguments != null) {
-            user = requireArguments().getSerializable("user") as User
+//            user = requireArguments().getSerializable("user") as User
             token = requireArguments().getString("token") as String
         }
         setupRecyclerView()
 
-        viewModel.setUser(token, user)
+        viewModel.setUser(token = token, null)
 
         return binding.root
     }

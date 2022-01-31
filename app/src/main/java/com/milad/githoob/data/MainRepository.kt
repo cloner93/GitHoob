@@ -17,8 +17,11 @@ class MainRepository @Inject constructor(
         apiService.getAccessToken(URL_access_token, clientId, clientSecret, code)
     }
 
-    suspend fun getUserInfo(token: String) =
-        apiRequest { apiService.getUserInfo(token) }
+    suspend fun getAuthenticatedUser(token: String) =
+        apiRequest { apiService.getAuthenticatedUser(token) }
+
+    suspend fun getUser(username: String) =
+        apiRequest { apiService.getUser(username) }
 
     suspend fun getUserContribute(url: String) = apiRequest { apiService.getUserContribute(url) }
 

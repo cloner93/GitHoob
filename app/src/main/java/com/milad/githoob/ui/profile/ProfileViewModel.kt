@@ -4,12 +4,15 @@ import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
 import com.milad.githoob.utils.AppConstants
+import com.milad.githoob.utils.Result
 import com.milad.githoob.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -20,6 +23,7 @@ class ProfileViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
+    private lateinit var userId: String
     private lateinit var token: String
 
     private val _forceUpdate = MutableLiveData(false)
@@ -29,7 +33,7 @@ class ProfileViewModel @Inject constructor(
             _dataLoading.postValue(true)
             viewModelScope.launch(ioDispatcher) {
 
-                mainRepository.getUserInfo(token).collect {
+                getUserInfo(token, userId).collect {
                     when (it.status) {
                         Status.SUCCESS -> {
                             _dataLoading.postValue(false)
@@ -49,6 +53,16 @@ class ProfileViewModel @Inject constructor(
             _dataLoading.postValue(false)
         }
         return@switchMap user
+    }
+
+    private suspend fun getUserInfo(token: String, userId: String): Flow<Result<User>> {
+        if (token != "")
+            return mainRepository.getAuthenticatedUser(token)
+        if (userId != "")
+            return mainRepository.getUser(userId)
+        return flow {
+            emit(Result.error(msg = "I can't load any user.", data = null))
+        }
     }
 
     val userContributes: LiveData<List<ContributionsDay>> = Transformations.switchMap(_user) {
@@ -83,8 +97,9 @@ class ProfileViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    fun setToken(token: String) {
+    fun setUser(token: String, userId: String) {
         this.token = token
+        this.userId = userId
         _forceUpdate.value = true
     }
 

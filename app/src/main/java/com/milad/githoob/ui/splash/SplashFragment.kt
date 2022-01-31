@@ -43,7 +43,10 @@ class SplashFragment : Fragment() {
                     } else {
                         Timber.d("Founded: $it")
                         val directions =
-                            SplashFragmentDirections.actionSplashFragmentToProfileFragment(it)
+                            SplashFragmentDirections.actionSplashFragmentToProfileFragment(
+                                token = it,
+                                userId = ""
+                            )
                         NavHostFragment.findNavController(this@SplashFragment)
                             .navigate(directions)
                         this.cancel()

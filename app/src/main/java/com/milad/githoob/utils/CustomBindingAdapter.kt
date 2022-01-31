@@ -39,7 +39,7 @@ fun profileCreatedAt(
             val ago =
                 DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS)
 
-            tvCreateAt.text = "joined :$ago"
+            tvCreateAt.text = "joined: $ago"
         } catch (e: ParseException) {
             e.printStackTrace()
             tvCreateAt.visibility = View.GONE

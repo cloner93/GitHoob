@@ -1,0 +1,12 @@
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="compose">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="myapp://repository"/>
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+</shortcuts>

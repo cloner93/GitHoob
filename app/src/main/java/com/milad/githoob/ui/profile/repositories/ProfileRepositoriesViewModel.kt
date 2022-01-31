@@ -39,7 +39,7 @@ class ProfileRepositoriesViewModel @Inject constructor(
         return d
     }
 
-    fun setUser(token: String, user: User) {
+    fun setUser(token: String, user: User?) {
         getRepositories(token, 1)
     }
 

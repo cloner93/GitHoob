@@ -9,16 +9,26 @@
         android:id="@+id/profileFragment"
         android:name="com.milad.githoob.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_profileRepositoriesFragment"
+            app:destination="@id/profileRepositoriesFragment" />
         <argument
             android:name="token"
             app:argType="string" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLink2"
+
+            app:uri="https://github.com/{userId}" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.milad.githoob.ui.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -30,14 +40,18 @@
         android:id="@+id/loginFragment"
         android:name="com.milad.githoob.ui.login.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
+        tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.milad.githoob.ui.home.HomeFragment"
-        android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        android:id="@+id/profileRepositoriesFragment"
+        android:name="com.milad.githoob.ui.profile.repositories.ProfileRepositoriesFragment"
+        android:label="ProfileRepositoriesFragment">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:action="ACTION_VIEW"
+            app:uri="myapp://repository" />
+    </fragment>
 </navigation>

@@ -22,8 +22,14 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @GET("/user")
-    suspend fun getUserInfo(
+    suspend fun getAuthenticatedUser(
         @Header("Authorization") token: String
+    ): Response<User>
+
+    @Headers("Content-Type: application/json")
+    @GET("/users/{username}")
+    suspend fun getUser(
+        @Path("username") username: String
     ): Response<User>
 
     @GET

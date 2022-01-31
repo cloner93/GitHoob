@@ -1,6 +1,7 @@
 package com.milad.githoob.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -28,7 +30,9 @@ class ProfileFragment : Fragment() {
         val bundle = arguments
         if (bundle != null) {
             val token = bundle.getString("token", "")
-            viewModel.setToken(token)
+            val userId = bundle.getString("userId", "")
+            Timber.d("Token: $token \n UserId: $userId")
+            viewModel.setUser(token, userId)
         }
 
         return binding.root
