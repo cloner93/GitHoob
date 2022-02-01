@@ -6,11 +6,14 @@ import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.User
 import com.milad.githoob.data.model.event.Repo
 import com.milad.githoob.utils.JsonUtils
+import com.milad.githoob.utils.Result
 import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -39,23 +42,38 @@ class ProfileRepositoriesViewModel @Inject constructor(
         return d
     }
 
-    fun setUser(token: String, user: User?) {
-        getRepositories(token, 1)
+    fun setUser(token: String? = "", userId: String? = "") {
+        getRepositories(token, userId)
     }
 
-    private fun getRepositories(token: String, page: Int) {
+    private fun getRepositories(token: String?, userId: String?) {
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.getMyRepositories(token, page).collect {
+            getRepository(token, userId).collect {
                 when (it.status) {
                     Status.SUCCESS -> {
                         _repoList.postValue(it.data!!)
                     }
-                    Status.LOADING -> {}
+                    Status.LOADING -> {
+                        // TODO: 2/1/2022 set loading
+                    }
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
                     }
                 }
             }
+        }
+    }
+
+    private suspend fun getRepository(
+        token: String?,
+        userId: String?
+    ): Flow<Result<ArrayList<Repo>>> {
+        if (token != null&& token != "")
+            return mainRepository.getAuthenticatedRepositories(token, 1)
+        if (userId != null && userId != "")
+            return mainRepository.getUserRepositories(userId, 1)
+        return flow {
+            emit(Result.error(msg = "I can't load any repo.", data = null))
         }
     }
 }

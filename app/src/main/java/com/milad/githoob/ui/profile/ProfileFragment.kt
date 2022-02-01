@@ -1,20 +1,24 @@
 package com.milad.githoob.ui.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
+import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
+    private var token: String? = null
+    private var userId: String? = null
     private lateinit var binding: FragmentProfileBinding
     private lateinit var safeArgs: ProfileFragmentArgs
     private val viewModel by viewModels<ProfileViewModel>()
@@ -32,14 +36,27 @@ class ProfileFragment : Fragment() {
         if (bundle != null) {
             safeArgs = ProfileFragmentArgs.fromBundle(bundle)
 
-            val token = safeArgs.token
-            val userId = safeArgs.userId
+            token = safeArgs.token
+            userId = safeArgs.userId
 
             Timber.d("Token: $token \n UserId: $userId")
             viewModel.setUser(token, userId)
         }
 
+        val navigate = NavHostFragment.findNavController(this)
+
+        initNavigation(navigate)
+
         return binding.root
+    }
+
+    private fun initNavigation(navigate: NavController) {
+
+        binding.profileBtnRepository.setOnClickListener {
+            val destination =
+                InternalDeepLink.makeRepositoryUserDeepLink(userId = userId, token = token)
+            navigate.navigate(destination)
+        }
     }
 
 }

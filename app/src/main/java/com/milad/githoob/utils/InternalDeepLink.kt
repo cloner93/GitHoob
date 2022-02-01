@@ -9,11 +9,9 @@ object InternalDeepLink {
     const val PROFILE = "${DOMAIN}profile"
     const val REPOSITORY = "${DOMAIN}repository"
 
-    fun makeProfileAuthenticatedDeepLink(token: String = ""): Uri {
-        return "${DOMAIN}profile/?token=${token}".toUri()
-    }
+    fun makeProfileDeepLink(userId: String?, token: String?) =
+        "${DOMAIN}profile/?userId=$userId&token=${token}".toUri()
 
-    fun makeProfileDeepLink(userId: String = ""): Uri {
-        return "${DOMAIN}profile/?userId=${userId}".toUri()
-    }
+    fun makeRepositoryUserDeepLink(userId: String?, token: String?) =
+        "${DOMAIN}repository/?userId=$userId&token=${token}".toUri()
 }

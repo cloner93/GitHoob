@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -49,7 +48,7 @@ class SplashFragment : Fragment() {
                                 userId = ""
                             )*/
                         val destination =
-                            InternalDeepLink.makeProfileAuthenticatedDeepLink(token = it)
+                            InternalDeepLink.makeProfileDeepLink(token = it, userId = null)
                         NavHostFragment.findNavController(this@SplashFragment)
                             .navigate(destination)
                         this.cancel()

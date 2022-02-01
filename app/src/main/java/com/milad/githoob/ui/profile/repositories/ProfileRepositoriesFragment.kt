@@ -14,9 +14,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileRepositoriesFragment : Fragment() {
 
-    private lateinit var user: User
-    private lateinit var token: String
+    private var token: String? = null
+    private var userId: String? = null
     private lateinit var adapter: ProfileRepositoryAdapter
+
+    private val viewModel by viewModels<ProfileRepositoriesViewModel>()
+    private lateinit var safeArgs: ProfileRepositoriesFragmentArgs
+    private lateinit var binding: ProfileRepositoriesFragmentBinding
 
     fun newInstance(bundle: Bundle): ProfileRepositoriesFragment {
         val instance = ProfileRepositoriesFragment()
@@ -24,10 +28,6 @@ class ProfileRepositoriesFragment : Fragment() {
 
         return instance
     }
-
-    private val viewModel by viewModels<ProfileRepositoriesViewModel>()
-
-    private lateinit var binding: ProfileRepositoriesFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,13 +39,16 @@ class ProfileRepositoriesFragment : Fragment() {
             lifecycleOwner = this@ProfileRepositoriesFragment
         }
 
-        if (arguments != null) {
-//            user = requireArguments().getSerializable("user") as User
-            token = requireArguments().getString("token") as String
+        val bundle = arguments
+        if (bundle != null) {
+            safeArgs = ProfileRepositoriesFragmentArgs.fromBundle(bundle)
+
+            token = safeArgs.token
+            userId = safeArgs.userId
         }
         setupRecyclerView()
 
-        viewModel.setUser(token = token, null)
+        viewModel.setUser(token = token, userId = userId)
 
         return binding.root
     }

@@ -32,6 +32,20 @@ interface ApiService {
         @Path("username") username: String
     ): Response<User>
 
+    @Headers("Content-Type: application/json")
+    @GET("/user/repos?sort=updated&per_page=100")
+    suspend fun getAuthenticatedRepositories(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int
+    ): Response<ArrayList<Repo>>
+
+    @Headers("Content-Type: application/json")
+    @GET("/users/{username}/repos?sort=updated")
+    suspend fun getUserRepositories(
+        @Path("username") username: String,
+        @Query("page") page: Int
+    ): Response<ArrayList<Repo>>
+
     @GET
     suspend fun getUserContribute(@Url url: String): Response<ResponseBody>
 
@@ -42,13 +56,6 @@ interface ApiService {
         @Path("username") username: String,
         @Query("page") page: Int
     ): Response<ArrayList<Event>>
-
-    @Headers("Content-Type: application/json")
-    @GET("/user/repos?sort=updated&per_page=100")
-    suspend fun getMyRepositories(
-        @Header("Authorization") token: String,
-        @Query("page") page: Int
-    ): Response<ArrayList<Repo>>
 
     @Headers("Content-Type: application/json")
         @GET("/users/{username}/events")
