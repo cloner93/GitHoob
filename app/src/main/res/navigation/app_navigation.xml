@@ -15,14 +15,24 @@
             app:destination="@id/profileRepositoriesFragment" />
         <argument
             android:name="token"
+            android:defaultValue=""
             app:argType="string" />
         <argument
             android:name="userId"
+            android:defaultValue=""
             app:argType="string" />
         <deepLink
             android:id="@+id/deepLink2"
-
+            app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:action="ACTION_VIEW"
+            app:uri="githoob://profile/?token={token}" />
+        <deepLink
+            android:id="@+id/deepLink4"
+            app:action="ACTION_VIEW"
+            app:uri="githoob://profile/?userId={userId}" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"

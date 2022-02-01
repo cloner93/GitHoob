@@ -1,16 +1,17 @@
 package com.milad.githoob.ui.splash
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentSplashBinding
+import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
@@ -42,13 +43,15 @@ class SplashFragment : Fragment() {
 
                     } else {
                         Timber.d("Founded: $it")
-                        val directions =
+                        /*val directions =
                             SplashFragmentDirections.actionSplashFragmentToProfileFragment(
                                 token = it,
                                 userId = ""
-                            )
+                            )*/
+                        val destination =
+                            InternalDeepLink.makeProfileAuthenticatedDeepLink(token = it)
                         NavHostFragment.findNavController(this@SplashFragment)
-                            .navigate(directions)
+                            .navigate(destination)
                         this.cancel()
                     }
                 }

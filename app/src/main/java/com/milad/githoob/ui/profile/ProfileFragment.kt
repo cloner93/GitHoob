@@ -16,6 +16,7 @@ import timber.log.Timber
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+    private lateinit var safeArgs: ProfileFragmentArgs
     private val viewModel by viewModels<ProfileViewModel>()
 
     override fun onCreateView(
@@ -29,8 +30,11 @@ class ProfileFragment : Fragment() {
         }
         val bundle = arguments
         if (bundle != null) {
-            val token = bundle.getString("token", "")
-            val userId = bundle.getString("userId", "")
+            safeArgs = ProfileFragmentArgs.fromBundle(bundle)
+
+            val token = safeArgs.token
+            val userId = safeArgs.userId
+
             Timber.d("Token: $token \n UserId: $userId")
             viewModel.setUser(token, userId)
         }
