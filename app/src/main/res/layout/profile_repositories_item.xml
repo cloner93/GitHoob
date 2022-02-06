@@ -28,22 +28,22 @@
                     android:ellipsize="end"
                     android:text="@{repo.name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp"
                     android:textColor="?colorOnSurface"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Flutter_UI_Challenge" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:visibility="@{repo.private? View.VISIBLE:View.GONE}"
                         android:layout_marginEnd="5dp"
-                        android:src="@drawable/ic_key" />
+                        android:src="@drawable/ic_key"
+                        android:visibility="@{repo.private? View.VISIBLE:View.GONE}" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -72,9 +72,9 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"
+                    android:textColor="?colorOnSurface"
                     android:textSize="11sp"
                     android:textStyle="italic"
-                    android:textColor="?colorOnSurface"
                     android:visibility="@{repo.fork ? View.VISIBLE : View.GONE}"
                     tools:text="Forked from: Milad\Targholi" />
             </LinearLayout>
@@ -93,8 +93,8 @@
                     android:text="@{repo.description}"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
-                    android:textSize="12dp"
                     android:textColor="?colorOnSurface"
+                    android:textSize="12dp"
                     android:visibility="@{repo.description != null ? View.VISIBLE : View.GONE}"
                     tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
 
@@ -106,13 +106,18 @@
                 android:layout_marginTop="8dp"
                 android:visibility="@{repo.topics.empty ? View.GONE:View.VISIBLE}">
 
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.google.android.material.chip.ChipGroup
-                    repositories_item_chip="@{repo.topics}"
-                    app:lineSpacing="1dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    <com.google.android.material.chip.ChipGroup
+                        repositories_item_chip="@{repo.topics}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipSpacingVertical="2dp"
+                        app:singleLine="true" />
 
+                </HorizontalScrollView>
 
             </LinearLayout>
 

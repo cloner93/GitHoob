@@ -29,8 +29,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="Contributions Graph"
-                    android:textColor="?colorOnBackground"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="?colorOnBackground"
                     android:textSize="10sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -163,13 +163,42 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_header_divider"
-                    app:layout_constraintStart_toStartOf="@+id/profile_header_divider"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_header_divider">
+                    app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+                    app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_image">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("")? View.GONE : View.VISIBLE}'>
+
+                        <TextView
+                            android:id="@+id/profile_user_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="4"
+                            android:singleLine="false"
+                            android:text="@{viewmodel.user.bio}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="12sp"
+                            android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("") ? View.GONE : View.VISIBLE}'
+                            tools:text="Android Dev is ♥" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/profile_header_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?colorOnPrimaryContainer" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -191,7 +220,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:paddingStart="8dp"
+                                android:paddingStart="0dp"
                                 android:paddingEnd="8dp"
                                 android:singleLine="true"
                                 android:text="@{viewmodel.user.company}"
@@ -249,18 +278,18 @@
 
                         <TextView
                             android:id="@+id/profile_header_create_at"
+                            profile_createdAt="@{viewmodel.user.created_at}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            profile_createdAt="@{viewmodel.user.created_at}"
                             android:paddingStart="8dp"
                             android:paddingEnd="2dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="?colorOnPrimaryContainer"
                             android:textSize="12sp"
                             tools:text="joined :" />
-<!--                        android:text="@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"-->
-<!--                        repositories_item_updateTime="@{viewmodel.user.created_at}"-->
+                        <!--                        android:text="@{@string/joined(viewmodel.user.created_at.subSequence(0, 10))}"-->
+                        <!--                        repositories_item_updateTime="@{viewmodel.user.created_at}"-->
 
 
                     </LinearLayout>
@@ -451,34 +480,6 @@
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
                     app:layout_constraintTop_toTopOf="@+id/profile_image"
                     tools:text="Milad Targholi" />
-
-                <TextView
-                    android:id="@+id/profile_user_desc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    android:singleLine="false"
-                    android:text="@{viewmodel.user.bio}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="?colorOnPrimaryContainer"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
-                    app:layout_constraintStart_toStartOf="@+id/profile_image"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_image"
-                    tools:text="Android Dev is ♥" />
-
-                <View
-                    android:id="@+id/profile_header_divider"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?colorOnPrimaryContainer"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_user_desc"
-                    app:layout_constraintStart_toStartOf="@+id/profile_user_desc"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_user_desc" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_image"

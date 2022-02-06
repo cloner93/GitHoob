@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.R
 import com.milad.githoob.data.model.User
 import com.milad.githoob.databinding.ProfileRepositoriesFragmentBinding
@@ -19,7 +21,7 @@ class ProfileRepositoriesFragment : Fragment() {
     private lateinit var adapter: ProfileRepositoryAdapter
 
     private val viewModel by viewModels<ProfileRepositoriesViewModel>()
-    private lateinit var safeArgs: ProfileRepositoriesFragmentArgs
+    private val safeArgs: ProfileRepositoriesFragmentArgs by navArgs()
     private lateinit var binding: ProfileRepositoriesFragmentBinding
 
     fun newInstance(bundle: Bundle): ProfileRepositoriesFragment {
@@ -39,13 +41,9 @@ class ProfileRepositoriesFragment : Fragment() {
             lifecycleOwner = this@ProfileRepositoriesFragment
         }
 
-        val bundle = arguments
-        if (bundle != null) {
-            safeArgs = ProfileRepositoriesFragmentArgs.fromBundle(bundle)
+        token = safeArgs.token
+        userId = safeArgs.userId
 
-            token = safeArgs.token
-            userId = safeArgs.userId
-        }
         setupRecyclerView()
 
         viewModel.setUser(token = token, userId = userId)
@@ -59,6 +57,22 @@ class ProfileRepositoriesFragment : Fragment() {
             adapter = ProfileRepositoryAdapter(viewmodel)
             binding.profileRepositoriesList.adapter = adapter
         }
+        if (token != null && token!="")
+            binding.floatingActionButton.show()
+        else
+            binding.floatingActionButton.hide()
+
+        binding.profileRepositoriesList.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0)
+                    binding.floatingActionButton.shrink()
+                else
+                    binding.floatingActionButton.extend()
+
+            }
+        })
     }
 
 }
