@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:elevation="8dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center">-->
+
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:id="@+id/EventUserImage"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    profileImage="@{repo.owner.avatar_url}"-->
+<!--                    android:layout_marginStart="1dp"-->
+<!--                    android:layout_marginTop="1dp"-->
+<!--                    android:layout_marginBottom="1dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    tools:srcCompat="@tools:sample/avatars" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView3"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:text="@{String.format(@string/owner_repo, repo.owner.login,repo.name)}"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+<!--                    android:textColor="?colorOnSurface"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    tools:text="Cloner93/Flutter_UI_Challenge" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="15dp"-->
+<!--                        android:layout_height="15dp"-->
+<!--                        android:layout_marginEnd="5dp"-->
+<!--                        android:src="@drawable/ic_key"-->
+<!--                        android:visibility="@{repo.private? View.VISIBLE:View.GONE}" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@{repo.private? @string/private_: @string/public_}"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                        android:textColor="?colorTertiary"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textStyle="bold|italic"-->
+<!--                        tools:text="Private" />-->
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"-->
+<!--                    android:textColor="?colorOnSurface"-->
+<!--                    android:textSize="11sp"-->
+<!--                    android:textStyle="italic"-->
+<!--                    android:visibility="@{repo.fork ? View.VISIBLE : View.GONE}"-->
+<!--                    tools:text="Forked from: Milad\Targholi" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView6"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:maxLines="3"-->
+<!--                    android:text="@{repo.description}"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="?colorOnSurface"-->
+<!--                    android:textSize="12dp"-->
+<!--                    android:visibility="@{repo.description != null ? View.VISIBLE : View.GONE}"-->
+<!--                    tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:visibility="@{repo.topics.empty ? View.GONE:View.VISIBLE}">-->
+
+<!--                <HorizontalScrollView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <com.google.android.material.chip.ChipGroup-->
+<!--                        repositories_item_chip="@{repo.topics}"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:chipSpacingVertical="2dp"-->
+<!--                        app:singleLine="true" />-->
+
+<!--                </HorizontalScrollView>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center">-->
+
+<!--                    &lt;!&ndash; repositories_item_langColor="@{Color.parseColor(repo.language_color)}"&ndash;&gt;-->
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/la1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="@{repo.language == null ? View.GONE: View.VISIBLE}">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imageView1"-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:background="@{Color.parseColor(repo.language_color)}" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView7"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:text="@{repo.language}"-->
+<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                            android:textColor="?colorOnSurface"-->
+<!--                            android:textSize="12dp"-->
+<!--                            tools:text="Kotlin" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/la2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="@{repo.stargazers_count == 0 ? View.GONE: View.VISIBLE}">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imageView2"-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            app:srcCompat="@drawable/ic_star" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView72"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="4dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:text="@{numberUtils.format(repo.stargazers_count) }"-->
+<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                            android:textColor="?colorOnSurface"-->
+<!--                            android:textSize="12dp"-->
+<!--                            tools:text="300" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/la3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="@{repo.forks_count == 0 ? View.GONE: View.VISIBLE}">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imageView32"-->
+<!--                            android:layout_width="16dp"-->
+<!--                            android:layout_height="16dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            app:srcCompat="@drawable/ic_fork_black" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView372"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="4dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:text="@{numberUtils.format(repo.forks_count) }"-->
+<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                            android:textColor="?colorOnSurface"-->
+<!--                            android:textSize="12dp"-->
+<!--                            tools:text="300" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <TextView-->
+<!--                        repositories_item_updateTime="@{repo.updated_at}"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:ellipsize="end"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="Updated on Oct 31, 2020"-->
+<!--                        android:textAlignment="textEnd"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--                        android:textColor="?colorOnSurface"-->
+<!--                        android:textSize="12dp"-->
+<!--                        android:visibility="@{repo.updated_at == null ? View.GONE: View.VISIBLE}" />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="android.graphics.Color" />
+
+        <variable
+            name="viewmodel"
+            type="com.milad.githoob.ui.profile.organization.ProfileOrgViewModel" />
+
+        <variable
+            name="org"
+            type="com.milad.githoob.data.model.Org" />
+    </data>
+</layout>

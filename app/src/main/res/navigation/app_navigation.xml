@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_profileFragment_to_profileStaredFragment"
             app:destination="@id/profileStaredFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_profileOrgFragment"
+            app:destination="@id/profileOrgFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -103,5 +106,31 @@
             android:id="@+id/deepLink8"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}?tab=starred" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileOrgFragment"
+        android:name="com.milad.githoob.ui.profile.organization.ProfileOrgFragment"
+        android:label="profile_org_fragment"
+        tools:layout="@layout/profile_org_fragment">
+
+        <argument
+            android:name="token"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink
+            android:id="@+id/deepLink9"
+            app:action="ACTION_VIEW"
+            app:uri="githoob://org/?token={token}&amp;userId={userId}" />
+<!--        <deepLink-->
+<!--            android:id="@+id/deepLink10"-->
+<!--            app:action="ACTION_VIEW"-->
+<!--            app:uri="https://github.com/{userId}?tab=starred" />-->
+
     </fragment>
 </navigation>
