@@ -31,6 +31,9 @@
             android:id="@+id/deepLink4"
             app:action="ACTION_VIEW"
             app:uri="githoob://profile/?token={token}&amp;userId={userId}" />
+        <action
+            android:id="@+id/action_profileFragment_to_profileStaredFragment"
+            app:destination="@id/profileStaredFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -54,6 +57,7 @@
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
+        tools:layout="@layout/profile_repositories_fragment"
         android:id="@+id/profileRepositoriesFragment"
         android:name="com.milad.githoob.ui.profile.repositories.ProfileRepositoriesFragment"
         android:label="ProfileRepositoriesFragment">
@@ -75,5 +79,29 @@
             android:id="@+id/deepLink6"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}?tab=repositories" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/profile_stared_fragment"
+        android:id="@+id/profileStaredFragment"
+        android:name="com.milad.githoob.ui.profile.stared.ProfileStaredFragment"
+        android:label="ProfileStaredFragment">
+        <argument
+            android:name="token"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink
+            android:id="@+id/deepLink7"
+            app:action="ACTION_VIEW"
+            app:uri="githoob://starred/?token={token}&amp;userId={userId}" />
+        <deepLink
+            android:id="@+id/deepLink8"
+            app:action="ACTION_VIEW"
+            app:uri="https://github.com/{userId}?tab=starred" />
     </fragment>
 </navigation>

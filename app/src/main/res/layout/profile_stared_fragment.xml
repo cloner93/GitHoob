@@ -1,23 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.profile.stared.ProfileStaredFragment">
+        android:layout_height="match_parent">
 
-        <TextView
+        <com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar
+                android:id="@+id/motionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?colorSecondaryContainer"
+                android:minHeight="?attr/actionBarSize"
+                app:layoutDescription="@xml/motion_app_scene"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <TextView
+                    android:id="@+id/expandedTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:paddingStart="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Starred"
+                    android:textAppearance="?attr/textAppearanceHeadline4"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/bgToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize" />
+
+                <TextView
+                    android:id="@+id/collapsedTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="Starred"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="?colorOnPrimaryContainer"
+                    app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
+                    app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
+                    app:layout_constraintStart_toEndOf="@+id/back"
+                    app:layout_constraintTop_toTopOf="@+id/bgToolbar"
+                    tools:text="@tools:sample/lorem" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
+                    app:layout_constraintStart_toStartOf="@+id/bgToolbar"
+                    app:layout_constraintTop_toTopOf="@+id/bgToolbar" />
+
+            </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
+
+        </com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/profile_stared_nested_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profile_stared_list"
+                starred_items="@{viewmodel.starredList}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="3"
+                tools:listitem="@layout/profile_stared_item" />
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
 
         <import type="com.milad.githoob.utils.numberUtils" />
 
         <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+
+            type="com.milad.githoob.ui.profile.stared.ProfileStaredViewModel" />
     </data>
 </layout>

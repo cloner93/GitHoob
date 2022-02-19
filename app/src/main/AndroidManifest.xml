@@ -23,6 +23,7 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -37,6 +38,17 @@
                 android:resource="@xml/shortcuts" />
 
             <nav-graph android:value="@navigation/app_navigation" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="github.com"
+                    android:path="/starred?token=?userId=google" />
+            </intent-filter>
         </activity>
     </application>
 

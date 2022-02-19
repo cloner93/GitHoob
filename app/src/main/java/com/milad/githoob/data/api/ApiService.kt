@@ -27,6 +27,18 @@ interface ApiService {
     ): Response<User>
 
     @Headers("Content-Type: application/json")
+    @GET("/user/starred")
+    suspend fun getAuthenticatedUserStarred(
+        @Header("Authorization") token: String
+    ): Response<ArrayList<Repo>>
+
+    @Headers("Content-Type: application/json")
+    @GET("/users/{username}/starred")
+    suspend fun getUserStarred(
+        @Path("username") username: String
+    ): Response<ArrayList<Repo>>
+
+    @Headers("Content-Type: application/json")
     @GET("/users/{username}")
     suspend fun getUser(
         @Path("username") username: String

@@ -14,4 +14,7 @@ object InternalDeepLink {
 
     fun makeRepositoryUserDeepLink(userId: String?, token: String?) =
         "${DOMAIN}repository/?userId=$userId&token=${token}".toUri()
+
+    fun makeStarredUserDeepLink(userId: String?, token: String?) =
+        "${DOMAIN}starred/?userId=$userId&token=${token}".toUri()
 }

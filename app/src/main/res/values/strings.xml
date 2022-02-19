@@ -21,6 +21,8 @@
     <string name="private_">Private</string>
     <string name="public_">Public</string>
 
+    <string name="owner_repo">%s/%s</string>
+
     <string name="forked2">Forked</string>
     <string name="starred">Starred</string>
     <string name="pull_request">Pull Request</string>
