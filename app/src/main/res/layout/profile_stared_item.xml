@@ -216,10 +216,10 @@
 
                         <ImageView
                             android:id="@+id/imageView32"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_star" />
+                            app:srcCompat="@drawable/ic_fork_black" />
 
                         <TextView
                             android:id="@+id/textView372"
