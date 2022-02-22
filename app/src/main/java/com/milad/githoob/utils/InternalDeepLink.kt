@@ -17,4 +17,7 @@ object InternalDeepLink {
 
     fun makeStarredUserDeepLink(userId: String?, token: String?) =
         "${DOMAIN}starred/?userId=$userId&token=${token}".toUri()
+
+    fun makeOrganizationDeepLink(userId: String?, token: String?) =
+        "${DOMAIN}orgs/?userId=$userId&token=${token}".toUri()
 }

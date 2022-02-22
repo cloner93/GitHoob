@@ -109,9 +109,9 @@
     </fragment>
     <fragment
         android:id="@+id/profileOrgFragment"
-        android:name="com.milad.githoob.ui.profile.organization.ProfileOrgFragment"
+        android:name="com.milad.githoob.ui.profile.organization.ProfileOrgsFragment"
         android:label="profile_org_fragment"
-        tools:layout="@layout/profile_org_fragment">
+        tools:layout="@layout/profile_orgs_fragment">
 
         <argument
             android:name="token"
@@ -126,7 +126,7 @@
         <deepLink
             android:id="@+id/deepLink9"
             app:action="ACTION_VIEW"
-            app:uri="githoob://org/?token={token}&amp;userId={userId}" />
+            app:uri="githoob://orgs/?token={token}&amp;userId={userId}" />
 <!--        <deepLink-->
 <!--            android:id="@+id/deepLink10"-->
 <!--            app:action="ACTION_VIEW"-->

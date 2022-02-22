@@ -42,4 +42,10 @@ class MainRepository @Inject constructor(
 
     suspend fun getMyEvents(token: String, username: String, page: Int) =
         apiRequest { apiService.getMyEvents(token, username, page) }
+
+    suspend fun getAuthenticatedUserOrgs(token: String) =
+        apiRequest { apiService.getAuthenticatedUserOrgs(token) }
+
+    suspend fun getUserOrgs(username: String) =
+        apiRequest { apiService.getUserOrgs(username) }
 }

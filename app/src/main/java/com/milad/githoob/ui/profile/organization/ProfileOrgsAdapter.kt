@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.data.model.Org
-import com.milad.githoob.databinding.ProfileOrgItemBinding
+import com.milad.githoob.databinding.ProfileOrgsItemBinding
 
-class ProfileOrgAdapter(private val viewModel: ProfileOrgViewModel) :
-    ListAdapter<Org, ProfileOrgAdapter.ViewHolder>(OrgDiffCallback()) {
+class ProfileOrgsAdapter(private val viewModel: ProfileOrgsViewModel) :
+    ListAdapter<Org, ProfileOrgsAdapter.ViewHolder>(OrgDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -24,9 +24,9 @@ class ProfileOrgAdapter(private val viewModel: ProfileOrgViewModel) :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ProfileOrgItemBinding) :
+    class ViewHolder private constructor(val binding: ProfileOrgsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(viewModel: ProfileOrgViewModel, item: Org) {
+        fun bind(viewModel: ProfileOrgsViewModel, item: Org) {
 
             binding.viewmodel = viewModel
             binding.org = item
@@ -36,7 +36,7 @@ class ProfileOrgAdapter(private val viewModel: ProfileOrgViewModel) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ProfileOrgItemBinding.inflate(layoutInflater, parent, false)
+                val binding = ProfileOrgsItemBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }

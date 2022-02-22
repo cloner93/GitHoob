@@ -55,9 +55,15 @@ class ProfileFragment : Fragment() {
             navigate.navigate(destination)
         }
 
-        binding.profileBtnStarted.setOnClickListener{
+        binding.profileBtnStarted.setOnClickListener {
             val destination =
                 InternalDeepLink.makeStarredUserDeepLink(userId = userId, token = token)
+            navigate.navigate(destination)
+        }
+
+        binding.profileBtnOrganization.setOnClickListener {
+            val destination =
+                InternalDeepLink.makeOrganizationDeepLink(userId = userId, token = token)
             navigate.navigate(destination)
         }
     }

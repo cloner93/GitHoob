@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/EventUserImage"
+                    profileImage="@{org.avatarUrl}"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:text="@{org.login}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="?colorOnSurface"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="Cloner93/Flutter_UI_Challenge" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:visibility="@{org.description == null || org.description.isEmpty ? View.GONE : View.VISIBLE}"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@{org.description}"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="?colorOnSurface"
+                    android:textSize="12dp"
+                    tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="android.graphics.Color" />
+
+        <variable
+            name="viewmodel"
+            type="com.milad.githoob.ui.profile.organization.ProfileOrgsViewModel" />
+
+        <variable
+            name="org"
+            type="com.milad.githoob.data.model.Org" />
+    </data>
+</layout>

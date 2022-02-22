@@ -9,16 +9,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.milad.githoob.R
-import com.milad.githoob.databinding.ProfileOrgFragmentBinding
-import com.milad.githoob.ui.profile.stared.ProfileStaredAdapter
+import com.milad.githoob.databinding.ProfileOrgsFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class ProfileOrgFragment : Fragment() {
+@AndroidEntryPoint
+class ProfileOrgsFragment : Fragment() {
 
-    private lateinit var binding: ProfileOrgFragmentBinding
-    private lateinit var adapter: ProfileOrgAdapter
+    private lateinit var binding: ProfileOrgsFragmentBinding
+    private lateinit var adapter: ProfileOrgsAdapter
 
-    private val safeArgs: ProfileOrgFragmentArgs by navArgs()
-    private val viewModel by viewModels<ProfileOrgViewModel>()
+    private val safeArgs: ProfileOrgsFragmentArgs by navArgs()
+    private val viewModel by viewModels<ProfileOrgsViewModel>()
 
     private var token: String? = null
     private var userId: String? = null
@@ -26,10 +27,10 @@ class ProfileOrgFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.profile_org_fragment, container, false)
-        binding = ProfileOrgFragmentBinding.bind(view).apply {
+        val view = inflater.inflate(R.layout.profile_orgs_fragment, container, false)
+        binding = ProfileOrgsFragmentBinding.bind(view).apply {
             viewmodel = viewModel
-            lifecycleOwner = this@ProfileOrgFragment
+            lifecycleOwner = this@ProfileOrgsFragment
         }
 
         token = safeArgs.token
@@ -50,8 +51,8 @@ class ProfileOrgFragment : Fragment() {
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
         if (viewmodel != null) {
-            adapter = ProfileOrgAdapter(viewmodel)
-            binding.profileStaredList.adapter = adapter
+            adapter = ProfileOrgsAdapter(viewmodel)
+            binding.profileOrgsList.adapter = adapter
         }
     }
 }
