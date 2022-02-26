@@ -30,7 +30,6 @@
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:profileImage="@{viewmodel.user.avatar_url}"
                     tools:src="@tools:sample/avatars"
                     tools:srcCompat="@tools:sample/avatars" />
 
@@ -42,7 +41,6 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{@string/at(viewmodel.user.login)}"
                     android:textColor="?colorOnPrimaryContainer"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"
@@ -58,7 +56,6 @@
                     android:layout_marginTop="12dp"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{viewmodel.user.name}"
                     android:textAlignment="textStart"
                     android:textColor="?colorOnPrimaryContainer"
                     android:textSize="22sp"
@@ -84,8 +81,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("")? View.GONE : View.VISIBLE}'>
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/profile_user_desc"
@@ -94,11 +90,9 @@
                             android:ellipsize="end"
                             android:maxLines="4"
                             android:singleLine="false"
-                            android:text="@{viewmodel.user.bio}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="?colorOnPrimaryContainer"
                             android:textSize="12sp"
-                            android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("") ? View.GONE : View.VISIBLE}'
                             tools:text="Highly customizable, feature-packed Flutter Calendar with gestures, animations and multiple formats" />
                     </LinearLayout>
 
@@ -107,8 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility='@{viewmodel.user.blog == null || viewmodel.user.blog.equals("") ? View.GONE : View.VISIBLE}'>
+                        android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
@@ -121,7 +114,6 @@
                             android:ellipsize="end"
                             android:paddingStart="8dp"
                             android:paddingEnd="2dp"
-                            android:text="@{viewmodel.user.blog}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="?colorOnPrimaryContainer"
                             android:textSize="12sp"
@@ -135,8 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility='@{viewmodel.user.blog == null || viewmodel.user.blog.equals("") ? View.GONE : View.VISIBLE}'>
+                        android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
@@ -149,7 +140,6 @@
                             android:ellipsize="end"
                             android:paddingStart="8dp"
                             android:paddingEnd="2dp"
-                            android:text="@{viewmodel.user.blog}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="?colorOnPrimaryContainer"
                             android:textSize="12sp"
@@ -167,8 +157,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+                            android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="20dp"
@@ -181,7 +170,6 @@
                                 android:layout_marginStart="4dp"
                                 android:layout_marginEnd="4dp"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -191,7 +179,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -205,8 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -230,7 +216,6 @@
                                 android:layout_marginStart="4dp"
                                 android:layout_marginEnd="4dp"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -240,7 +225,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -254,8 +238,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -279,7 +262,6 @@
                                 android:layout_marginStart="4dp"
                                 android:layout_marginEnd="4dp"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -289,7 +271,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 android:textColor="?colorOnPrimaryContainer"
                                 android:textSize="12sp"
@@ -363,7 +344,7 @@
 
         <variable
             name="viewmodel"
-            type="com.milad.githoob.ui.profile.ProfileViewModel" />
+            type="com.milad.githoob.ui.profile.repositories.project.ProfileProjectViewModel" />
 
     </data>
 

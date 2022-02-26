@@ -5,26 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.milad.githoob.R
+import com.milad.githoob.databinding.ProfileProjectFragmentBinding
+import com.milad.githoob.ui.profile.repositories.ProfileRepositoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileProjectFragment : Fragment() {
+    private var token: String? = null
+    private var userId: String? = null
+    private lateinit var projectName: String
 
-    private lateinit var viewModel: ProjectViewModel
+    private val viewModel by viewModels<ProfileProjectViewModel>()
+    private val safeArgs: ProfileProjectFragmentArgs by navArgs()
+    private lateinit var binding: ProfileProjectFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.profile_project_fragment, container, false)
-    }
+    ): View {
+        val view = inflater.inflate(R.layout.profile_project_fragment, container, false)
+        binding = ProfileProjectFragmentBinding.bind(view).apply {
+            viewmodel = viewModel
+            lifecycleOwner = this@ProfileProjectFragment
+        }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProjectViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        token = safeArgs.token
+        userId = safeArgs.userId
+        projectName = safeArgs.projectName
 
+        return binding.root
+    }
 }

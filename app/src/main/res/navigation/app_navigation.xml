@@ -133,4 +133,33 @@
 <!--            app:uri="https://github.com/{userId}?tab=starred" />-->
 
     </fragment>
+    <fragment
+        tools:layout="@layout/profile_project_fragment"
+        android:id="@+id/profileProjectFragment"
+        android:name="com.milad.githoob.ui.profile.repositories.project.ProfileProjectFragment"
+        android:label="ProfileProjectFragment" >
+        <argument
+            android:name="token"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="projectName"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+        <deepLink
+            android:id="@+id/deepLink11"
+            app:action="ACTION_VIEW"
+            app:uri="githoob://project/?token={token}&amp;userId={userId}&amp;projectName={projectName}" />
+        <deepLink
+            android:id="@+id/deepLink12"
+            app:action="ACTION_VIEW"
+            app:uri="https://github.com/{userId}/{projectName}" />
+    </fragment>
 </navigation>

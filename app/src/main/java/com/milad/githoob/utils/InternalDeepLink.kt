@@ -1,6 +1,5 @@
 package com.milad.githoob.utils
 
-import android.net.Uri
 import androidx.core.net.toUri
 
 object InternalDeepLink {
@@ -20,4 +19,11 @@ object InternalDeepLink {
 
     fun makeOrganizationDeepLink(userId: String?, token: String?) =
         "${DOMAIN}orgs/?userId=$userId&token=${token}".toUri()
+
+    fun makeProjectDeepLink(userId: String?, token: String?, projectName: String) =
+        ("${DOMAIN}project/" +
+                "?userId=$userId" +
+                "&token=${token}" +
+                "&projectName=${projectName}"
+                ).toUri()
 }

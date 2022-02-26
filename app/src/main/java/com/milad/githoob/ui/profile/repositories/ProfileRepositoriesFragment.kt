@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.R
-import com.milad.githoob.data.model.User
 import com.milad.githoob.databinding.ProfileRepositoriesFragmentBinding
+import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -79,7 +78,13 @@ class ProfileRepositoriesFragment : Fragment() {
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
         if (viewmodel != null) {
-            adapter = ProfileRepositoryAdapter(viewmodel)
+            adapter = ProfileRepositoryAdapter(viewmodel) {
+                it.let {
+                    val destination =
+                        InternalDeepLink.makeProjectDeepLink(userId = userId, token = token, projectName= it.name)
+                    findNavController().navigate(destination)
+                }
+            }
             binding.profileRepositoriesList.adapter = adapter
         }
         if (token != null && token != "")
