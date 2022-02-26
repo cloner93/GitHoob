@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_header_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?colorSecondaryContainer"
+                android:minHeight="?android:attr/actionBarSize"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed|snap">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:elevation="10dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:profileImage="@{viewmodel.user.avatar_url}"
+                    tools:src="@tools:sample/avatars"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/profile_user_login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{@string/at(viewmodel.user.login)}"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTop_toTopOf="@+id/profile_image"
+                    tools:text="\u0040cloner93" />
+
+                <TextView
+                    android:id="@+id/profile_project_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{viewmodel.user.name}"
+                    android:textAlignment="textStart"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+                    app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
+                    tools:text="TableCalendar" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_project_name"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("")? View.GONE : View.VISIBLE}'>
+
+                        <TextView
+                            android:id="@+id/profile_user_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="4"
+                            android:singleLine="false"
+                            android:text="@{viewmodel.user.bio}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="12sp"
+                            android:visibility='@{viewmodel.user.bio == null ||viewmodel.user.bio.equals("") ? View.GONE : View.VISIBLE}'
+                            tools:text="Highly customizable, feature-packed Flutter Calendar with gestures, animations and multiple formats" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility='@{viewmodel.user.blog == null || viewmodel.user.blog.equals("") ? View.GONE : View.VISIBLE}'>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/ic_blog" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="2dp"
+                            android:text="@{viewmodel.user.blog}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            tools:text="Apache-2.0 License" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility='@{viewmodel.user.blog == null || viewmodel.user.blog.equals("") ? View.GONE : View.VISIBLE}'>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/ic_blog" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="2dp"
+                            android:text="@{viewmodel.user.blog}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            tools:text="46 tags" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:srcCompat="@drawable/ic_eye" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                tools:text="watch:" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                tools:text="25" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="0dp"
+                                android:text="-"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="8dp"
+                                app:srcCompat="@drawable/ic_fork_black" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                tools:text="fork:" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                tools:text="25" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility='@{viewmodel.user.twitter_username == null || viewmodel.user.twitter_username.equals("") ? View.GONE : View.VISIBLE}'>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="0dp"
+                                android:text="-"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="8dp"
+                                app:srcCompat="@drawable/ic_star" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                tools:text="stars:" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:text="@{@string/at(viewmodel.user.twitter_username)}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="?colorOnPrimaryContainer"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                tools:text="25" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_all_contribute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/profile_all_contributions_graph_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Contributers:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="?colorOnBackground"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profile_orgs_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:fillViewport="true"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile_all_contributions_graph_title"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/profile_project_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <data>
+
+        <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.milad.githoob.ui.profile.ProfileViewModel" />
+
+    </data>
+
+</layout>
