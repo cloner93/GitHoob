@@ -58,7 +58,7 @@ data class Repo (
 	val homepage : String,
 	val size : Int,
 	val stargazers_count : Long,
-	val watchers_count : Int,
+	val watchers_count : Long,
 	val language : String,
 	val has_issues : Boolean,
 	val has_projects : Boolean,

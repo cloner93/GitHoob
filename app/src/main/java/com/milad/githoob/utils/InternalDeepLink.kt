@@ -5,9 +5,6 @@ import androidx.core.net.toUri
 object InternalDeepLink {
     private const val DOMAIN = "githoob://"
 
-    const val PROFILE = "${DOMAIN}profile"
-    const val REPOSITORY = "${DOMAIN}repository"
-
     fun makeProfileDeepLink(userId: String?, token: String?) =
         "${DOMAIN}profile/?userId=$userId&token=${token}".toUri()
 
@@ -24,6 +21,6 @@ object InternalDeepLink {
         ("${DOMAIN}project/" +
                 "?userId=$userId" +
                 "&token=${token}" +
-                "&projectName=${projectName}"
-                ).toUri()
+                "&projectName=${projectName}")
+            .toUri()
 }
