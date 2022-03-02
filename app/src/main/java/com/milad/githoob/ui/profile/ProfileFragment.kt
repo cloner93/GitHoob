@@ -19,8 +19,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-    private var token: String? = null
-    private var userId: String? = null
+    private lateinit var token: String
+    private lateinit var userId: String
     private lateinit var binding: FragmentProfileBinding
     private val safeArgs: ProfileFragmentArgs by navArgs()
     private val viewModel by viewModels<ProfileViewModel>()

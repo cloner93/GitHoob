@@ -26,11 +26,11 @@ class ProfileOrgsViewModel @Inject constructor(
     private val _orgsList: MutableLiveData<ArrayList<Org>> = MutableLiveData()
     val orgsList: LiveData<ArrayList<Org>> = _orgsList
 
-    fun setUser(token: String?, userId: String?) {
+    fun setUser(token: String, userId: String) {
         getOrgs(token, userId)
     }
 
-    private fun getOrgs(token: String?, userId: String?) {
+    private fun getOrgs(token: String, userId: String) {
         viewModelScope.launch(ioDispatcher) {
             getOrgsFlow(token, userId).collect {
                 when (it.status) {
@@ -50,12 +50,12 @@ class ProfileOrgsViewModel @Inject constructor(
     }
 
     private suspend fun getOrgsFlow(
-        token: String?,
-        userId: String?
+        token: String,
+        userId: String
     ): Flow<Result<ArrayList<Org>>> {
-        if (token != null && token != "")
+        if (token != "")
             return mainRepository.getAuthenticatedUserOrgs(token)
-        if (userId != null && userId != "")
+        if (userId != "")
             return mainRepository.getUserOrgs(userId)
         return flow {
             emit(Result.error(msg = "I can't load any repo.", data = null))

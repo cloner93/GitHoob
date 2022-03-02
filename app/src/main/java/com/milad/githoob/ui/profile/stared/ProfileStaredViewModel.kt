@@ -41,11 +41,11 @@ class ProfileStaredViewModel @Inject constructor(
         return d
     }
 
-    fun setUser(token: String? = "", userId: String? = "") {
+    fun setUser(token: String = "", userId: String = "") {
         getStarredRepo(token, userId)
     }
 
-    private fun getStarredRepo(token: String?, userId: String?) {
+    private fun getStarredRepo(token: String, userId: String) {
         viewModelScope.launch(ioDispatcher) {
             getStarred(token, userId).collect {
                 when (it.status) {
@@ -64,12 +64,12 @@ class ProfileStaredViewModel @Inject constructor(
     }
 
     private suspend fun getStarred(
-        token: String?,
-        userId: String?
+        token: String,
+        userId: String
     ): Flow<Result<ArrayList<Repo>>> {
-        if (token != null && token != "")
+        if (token != "")
             return mainRepository.getAuthenticatedUserStarred(token)
-        if (userId != null && userId != "")
+        if (userId != "")
             return mainRepository.getUserStarred(userId)
         return flow {
             emit(Result.error(msg = "I can't load any repo.", data = null))

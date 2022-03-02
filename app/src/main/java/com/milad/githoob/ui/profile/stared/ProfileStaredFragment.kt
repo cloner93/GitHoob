@@ -22,8 +22,8 @@ class ProfileStaredFragment : Fragment() {
     private val safeArgs: ProfileStaredFragmentArgs by navArgs()
     private val viewModel by viewModels<ProfileStaredViewModel>()
 
-    private var token: String? = null
-    private var userId: String? = null
+    private lateinit var token: String
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

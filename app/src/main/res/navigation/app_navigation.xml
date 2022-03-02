@@ -68,12 +68,12 @@
             android:name="token"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="userId"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <deepLink
             android:id="@+id/deepLink"
             app:action="ACTION_VIEW"
@@ -92,12 +92,12 @@
             android:name="token"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="userId"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <deepLink
             android:id="@+id/deepLink7"
             app:action="ACTION_VIEW"
@@ -117,12 +117,12 @@
             android:name="token"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="userId"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <deepLink
             android:id="@+id/deepLink9"
             app:action="ACTION_VIEW"
@@ -142,7 +142,7 @@
             android:name="token"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="userId"
             android:defaultValue=""

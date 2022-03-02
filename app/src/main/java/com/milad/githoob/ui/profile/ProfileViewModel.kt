@@ -23,8 +23,8 @@ class ProfileViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private var userId: String? = null
-    private var token: String? = null
+    private lateinit var userId: String
+    private lateinit var token: String
 
     private val _forceUpdate = MutableLiveData(false)
     private val _user = _forceUpdate.switchMap { bool ->
@@ -55,10 +55,10 @@ class ProfileViewModel @Inject constructor(
         return@switchMap user
     }
 
-    private suspend fun getUserInfo(token: String?, userId: String?): Flow<Result<User>> {
-        if (token != null && token != "")
+    private suspend fun getUserInfo(token: String, userId: String): Flow<Result<User>> {
+        if (token != "")
             return mainRepository.getAuthenticatedUser(token)
-        if (userId != null && userId != "")
+        if (userId != "")
             return mainRepository.getUser(userId)
         return flow {
             emit(Result.error(msg = "I can't load any user.", data = null))
@@ -97,7 +97,7 @@ class ProfileViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    fun setUser(token: String?, userId: String?) {
+    fun setUser(token: String, userId: String) {
         this.token = token
         this.userId = userId
         _forceUpdate.value = true

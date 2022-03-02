@@ -21,8 +21,8 @@ class ProfileOrgsFragment : Fragment() {
     private val safeArgs: ProfileOrgsFragmentArgs by navArgs()
     private val viewModel by viewModels<ProfileOrgsViewModel>()
 
-    private var token: String? = null
-    private var userId: String? = null
+    private lateinit var token: String
+    private lateinit var userId: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -17,8 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileRepositoriesFragment : Fragment() {
 
-    private var token: String? = null
-    private var userId: String? = null
+    private lateinit var token: String
+    private lateinit var userId: String
     private lateinit var adapter: ProfileRepositoryAdapter
 
     private val viewModel by viewModels<ProfileRepositoriesViewModel>()
@@ -87,7 +87,7 @@ class ProfileRepositoriesFragment : Fragment() {
             }
             binding.profileRepositoriesList.adapter = adapter
         }
-        if (token != null && token != "")
+        if (token != "")
             binding.floatingActionButton.show()
         else
             binding.floatingActionButton.hide()
