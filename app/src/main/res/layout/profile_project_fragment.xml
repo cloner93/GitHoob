@@ -42,7 +42,7 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{viewmodel.repo.owner.login}"
+                    android:text="@{@string/at(viewmodel.repo.owner.login)}"
                     android:textColor="?colorOnPrimaryContainer"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"

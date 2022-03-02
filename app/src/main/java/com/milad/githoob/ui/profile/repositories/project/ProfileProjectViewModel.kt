@@ -27,21 +27,42 @@ class ProfileProjectViewModel @Inject constructor(
     val contributors: LiveData<List<Contributor>> = _contributors
 
     fun setUser(token: String?, userId: String, projectName: String) =
-        getProject(token, userId, projectName)
+        loadProjectData(token, userId, projectName)
 
-    private fun getProject(token: String?, userId: String, projectName: String) {
+    private fun loadProjectData(token: String?, userId: String, projectName: String) {
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.getProject(token, userId, projectName).collect {
-                when (it.status) {
-                    Status.SUCCESS -> {
-                        _repo.postValue(it.data!!)
-                    }
-                    Status.LOADING -> {
-                        // TODO: 2/1/2022 set loading
-                    }
-                    Status.ERROR -> {
-                        Timber.d(it.message.toString())
-                    }
+            getProjectData(token, userId, projectName)
+            getContributor(token, userId, projectName)
+        }
+    }
+
+    private suspend fun getProjectData(token: String?, userId: String, projectName: String) {
+        mainRepository.getProject(token, userId, projectName).collect {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    _repo.postValue(it.data!!)
+                }
+                Status.LOADING -> {
+                    // TODO: 2/1/2022 set loading
+                }
+                Status.ERROR -> {
+                    Timber.d(it.message.toString())
+                }
+            }
+        }
+    }
+
+    private suspend fun getContributor(token: String?, userId: String, projectName: String) {
+        mainRepository.getProjectContributors(token, userId, projectName).collect {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    _contributors.postValue(it.data!!)
+                }
+                Status.LOADING -> {
+                    // TODO: 2/1/2022 set loading
+                }
+                Status.ERROR -> {
+                    Timber.d(it.message.toString())
                 }
             }
         }

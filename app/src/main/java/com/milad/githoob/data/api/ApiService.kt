@@ -3,6 +3,7 @@ package com.milad.githoob.data.api
 import com.milad.githoob.data.model.AccessToken
 import com.milad.githoob.data.model.Org
 import com.milad.githoob.data.model.User
+import com.milad.githoob.data.model.event.Contributor
 import com.milad.githoob.data.model.event.Event
 import com.milad.githoob.data.model.event.Repo
 import okhttp3.ResponseBody
@@ -69,6 +70,14 @@ interface ApiService {
         @Path("owner") owner: String,
         @Path("repo") repo: String
     ): Response<Repo>
+
+    @Headers("Content-Type: application/json")
+    @GET("/repos/{owner}/{repo}/contributors")
+    suspend fun getProjectContributors(
+        @Header("Authorization") token: String?,
+        @Path("owner") owner: String,
+        @Path("repo") repo: String
+    ): Response<List<Contributor>>
 
     @Headers("Content-Type: application/json")
     @GET("/users/{username}/repos?sort=updated")
