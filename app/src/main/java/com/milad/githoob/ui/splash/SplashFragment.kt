@@ -32,7 +32,6 @@ class SplashFragment : Fragment() {
             viewModel.checkUserAuth().collect {
                 withContext(Dispatchers.Main) {
                     if (it.equals("")) {
-                        Timber.d("not found!")
                         delay(3000)
                         binding.progressBar.visibility = View.GONE
 
@@ -41,14 +40,8 @@ class SplashFragment : Fragment() {
                         this.cancel()
 
                     } else {
-                        Timber.d("Founded: $it")
-                        /*val directions =
-                            SplashFragmentDirections.actionSplashFragmentToProfileFragment(
-                                token = it,
-                                userId = ""
-                            )*/
                         val destination =
-                            InternalDeepLink.makeProfileDeepLink(token = it, userId = null)
+                            InternalDeepLink.makeProfileDeepLink(token = it)
                         NavHostFragment.findNavController(this@SplashFragment)
                             .navigate(destination)
                         this.cancel()

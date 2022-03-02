@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.milad.githoob.R
 import com.milad.githoob.databinding.ProfileProjectFragmentBinding
-import com.milad.githoob.ui.profile.repositories.ProfileProjectContributorsAdapter
+import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +45,15 @@ class ProfileProjectFragment : Fragment() {
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
         if (viewmodel != null) {
-            adapter = ProfileProjectContributorsAdapter(viewmodel)
+            adapter = ProfileProjectContributorsAdapter(viewmodel) {
+                it.let {
+                    if (it.login != safeArgs.userId) {
+                        val destination =
+                            InternalDeepLink.makeProfileDeepLink(userId = it.login)
+                        findNavController().navigate(destination)
+                    }
+                }
+            }
             binding.profileContributorList.adapter = adapter
         }
     }

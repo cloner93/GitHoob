@@ -17,12 +17,12 @@
             android:name="token"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="userId"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <deepLink
             android:id="@+id/deepLink2"
             app:action="ACTION_VIEW"
