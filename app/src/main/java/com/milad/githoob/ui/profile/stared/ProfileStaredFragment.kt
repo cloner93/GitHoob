@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.milad.githoob.R
 import com.milad.githoob.databinding.ProfileStaredFragmentBinding
-import com.milad.githoob.ui.profile.repositories.ProfileRepositoryAdapter
+import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,7 +52,17 @@ class ProfileStaredFragment : Fragment() {
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
         if (viewmodel != null) {
-            adapter = ProfileStaredAdapter(viewmodel)
+            adapter = ProfileStaredAdapter(viewmodel) {
+                it.let {
+                    val destination =
+                        InternalDeepLink.makeProjectDeepLink(
+                            token = token,
+                            userId = it.owner.login,
+                            projectName = it.name
+                        )
+                    findNavController().navigate(destination)
+                }
+            }
             binding.profileStaredList.adapter = adapter
         }
     }
