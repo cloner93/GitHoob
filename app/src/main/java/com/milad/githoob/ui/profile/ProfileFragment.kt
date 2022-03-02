@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
@@ -37,8 +38,14 @@ class ProfileFragment : Fragment() {
         token = safeArgs.token
         userId = safeArgs.userId
 
-        Timber.d("Token: $token \n UserId: $userId")
         viewModel.setUser(token, userId)
+        viewModel.user.observe(viewLifecycleOwner) {
+            it.let {
+                if (it != null) {
+                    userId = it.login
+                }
+            }
+        }
 
         val navigate = NavHostFragment.findNavController(this)
 

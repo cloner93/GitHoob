@@ -63,6 +63,14 @@ interface ApiService {
     ): Response<ArrayList<Repo>>
 
     @Headers("Content-Type: application/json")
+    @GET("/repos/{owner}/{repo}")
+    suspend fun getProject(
+        @Header("Authorization") token: String?,
+        @Path("owner") owner: String,
+        @Path("repo") repo: String
+    ): Response<Repo>
+
+    @Headers("Content-Type: application/json")
     @GET("/users/{username}/repos?sort=updated")
     suspend fun getUserRepositories(
         @Path("username") username: String,

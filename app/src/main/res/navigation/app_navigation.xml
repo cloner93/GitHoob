@@ -147,7 +147,7 @@
             android:name="userId"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="false" />
         <argument
             android:name="projectName"
             android:defaultValue=""
