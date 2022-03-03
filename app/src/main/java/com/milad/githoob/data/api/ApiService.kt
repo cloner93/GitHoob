@@ -79,6 +79,14 @@ interface ApiService {
         @Path("repo") repo: String
     ): Response<List<Contributor>>
 
+    @Headers("accept: application/vnd.github.VERSION.raw")
+    @GET("/repos/{owner}/{repo}/readme")
+    suspend fun getProjectReadMe(
+        @Header("Authorization") token: String?,
+        @Path("owner") owner: String,
+        @Path("repo") repo: String
+    ): Response<ResponseBody>
+
     @Headers("Content-Type: application/json")
     @GET("/users/{username}/repos?sort=updated")
     suspend fun getUserRepositories(

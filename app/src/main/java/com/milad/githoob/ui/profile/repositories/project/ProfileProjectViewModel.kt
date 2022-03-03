@@ -26,6 +26,9 @@ class ProfileProjectViewModel @Inject constructor(
     private val _contributors = MutableLiveData<List<Contributor>>()
     val contributors: LiveData<List<Contributor>> = _contributors
 
+    private val _markdown = MutableLiveData<String>("")
+    val markdown: LiveData<String> = _markdown
+
     fun setUser(token: String?, userId: String, projectName: String) =
         loadProjectData(token, userId, projectName)
 
@@ -33,6 +36,24 @@ class ProfileProjectViewModel @Inject constructor(
         viewModelScope.launch(ioDispatcher) {
             getProjectData(token, userId, projectName)
             getContributor(token, userId, projectName)
+            getMarkdown(token, userId, projectName)
+        }
+    }
+
+    private suspend fun getMarkdown(token: String?, userId: String, projectName: String) {
+        mainRepository.getProjectReadMe(token, userId, projectName).collect {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val data = it.data!!.string()
+                    _markdown.postValue(data)
+                }
+                Status.LOADING -> {
+                    // TODO: 2/1/2022 set loading
+                }
+                Status.ERROR -> {
+                    Timber.d(it.message.toString())
+                }
+            }
         }
     }
 
