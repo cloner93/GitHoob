@@ -38,7 +38,10 @@ class MainRepository @Inject constructor(
         apiRequest { apiService.getProjectContributors(token, owner, project)}
 
     suspend fun getProjectReadMe(token: String?, owner: String, project: String) =
-        apiRequest { apiService.getProjectReadMe(token, owner, project)}
+        apiRequest { apiService.getProjectReadMe(token, owner, project) }
+
+    suspend fun getUserReadMe(url: String) =
+        apiRequest { apiService.getUserReadMe(url) }
 
     suspend fun getUserRepositories(token: String, page: Int) =
         apiRequest { apiService.getUserRepositories(token, page) }
