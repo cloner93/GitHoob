@@ -21,15 +21,17 @@ fun setContributorsItems(
 @BindingAdapter("set_readme")
 fun setReadMe(
     textView: TextView,
-    md: String
+    md: String?
 ) {
-    val markdown = Markwon.builder(textView.context)
-        .usePlugin(ImagesPlugin.create())
-        .usePlugin(HtmlPlugin.create())
-        .usePlugin(IFrameHtmlPlugin())
-        .build();
+    md?.let {
+        val markdown = Markwon.builder(textView.context)
+            .usePlugin(ImagesPlugin.create())
+            .usePlugin(HtmlPlugin.create())
+            .usePlugin(IFrameHtmlPlugin())
+            .build();
 
-    markdown.setMarkdown(textView, md);
+        markdown.setMarkdown(textView, md);
+    }
 }
 
 

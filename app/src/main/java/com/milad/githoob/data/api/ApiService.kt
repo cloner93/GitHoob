@@ -22,6 +22,12 @@ interface ApiService {
         @Field("code") code: String,
     ): Response<AccessToken>
 
+    @Headers("accept: application/vnd.github.VERSION.raw")
+    @GET
+    suspend fun getUserReadMe(
+        @Url url: String
+    ): Response<ResponseBody>
+
     @Headers("Content-Type: application/json")
     @GET("/user")
     suspend fun getAuthenticatedUser(

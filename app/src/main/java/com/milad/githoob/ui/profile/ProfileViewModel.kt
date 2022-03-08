@@ -27,7 +27,8 @@ class ProfileViewModel @Inject constructor(
     private lateinit var token: String
 
     private val _forceUpdate = MutableLiveData(false)
-    private val _user = _forceUpdate.switchMap { bool ->
+    private val _dataLoading = MutableLiveData<Boolean>()
+    private val _user = Transformations.switchMap(_forceUpdate) { bool ->
         val user = MutableLiveData<User>()
         if (bool) {
             _dataLoading.postValue(true)
@@ -54,17 +55,32 @@ class ProfileViewModel @Inject constructor(
         }
         return@switchMap user
     }
+    private val _markdown = Transformations.switchMap(_user) {
+        val readme = MutableLiveData<String>("")
+        viewModelScope.launch(ioDispatcher) {
 
-    private suspend fun getUserInfo(token: String, userId: String): Flow<Result<User>> {
-        if (token != "")
-            return mainRepository.getAuthenticatedUser(token)
-        if (userId != "")
-            return mainRepository.getUser(userId)
-        return flow {
-            emit(Result.error(msg = "I can't load any user.", data = null))
+            val url = "https://raw.githubusercontent.com/${it.login}/${it.login}/master/README.md"
+
+            mainRepository.getUserReadMe(url).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        val data = it.data!!.string()
+                        readme.postValue(data)
+                    }
+                    Status.LOADING -> {
+                        // TODO: 2/1/2022 set loading
+                    }
+                    Status.ERROR -> {
+                        Timber.d(it.message.toString())
+                    }
+                }
+            }
         }
+        return@switchMap readme
     }
 
+    val dataLoading: LiveData<Boolean> = _dataLoading
+    val user: LiveData<User?> = _user
     val userContributes: LiveData<List<ContributionsDay>> = Transformations.switchMap(_user) {
         val list = MutableLiveData<List<ContributionsDay>>()
 
@@ -91,16 +107,22 @@ class ProfileViewModel @Inject constructor(
 
         return@switchMap list
     }
-
-    val user: LiveData<User?> = _user
-
-    private val _dataLoading = MutableLiveData<Boolean>()
-    val dataLoading: LiveData<Boolean> = _dataLoading
+    val markdown: LiveData<String> = _markdown
 
     fun setUser(token: String, userId: String) {
         this.token = token
         this.userId = userId
         _forceUpdate.value = true
+    }
+
+    private suspend fun getUserInfo(token: String, userId: String): Flow<Result<User>> {
+        if (token != "")
+            return mainRepository.getAuthenticatedUser(token)
+        if (userId != "")
+            return mainRepository.getUser(userId)
+        return flow {
+            emit(Result.error(msg = "I can't load any user.", data = null))
+        }
     }
 
     fun refresh() {

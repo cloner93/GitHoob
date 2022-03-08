@@ -139,6 +139,17 @@
                     app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
                     app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    set_readme="@{viewmodel.markdown}"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_organization"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_organization"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_organization" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
