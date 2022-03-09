@@ -507,13 +507,12 @@
                     android:elevation="8dp"
                     app:backgroundBaseColor="?android:colorBackground"
                     app:baseColor="?colorContainer"
-                    app:baseEmptyColor="?android:colorBackground"
                     app:displayMonth="true"
                     app:lastWeeks="50"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
-                    app:textColor="#000000" />
+                    app:textColor="?colorOnSurface" />
 
                 <Button
                     android:id="@+id/profile_btn_started"
