@@ -7,18 +7,81 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout"
+        <com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_header_info"
+            <com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar
+                android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?colorSecondaryContainer"
-                android:minHeight="?android:attr/actionBarSize"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed|snap">
+                android:minHeight="?attr/actionBarSize"
+                app:layoutDescription="@xml/fragment_profile_xml_project_header_info_scene"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <View
+                    android:id="@+id/bgToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_image1"
+                    profileImage="@{viewmodel.repo.owner.avatar_url}"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:elevation="10dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
+
+                    app:layout_constraintStart_toStartOf="@id/bgToolbar"
+                    app:layout_constraintTag="collapsedTag"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar"
+
+                    tools:src="@tools:sample/avatars"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/profile_user_login1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{@string/at(viewmodel.repo.owner.login)}"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image1"
+                    app:layout_constraintTag="collapsedTag"
+                    app:layout_constraintTop_toTopOf="@+id/profile_image1"
+                    tools:text="\u0040cloner93" />
+
+                <TextView
+                    android:id="@+id/profile_project_name1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{viewmodel.repo.name}"
+                    android:textAlignment="textStart"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_image1"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_user_login1"
+                    app:layout_constraintStart_toStartOf="@+id/profile_user_login1"
+                    app:layout_constraintTag="collapsedTag"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_user_login1"
+                    tools:text="TableCalendar" />
+
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_image"
@@ -30,6 +93,7 @@
                     android:elevation="10dp"
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/avatars"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -48,6 +112,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="@+id/profile_image"
                     tools:text="\u0040cloner93" />
 
@@ -65,10 +130,12 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
                     tools:text="TableCalendar" />
 
                 <LinearLayout
+                    android:id="@+id/lim"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -78,6 +145,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_project_name"
                     app:layout_constraintVertical_bias="1.0">
 
@@ -99,33 +167,6 @@
                             android:textSize="12sp"
                             tools:text="Highly customizable, feature-packed Flutter Calendar with gestures, animations and multiple formats" />
                     </LinearLayout>
-
-                    <!--                    <LinearLayout-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginTop="8dp"-->
-                    <!--                        android:gravity="center"-->
-                    <!--                        android:orientation="horizontal">-->
-
-                    <!--                        <androidx.appcompat.widget.AppCompatImageView-->
-                    <!--                            android:layout_width="20dp"-->
-                    <!--                            android:layout_height="20dp"-->
-                    <!--                            app:srcCompat="@drawable/ic_blog" />-->
-
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:ellipsize="end"-->
-                    <!--                            android:paddingStart="8dp"-->
-                    <!--                            android:paddingEnd="2dp"-->
-                    <!--                            android:text="@{viewmodel.repo.license.name}"-->
-                    <!--                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
-                    <!--                            android:textColor="?colorOnPrimaryContainer"-->
-                    <!--                            android:textSize="12sp"-->
-                    <!--                            android:textStyle="normal"-->
-                    <!--                            tools:text="Apache-2.0 License" />-->
-
-                    <!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -265,8 +306,8 @@
 
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+            </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
+        </com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -315,9 +356,9 @@
                     tools:listitem="@layout/profile_project_contributor_item" />
 
                 <TextView
+                    set_readme="@{viewmodel.markdown}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    set_readme="@{viewmodel.markdown}"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:paddingBottom="16dp"
