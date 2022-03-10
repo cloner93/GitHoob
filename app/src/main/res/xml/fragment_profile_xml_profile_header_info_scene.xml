@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/profile_user_name1"
             android:layout_width="0dp"
@@ -54,7 +54,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
         <Constraint
             android:id="@+id/profile_user_login1"
             android:layout_width="0dp"
@@ -78,125 +78,41 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start">
         <KeyFrameSet>
+            <!--collapsedTag-->
             <KeyAttribute
                 android:alpha="0"
                 app:framePosition="0"
-                app:motionTarget="@id/profile_image1" />
+                app:motionTarget="collapsedTag" />
             <KeyAttribute
                 android:alpha="0"
                 app:framePosition="50"
-                app:motionTarget="@id/profile_image1" />
+                app:motionTarget="collapsedTag" />
             <KeyAttribute
                 android:alpha="1"
                 app:framePosition="80"
-                app:motionTarget="@id/profile_image1" />
+                app:motionTarget="collapsedTag" />
             <KeyAttribute
                 android:alpha="1"
                 app:framePosition="100"
-                app:motionTarget="@id/profile_image1" />
-            <!--            1-->
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="0"
-                app:motionTarget="@id/profile_user_login1" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="50"
-                app:motionTarget="@id/profile_user_login1" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="80"
-                app:motionTarget="@id/profile_user_login1" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="100"
-                app:motionTarget="@id/profile_user_login1" />
-            <!--            2-->
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="0"
-                app:motionTarget="@id/profile_user_name1" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="50"
-                app:motionTarget="@id/profile_user_name1" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="80"
-                app:motionTarget="@id/profile_user_name1" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="100"
-                app:motionTarget="@id/profile_user_name1" />
-            <!--            ================-->
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="0"
-                app:motionTarget="@id/profile_image" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="50"
-                app:motionTarget="@id/profile_image" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="80"
-                app:motionTarget="@id/profile_image" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="100"
-                app:motionTarget="@id/profile_image" />
+                app:motionTarget="collapsedTag" />
 
+            <!--extendedTag-->
             <KeyAttribute
                 android:alpha="1"
                 app:framePosition="0"
-                app:motionTarget="@id/profile_user_name" />
+                app:motionTarget="extendedTag" />
             <KeyAttribute
                 android:alpha="1"
                 app:framePosition="50"
-                app:motionTarget="@id/profile_user_name" />
+                app:motionTarget="extendedTag" />
             <KeyAttribute
                 android:alpha="0"
                 app:framePosition="80"
-                app:motionTarget="@id/profile_user_name" />
+                app:motionTarget="extendedTag" />
             <KeyAttribute
                 android:alpha="0"
                 app:framePosition="100"
-                app:motionTarget="@id/profile_user_name" />
-
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="0"
-                app:motionTarget="@id/profile_user_login" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="50"
-                app:motionTarget="@id/profile_user_login" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="80"
-                app:motionTarget="@id/profile_user_login" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="100"
-                app:motionTarget="@id/profile_user_login" />
-
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="0"
-                app:motionTarget="@id/lim" />
-            <KeyAttribute
-                android:alpha="1"
-                app:framePosition="50"
-                app:motionTarget="@id/lim" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="80"
-                app:motionTarget="@id/lim" />
-            <KeyAttribute
-                android:alpha="0"
-                app:framePosition="100"
-                app:motionTarget="@id/lim" />
-
+                app:motionTarget="extendedTag" />
 
         </KeyFrameSet>
     </Transition>

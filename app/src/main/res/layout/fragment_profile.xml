@@ -28,6 +28,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_image1"
+                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
@@ -43,6 +44,7 @@
 
                 <TextView
                     android:id="@+id/profile_user_name1"
+                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -61,6 +63,7 @@
 
                 <TextView
                     android:id="@+id/profile_user_login1"
+                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -76,6 +79,7 @@
 
                 <TextView
                     android:id="@+id/profile_user_login"
+                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -92,6 +96,7 @@
 
                 <TextView
                     android:id="@+id/profile_user_name"
+                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -111,6 +116,7 @@
                     tools:text="Milad Targholi" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    app:layout_constraintTag="extendedTag"
                     android:id="@+id/profile_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -127,6 +133,7 @@
 
                 <LinearLayout
                     android:id="@+id/lim"
+                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -416,7 +423,6 @@
 
 
                 </LinearLayout>
-
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 
