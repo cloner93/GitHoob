@@ -26,13 +26,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toEndOf="@+id/profile_image1"
-            app:layout_constraintTop_toTopOf="@+id/profile_image1" />
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended" />
         <Constraint
             android:id="@+id/profile_user_login1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image1"
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
             app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
             app:layout_constraintTop_toBottomOf="@+id/profile_user_name1" />
@@ -59,7 +59,7 @@
             android:id="@+id/profile_user_login1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image1"
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
             app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
             app:layout_constraintTop_toBottomOf="@+id/profile_user_name1" />
@@ -70,8 +70,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toEndOf="@+id/profile_image1"
-            app:layout_constraintTop_toTopOf="@+id/profile_image1" />
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended" />
     </ConstraintSet>
 
     <Transition

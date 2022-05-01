@@ -38,7 +38,7 @@ class ProfileStaredFragment : Fragment() {
         token = safeArgs.token
         userId = safeArgs.userId
 
-        binding.back.setOnClickListener {
+        binding.backBtnOnProjectCollapsed.setOnClickListener {
             findNavController().popBackStack()
         }
 

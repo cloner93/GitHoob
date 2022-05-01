@@ -26,21 +26,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/profile_image1"
-                    app:layout_constraintTag="collapsedTag"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_btn_on_project_extended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:scaleType="fitXY"
+                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardCornerRadius="24dp"
                     app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@id/bgToolbar"
                     app:layout_constraintTop_toTopOf="@id/bgToolbar"
-                    app:profileImage="@{viewmodel.user.avatar_url}"
-                    tools:src="@tools:sample/avatars"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:layout_constraintTag="collapsedTag">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_arrow_back" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/profile_image1"
+                            app:profileImage="@{viewmodel.user.avatar_url}"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="6dp"
+                            android:scaleType="fitXY"
+                            tools:src="@tools:sample/avatars"
+                            tools:srcCompat="@tools:sample/avatars" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/profile_user_name1"
@@ -57,8 +80,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-                    app:layout_constraintStart_toEndOf="@+id/profile_image1"
-                    app:layout_constraintTop_toTopOf="@+id/profile_image1"
+                    app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+                    app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended"
                     tools:text="Milad Targholi" />
 
                 <TextView
@@ -71,7 +94,7 @@
                     android:text="@{viewmodel.user.login}"
                     android:textColor="?colorOnPrimaryContainer"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_image1"
+                    app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name1"
@@ -96,10 +119,9 @@
 
                 <TextView
                     android:id="@+id/profile_user_name"
-                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:singleLine="true"
@@ -112,20 +134,21 @@
                     app:layout_constraintBottom_toTopOf="@+id/profile_user_login"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="@+id/profile_image"
                     tools:text="Milad Targholi" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    app:layout_constraintTag="extendedTag"
                     android:id="@+id/profile_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="?attr/actionBarSize"
                     android:elevation="10dp"
                     android:scaleType="fitXY"
                     android:tag="expanded"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="parent"
                     app:profileImage="@{viewmodel.user.avatar_url}"
                     tools:src="@tools:sample/avatars"
@@ -423,6 +446,32 @@
 
 
                 </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_btn_on_project_collapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTag="extendedTag"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_arrow_back" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 

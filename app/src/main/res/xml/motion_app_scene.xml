@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
             app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
             app:layout_constraintTop_toTopOf="@+id/bgToolbar"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
             app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
             app:layout_constraintTop_toTopOf="@+id/bgToolbar"
             app:layout_constraintVertical_bias="1.0" />
     </ConstraintSet>
