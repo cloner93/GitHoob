@@ -2,13 +2,13 @@ package com.milad.githoob.ui.profile.repositories
 
 import android.annotation.SuppressLint
 import android.text.format.DateUtils
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.milad.githoob.R
 import com.milad.githoob.data.model.event.Repo
 import timber.log.Timber
 import java.text.ParseException
@@ -32,10 +32,15 @@ fun setItemChip(
     items: List<String>
 ) {
     items.let {
-        if (items.size != 0 && chipGroup.childCount == 0) {
+        if (items.isNotEmpty() && chipGroup.childCount == 0) {
             Timber.d("setItemChip: " + items.size)
             for (topic in items) {
-                val chipChild: Chip = Chip(chipGroup.context).apply {
+
+                val chipChild: Chip = Chip(
+                    chipGroup.context,
+                    null,
+                    R.style.Widget_Material3_Chip_Suggestion_Elevated
+                ).apply {
                     text = topic
                 }
                 chipGroup.addView(chipChild)
