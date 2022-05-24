@@ -6,9 +6,14 @@
     <com.google.android.material.card.MaterialCardView
         style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="1dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:checkable="true"
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,8 +191,6 @@
                             android:text="@{numberUtils.format(repo.stargazers_count) }"
                             android:textAppearance="?attr/textAppearanceLabelSmall"
                             android:textColor="?android:attr/textColorSecondary"
-
-
                             tools:text="300" />
 
                     </LinearLayout>
