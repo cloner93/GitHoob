@@ -7,167 +7,156 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_all_contribute"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/profile_all_contributions_graph_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Contributions Graph"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textColor="?colorOnBackground"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:id="@+id/profile_all_contributions_divider"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph" />
-
-                <!--
-
-                <TextView
-                    android:id="@+id/profile_all_activites_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Events"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/profile_all_contributions_divider" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/profile_all_activites_recyclerview"
-                    overview_items="@{viewmodel.feedsList}"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:fillViewport="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_activites_title"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/profile_activity_items" />
-    -->
-
-                <com.milad.githoob.utils.contributions.GitHubContributionsView
-                    android:id="@+id/profile_all_contributions_graph"
-                    contributeGraphData="@{viewmodel.userContributes}"
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:elevation="8dp"
-                    app:backgroundBaseColor="?android:colorBackground"
-                    app:baseColor="?colorContainer"
-                    app:baseEmptyColor="?android:colorBackground"
-                    app:displayMonth="true"
-                    app:lastWeeks="50"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
-                    app:textColor="#000000" />
-
-                <Button
-                    android:id="@+id/profile_btn_started"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/starred"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
-
-                <Button
-                    android:id="@+id/profile_btn_repository"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/repo_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_started"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_started"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_started" />
-
-                <Button
-                    android:id="@+id/profile_btn_organization"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/organization_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_repository"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    set_readme="@{viewmodel.markdown}"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:paddingBottom="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_organization"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_organization"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_organization" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout"
+        <com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_header_info"
+            <com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar
+                android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="?colorSecondaryContainer"
-                android:minHeight="?android:attr/actionBarSize"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed|snap">
+                android:minHeight="?attr/actionBarSize"
+                app:layoutDescription="@xml/fragment_profile_xml_profile_header_info_scene"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <View
+                    android:id="@+id/bgToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_btn_on_project_extended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
+                    app:layout_constraintStart_toStartOf="@id/bgToolbar"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar"
+                    app:layout_constraintTag="collapsedTag">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_arrow_back" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/profile_image1"
+                            app:profileImage="@{viewmodel.user.avatar_url}"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="6dp"
+                            android:scaleType="fitXY"
+                            tools:src="@tools:sample/avatars"
+                            tools:srcCompat="@tools:sample/avatars" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/profile_user_name1"
+                    app:layout_constraintTag="collapsedTag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{viewmodel.user.name}"
+                    android:textAlignment="textStart"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
+                    app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+                    app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended"
+                    tools:text="Milad Targholi" />
+
+                <TextView
+                    android:id="@+id/profile_user_login1"
+                    app:layout_constraintTag="collapsedTag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{viewmodel.user.login}"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
+                    app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
+                    app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_user_name1"
+                    tools:text="Cloner93" />
+
+                <TextView
+                    android:id="@+id/profile_user_login"
+                    app:layout_constraintTag="extendedTag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:tag="expanded"
+                    android:text="@{viewmodel.user.login}"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
+                    app:layout_constraintStart_toStartOf="@+id/profile_user_name"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
+                    tools:text="Cloner93" />
+
+                <TextView
+                    android:id="@+id/profile_user_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:tag="expanded"
+                    android:text="@{viewmodel.user.name}"
+                    android:textAlignment="textStart"
+                    android:textColor="?colorOnPrimaryContainer"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/profile_user_login"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
+                    app:layout_constraintTop_toTopOf="@+id/profile_image"
+                    tools:text="Milad Targholi" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:elevation="10dp"
+                    android:scaleType="fitXY"
+                    android:tag="expanded"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTag="extendedTag"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:profileImage="@{viewmodel.user.avatar_url}"
+                    tools:src="@tools:sample/avatars"
+                    tools:srcCompat="@tools:sample/avatars" />
 
                 <LinearLayout
+                    android:id="@+id/lim"
+                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -458,56 +447,182 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/profile_user_login"
-                    android:layout_width="0dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_btn_on_project_collapsed"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@{viewmodel.user.login}"
-                    android:textColor="?colorOnPrimaryContainer"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
-                    app:layout_constraintStart_toStartOf="@+id/profile_user_name"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
-                    tools:text="Cloner93" />
-
-                <TextView
-                    android:id="@+id/profile_user_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@{viewmodel.user.name}"
-                    android:textAlignment="textStart"
-                    android:textColor="?colorOnPrimaryContainer"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/profile_user_login"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/profile_image"
-                    app:layout_constraintTop_toTopOf="@+id/profile_image"
-                    tools:text="Milad Targholi" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:elevation="10dp"
-                    android:scaleType="fitXY"
+                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardCornerRadius="24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:profileImage="@{viewmodel.user.avatar_url}"
-                    tools:src="@tools:sample/avatars"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:layout_constraintTag="extendedTag"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_arrow_back" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
+
+        </com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_all_contribute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/profile_all_contributions_graph_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Contributions Graph"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="?colorOnBackground"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/profile_all_contributions_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph" />
+
+                <!--
+
+                <TextView
+                    android:id="@+id/profile_all_activites_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Events"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/profile_all_contributions_divider" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profile_all_activites_recyclerview"
+                    overview_items="@{viewmodel.feedsList}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fillViewport="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_activites_title"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/profile_activity_items" />
+    -->
+
+                <com.milad.githoob.utils.contributions.GitHubContributionsView
+                    android:id="@+id/profile_all_contributions_graph"
+                    contributeGraphData="@{viewmodel.userContributes}"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:elevation="8dp"
+                    app:backgroundBaseColor="?android:colorBackground"
+                    app:baseColor="?colorContainer"
+                    app:displayMonth="true"
+                    app:lastWeeks="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
+                    app:textColor="?colorOnSurface" />
+
+                <Button
+                    android:id="@+id/profile_btn_started"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/starred"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
+                    app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
+
+                <Button
+                    android:id="@+id/profile_btn_repository"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/repo_event"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_started"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_started"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_started" />
+
+                <Button
+                    android:id="@+id/profile_btn_organization"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/organization_event"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:iconGravity="end"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_repository"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
+
+                <TextView
+                    set_readme="@{viewmodel.markdown}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_organization"
+                    app:layout_constraintStart_toStartOf="@+id/profile_btn_organization"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_organization" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>

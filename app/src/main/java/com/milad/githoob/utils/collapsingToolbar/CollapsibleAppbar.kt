@@ -25,7 +25,7 @@ class CollapsibleAppbar @JvmOverloads constructor(
         appBarLayout.elevation = if (progress == 1f) {
             toolbarElevation
         } else {
-            0f
+            1f
         }
     }
 }

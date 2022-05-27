@@ -20,6 +20,8 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch)
+
+        onNewIntent(intent);
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -34,7 +36,7 @@ class LaunchActivity : AppCompatActivity() {
     private fun requestForAccessToken(code: String) {
         mainViewModel.fetchToken(CLIENT_ID, CLIENT_SECRET, code)
 
-        mainViewModel.token.observe(this, {
+        mainViewModel.token.observe(this) {
             val navController: NavController =
                 Navigation.findNavController(
                     this@LaunchActivity,
@@ -43,6 +45,6 @@ class LaunchActivity : AppCompatActivity() {
             val args = Bundle()
             args.putString("token", it)
             navController.navigate(R.id.profileFragment, args)
-        })
+        }
     }
 }

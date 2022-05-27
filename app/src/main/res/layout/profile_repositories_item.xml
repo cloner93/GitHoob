@@ -3,17 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:elevation="8dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:checkable="true"
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,16 +33,15 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:text="@{repo.name}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?colorOnSurface"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
                     tools:text="Flutter_UI_Challenge" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="@{repo.private? View.VISIBLE:View.GONE}">
 
                     <ImageView
                         android:layout_width="15dp"
@@ -51,10 +56,10 @@
                         android:layout_height="wrap_content"
                         android:text="@{repo.private? @string/private_: @string/public_}"
                         android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textAppearance="?attr/textAppearanceLabelMedium"
                         android:textColor="?colorTertiary"
-                        android:textSize="13sp"
-                        android:textStyle="bold|italic"
+                        android:textStyle="bold"
+
                         tools:text="Private" />
                 </LinearLayout>
 
@@ -68,13 +73,12 @@
                     android:id="@+id/textView5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.full_name)}"
-                    android:textColor="?colorOnSurface"
-                    android:textSize="11sp"
-                    android:textStyle="italic"
+                    android:text="@{repo.fork ? @string/forked(repo.full_name):@string/forked(repo.owner.login)}"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:visibility="@{repo.fork ? View.VISIBLE : View.GONE}"
                     tools:text="Forked from: Milad\Targholi" />
             </LinearLayout>
@@ -87,14 +91,14 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:text="@{repo.description}"
                     android:textAlignment="viewStart"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:textAllCaps="false"
-                    android:textColor="?colorOnSurface"
-                    android:textSize="12dp"
                     android:visibility="@{repo.description != null ? View.VISIBLE : View.GONE}"
                     tools:text="This app is designed to display user Github account information 📖. This information includes projects, programming languages and more. So participate in completing this project 🚀." />
 
@@ -108,14 +112,16 @@
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <com.google.android.material.chip.ChipGroup
                         repositories_item_chip="@{repo.topics}"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:chipSpacingVertical="2dp"
-                        app:singleLine="true" />
+                        app:selectionRequired="false"
+                        app:chipSpacingHorizontal="4dp"
+                        app:singleLine="true"
+                        android:layout_height="wrap_content"/>
 
                 </HorizontalScrollView>
 
@@ -137,7 +143,7 @@
                         android:id="@+id/la1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="10dp"
                         android:gravity="center"
                         android:visibility="@{repo.language == null ? View.GONE: View.VISIBLE}">
 
@@ -155,9 +161,9 @@
                             android:layout_marginStart="5dp"
                             android:layout_weight="1"
                             android:text="@{repo.language}"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnSurface"
-                            android:textSize="12dp"
+                            android:textAppearance="?attr/textAppearanceLabelSmall"
+                            android:textColor="?android:attr/textColorSecondary"
+
                             tools:text="Kotlin" />
 
                     </LinearLayout>
@@ -166,7 +172,7 @@
                         android:id="@+id/la2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="10dp"
                         android:gravity="center"
                         android:visibility="@{repo.stargazers_count == 0 ? View.GONE: View.VISIBLE}">
 
@@ -184,9 +190,8 @@
                             android:layout_marginStart="4dp"
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.stargazers_count) }"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnSurface"
-                            android:textSize="12dp"
+                            android:textAppearance="?attr/textAppearanceLabelSmall"
+                            android:textColor="?android:attr/textColorSecondary"
                             tools:text="300" />
 
                     </LinearLayout>
@@ -213,9 +218,8 @@
                             android:layout_marginStart="4dp"
                             android:layout_weight="1"
                             android:text="@{numberUtils.format(repo.forks_count) }"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?colorOnSurface"
-                            android:textSize="12dp"
+                            android:textAppearance="?attr/textAppearanceLabelSmall"
+                            android:textColor="?android:attr/textColorSecondary"
                             tools:text="300" />
 
                     </LinearLayout>
@@ -229,9 +233,8 @@
                         android:singleLine="true"
                         android:text="Updated on Oct 31, 2020"
                         android:textAlignment="textEnd"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="?colorOnSurface"
-                        android:textSize="12dp"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:visibility="@{repo.updated_at == null ? View.GONE: View.VISIBLE}" />
                 </LinearLayout>
 
@@ -243,7 +246,7 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <data>
 

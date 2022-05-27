@@ -17,6 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileRepositoriesFragment : Fragment() {
 
+    // TODO: Theming the top app bar ===> https://github.com/material-components/material-components-android/blob/master/docs/components/TopAppBar.md#:~:text=theming%20the%20top%20app%20bar
+
     private lateinit var token: String
     private lateinit var userId: String
     private lateinit var adapter: ProfileRepositoryAdapter
@@ -45,7 +47,7 @@ class ProfileRepositoriesFragment : Fragment() {
         token = safeArgs.token
         userId = safeArgs.userId
 
-        binding.back.setOnClickListener {
+        binding.backBtnOnProjectCollapsed.setOnClickListener {
             findNavController().popBackStack()
         }
 

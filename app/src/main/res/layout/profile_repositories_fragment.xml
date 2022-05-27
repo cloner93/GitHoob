@@ -16,24 +16,24 @@
                 android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorSecondaryContainer"
+                android:background="?colorSurface"
                 android:minHeight="?attr/actionBarSize"
                 app:layoutDescription="@xml/motion_app_scene"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <TextView
                     android:id="@+id/expandedTitle"
+                    style="@style/TextAppearance.Material3.TitleLarge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?attr/actionBarSize"
-                    android:paddingTop="24dp"
                     android:paddingStart="16dp"
+                    android:paddingTop="24dp"
                     android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:text="Repository"
-                    android:textAppearance="?attr/textAppearanceHeadline4"
-                    android:textColor="?colorOnPrimaryContainer"
+                    android:paddingBottom="28dp"
                     android:textStyle="bold"
+                    android:text="Repository"
+                    android:textColor="?colorOnSurface"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -50,23 +50,40 @@
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:text="Repository"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?colorOnPrimaryContainer"
+                    android:textColor="?colorOnSurface"
+                    style="@style/TextAppearance.Material3.TitleMedium"
                     app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-                    app:layout_constraintStart_toEndOf="@+id/back"
+                    app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
                     app:layout_constraintTop_toTopOf="@+id/bgToolbar"
                     tools:text="@tools:sample/lorem" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/back"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_btn_on_project_collapsed"
+                    app:layout_constraintTag="extendedTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
-                    app:layout_constraintStart_toStartOf="@+id/bgToolbar"
-                    app:layout_constraintTop_toTopOf="@+id/bgToolbar" />
+                    android:layout_marginStart="16dp"
+                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
+                    app:layout_constraintStart_toStartOf="@id/bgToolbar"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_arrow_back" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 

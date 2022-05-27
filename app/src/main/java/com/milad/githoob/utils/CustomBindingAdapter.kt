@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.milad.githoob.R
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -19,6 +20,7 @@ fun profileImage(
 ) {
     Glide.with(view.context)
         .load(imageUrl)
+        .thumbnail(0.5f)
         .circleCrop()
         .into(view)
 }
