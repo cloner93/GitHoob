@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
-        style="?attr/materialCardViewElevatedStyle"
+        style="@style/Theme.MyApp.CardStyle"
         android:layout_width="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:checkable="true"
-        app:cardElevation="2dp">
+        android:checkable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
