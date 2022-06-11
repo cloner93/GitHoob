@@ -57,11 +57,12 @@
                     app:layout_constraintTop_toTopOf="@+id/bgToolbar"
                     tools:text="@tools:sample/lorem" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:background="@android:color/transparent"
                     android:id="@+id/back"
+                    android:padding="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
                     android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@+id/bgToolbar"

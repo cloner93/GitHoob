@@ -25,19 +25,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_extended"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@id/bgToolbar"
-                    app:layout_constraintTop_toTopOf="@id/bgToolbar"
-                    app:layout_constraintTag="collapsedTag">
+                    app:layout_constraintTag="collapsedTag"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -47,26 +48,22 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:padding="14dp"
                             android:src="@drawable/ic_arrow_back" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/profile_image1"
-                            app:profileImage="@{viewmodel.user.avatar_url}"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="6dp"
                             android:scaleType="fitXY"
+                            app:profileImage="@{viewmodel.user.avatar_url}"
                             tools:src="@tools:sample/avatars"
                             tools:srcCompat="@tools:sample/avatars" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/profile_user_name1"
-                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -80,12 +77,12 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
                     app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+                    app:layout_constraintTag="collapsedTag"
                     app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended"
                     tools:text="Milad Targholi" />
 
                 <TextView
                     android:id="@+id/profile_user_login1"
-                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -96,12 +93,12 @@
                     app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
+                    app:layout_constraintTag="collapsedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name1"
                     tools:text="Cloner93" />
 
                 <TextView
                     android:id="@+id/profile_user_login"
-                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -113,6 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
                     tools:text="Cloner93" />
 
@@ -155,7 +153,6 @@
 
                 <LinearLayout
                     android:id="@+id/lim"
-                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -164,6 +161,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
                     <LinearLayout
@@ -446,14 +444,16 @@
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_collapsed"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="parent">
@@ -461,16 +461,20 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="14dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:layout_marginEnd="6dp"
                             android:src="@drawable/ic_arrow_back" />
 
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 

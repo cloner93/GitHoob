@@ -31,8 +31,8 @@
                     android:paddingEnd="16dp"
                     android:paddingBottom="28dp"
                     android:text="Starred"
-                    android:textStyle="bold"
                     android:textColor="?colorOnSurface"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,10 +58,11 @@
                     app:layout_constraintTop_toTopOf="@+id/bgToolbar"
                     tools:text="Starred" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/back_btn_on_project_collapsed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:padding="14dp"
                     android:src="@drawable/ic_arrow_back"
                     app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
