@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -39,6 +40,9 @@ class ConnectionFragment : Fragment() {
         )
 
         binding.connectionViewpager.adapter = adapter
+        binding.backBtnOnProjectCollapsed.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         TabLayoutMediator(
             binding.connectionTablayout,
