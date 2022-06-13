@@ -6,4 +6,6 @@ object GlobalState {
     const val default_percent_3: Float = 0.011F
     const val default_percent_4: Float = 0.012F
     const val default_percent_5: Float = 0.014F
+
+    const val TAG = "GlobalState"
 }

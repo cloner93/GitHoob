@@ -24,11 +24,9 @@
             app:argType="string"
             app:nullable="false" />
         <deepLink
-            android:id="@+id/deepLink2"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}" />
         <deepLink
-            android:id="@+id/deepLink4"
             app:action="ACTION_VIEW"
             app:uri="githoob://profile/?token={token}&amp;userId={userId}" />
         <action
@@ -37,6 +35,9 @@
         <action
             android:id="@+id/action_profileFragment_to_profileOrgFragment"
             app:destination="@id/profileOrgFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_connectionFragment"
+            app:destination="@id/connectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -75,11 +76,9 @@
             app:argType="string"
             app:nullable="false" />
         <deepLink
-            android:id="@+id/deepLink"
             app:action="ACTION_VIEW"
             app:uri="githoob://repository/?token={token}&amp;userId={userId}" />
         <deepLink
-            android:id="@+id/deepLink6"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}?tab=repositories" />
     </fragment>
@@ -99,11 +98,9 @@
             app:argType="string"
             app:nullable="false" />
         <deepLink
-            android:id="@+id/deepLink7"
             app:action="ACTION_VIEW"
             app:uri="githoob://starred/?token={token}&amp;userId={userId}" />
         <deepLink
-            android:id="@+id/deepLink8"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}?tab=starred" />
     </fragment>
@@ -124,7 +121,6 @@
             app:argType="string"
             app:nullable="false" />
         <deepLink
-            android:id="@+id/deepLink9"
             app:action="ACTION_VIEW"
             app:uri="githoob://orgs/?token={token}&amp;userId={userId}" />
 <!--        <deepLink-->
@@ -154,12 +150,42 @@
             app:argType="string"
             app:nullable="false" />
         <deepLink
-            android:id="@+id/deepLink11"
             app:action="ACTION_VIEW"
             app:uri="githoob://project/?token={token}&amp;userId={userId}&amp;projectName={projectName}" />
         <deepLink
-            android:id="@+id/deepLink12"
             app:action="ACTION_VIEW"
             app:uri="https://github.com/{userId}/{projectName}" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectionFragment"
+        android:name="com.milad.githoob.ui.profile.connection.ConnectionFragment"
+        android:label="fragment_connection"
+        tools:layout="@layout/fragment_connection" >
+
+        <argument
+            android:name="token"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            app:argType="com.milad.githoob.ui.profile.connection.ConnectionType"
+            android:name="tab"
+            android:defaultValue="followers" />
+
+        <deepLink
+            app:action="ACTION_VIEW"
+            app:uri="githoob://connection/?token={token}&amp;userId={userId}&amp;tab={tab}" />
+        <deepLink
+            app:action="ACTION_VIEW"
+            app:uri="https://github.com/{userId}?tab=following" />
+        <deepLink
+            app:action="ACTION_VIEW"
+            app:uri="https://github.com/{userId}?tab=followers" />
+
     </fragment>
 </navigation>

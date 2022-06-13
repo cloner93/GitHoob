@@ -75,6 +75,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 InternalDeepLink.makeOrganizationDeepLink(userId = userId, token = token)
             navigate.navigate(destination)
         }
+
+        binding.profileBtnConnection.setOnClickListener {
+            val destination =
+                InternalDeepLink.makeConnectionDeepLink(userId = userId, token = token)
+            navigate.navigate(destination)
+        }
     }
 
     override fun onClick(view: View?) {
