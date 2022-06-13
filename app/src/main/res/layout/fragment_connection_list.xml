@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+
+            type="com.milad.githoob.ui.profile.connection.ConnectionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/connection_list"
+            android:name="com.milad.githoob.ui.profile.connection.ConnectionListFragment"
+            connection_items="@{viewmodel.connectionList}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:context=".ui.profile.connection.ConnectionListFragment"
+            tools:listitem="@layout/connection_list_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
