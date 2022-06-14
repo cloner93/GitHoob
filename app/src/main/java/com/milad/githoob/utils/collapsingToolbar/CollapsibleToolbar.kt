@@ -4,6 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.android.material.appbar.AppBarLayout
+import com.milad.githoob.R
+import com.milad.githoob.utils.GlobalState.default_percent_4
+import com.milad.githoob.utils.mixTwoColors
 
 class CollapsibleToolbar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -16,6 +19,14 @@ class CollapsibleToolbar @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         (parent as? AppBarLayout)?.addOnOffsetChangedListener(this)
+
+        context.mixTwoColors(
+            R.attr.colorPrimary,
+            R.attr.colorSurface,
+            default_percent_4
+        ).apply {
+            setBackgroundColor(this)
+        }
     }
 
     override fun onDetachedFromWindow() {

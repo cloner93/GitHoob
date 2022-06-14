@@ -16,7 +16,6 @@
                 android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorSecondaryContainer"
                 android:minHeight="?attr/actionBarSize"
                 app:layoutDescription="@xml/fragment_profile_xml_project_header_info_scene"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
@@ -26,14 +25,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_collapsed"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
@@ -49,7 +46,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:padding="14dp"
                             android:src="@drawable/ic_arrow_back" />
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -57,15 +54,11 @@
                             profileImage="@{viewmodel.repo.owner.avatar_url}"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="6dp"
-                            android:elevation="10dp"
                             android:scaleType="fitXY"
                             tools:src="@tools:sample/avatars"
                             tools:srcCompat="@tools:sample/avatars" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/profile_user_login1"
@@ -94,23 +87,23 @@
                     android:textAlignment="textStart"
                     android:textColor="?colorOnSurface"
                     android:textSize="16sp"
-                    app:layout_constraintVertical_bias="0.0"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_collapsed"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login1"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_login1"
                     app:layout_constraintTag="collapsedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_login1"
+                    app:layout_constraintVertical_bias="0.0"
                     tools:text="TableCalendar" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_extended"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="parent">
@@ -118,12 +111,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="14dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:layout_marginEnd="6dp"
                             android:src="@drawable/ic_arrow_back" />
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -138,13 +134,12 @@
                             tools:src="@tools:sample/avatars"
                             tools:srcCompat="@tools:sample/avatars" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/profile_user_login"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:singleLine="true"
@@ -162,7 +157,7 @@
                     android:id="@+id/profile_project_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{viewmodel.repo.name}"
@@ -173,13 +168,14 @@
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/back_btn_on_project_extended"
                     app:layout_constraintTag="extendedTag"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_user_login"
+                    app:layout_constraintTop_toBottomOf="@+id/back_btn_on_project_extended"
                     tools:text="TableCalendar" />
 
                 <LinearLayout
                     android:id="@+id/lim"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical"

@@ -16,7 +16,6 @@
                 android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorSecondaryContainer"
                 android:minHeight="?attr/actionBarSize"
                 app:layoutDescription="@xml/fragment_profile_xml_profile_header_info_scene"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
@@ -26,19 +25,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_extended"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@id/bgToolbar"
-                    app:layout_constraintTop_toTopOf="@id/bgToolbar"
-                    app:layout_constraintTag="collapsedTag">
+                    app:layout_constraintTag="collapsedTag"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -48,26 +48,22 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:padding="14dp"
                             android:src="@drawable/ic_arrow_back" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/profile_image1"
-                            app:profileImage="@{viewmodel.user.avatar_url}"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="6dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:scaleType="fitXY"
+                            app:profileImage="@{viewmodel.user.avatar_url}"
                             tools:src="@tools:sample/avatars"
                             tools:srcCompat="@tools:sample/avatars" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/profile_user_name1"
-                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -81,12 +77,12 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
                     app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
+                    app:layout_constraintTag="collapsedTag"
                     app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended"
                     tools:text="Milad Targholi" />
 
                 <TextView
                     android:id="@+id/profile_user_login1"
-                    app:layout_constraintTag="collapsedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -97,12 +93,12 @@
                     app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
+                    app:layout_constraintTag="collapsedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name1"
                     tools:text="Cloner93" />
 
                 <TextView
                     android:id="@+id/profile_user_login"
-                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -114,6 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
                     app:layout_constraintStart_toStartOf="@+id/profile_user_name"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_user_name"
                     tools:text="Cloner93" />
 
@@ -156,7 +153,6 @@
 
                 <LinearLayout
                     android:id="@+id/lim"
-                    app:layout_constraintTag="extendedTag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -165,6 +161,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/profile_user_login"
                     app:layout_constraintStart_toStartOf="@+id/profile_image"
+                    app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
                     <LinearLayout
@@ -361,84 +358,90 @@
                         android:visibility='@{viewmodel.user.following == 0 &amp;&amp; viewmodel.user.followers == 0 ? View.GONE : View.VISIBLE}'>
 
                         <LinearLayout
+                            android:id="@+id/profile_btn_connection"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="8dp">
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/profile_header_follower_icon"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                app:srcCompat="@drawable/ic_profile" />
-
-                            <TextView
-                                android:id="@+id/profile_header_follwers"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="2dp"
-                                android:text="@string/followers"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                android:textColor="?colorOnPrimaryContainer"
-                                android:textSize="12sp" />
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/profile_header_follwers_number"
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/profile_header_follower_icon"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    app:srcCompat="@drawable/ic_profile" />
+
+                                <TextView
+                                    android:id="@+id/profile_header_follwers"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="2dp"
+                                    android:text="@string/followers"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                    android:textColor="?colorOnPrimaryContainer"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/profile_header_follwers_number"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:text="@{numberUtils.format(viewmodel.user.followers)}"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                    android:textColor="?colorOnPrimaryContainer"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    tools:text="23" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:text="@{numberUtils.format(viewmodel.user.followers)}"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="?colorOnPrimaryContainer"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                tools:text="23" />
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="0dp"
+                                    android:text="-"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                    android:textColor="?colorOnPrimaryContainer"
+                                    android:textSize="12sp" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/profile_header_following"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="2dp"
+                                    android:text="@string/following"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                    android:textColor="?colorOnPrimaryContainer"
+                                    android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="0dp"
-                                android:text="-"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="?colorOnPrimaryContainer"
-                                android:textSize="12sp" />
+                                <TextView
+                                    android:id="@+id/profile_header_following_number"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:text="@{numberUtils.format(viewmodel.user.following)}"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                    android:textColor="?colorOnPrimaryContainer"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    tools:text="233" />
 
-                            <TextView
-                                android:id="@+id/profile_header_following"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="2dp"
-                                android:text="@string/following"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                android:textColor="?colorOnPrimaryContainer"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/profile_header_following_number"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:text="@{numberUtils.format(viewmodel.user.following)}"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="?colorOnPrimaryContainer"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                tools:text="233" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -447,14 +450,16 @@
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/back_btn_on_project_collapsed"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="?colorOnSecondary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTag="extendedTag"
                     app:layout_constraintTop_toTopOf="parent">
@@ -462,16 +467,20 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="14dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="6dp"
+                            android:layout_marginEnd="6dp"
                             android:src="@drawable/ic_arrow_back" />
 
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 
@@ -569,44 +578,136 @@
                     app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
                     app:textColor="?colorOnSurface" />
 
-                <Button
-                    android:id="@+id/profile_btn_started"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/starred_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="?colorSecondaryContainer"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/org_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/repo_btn"
+                    app:layout_constraintTop_toTopOf="@+id/repo_btn">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textColor="?colorOnSecondaryContainer"
+                            android:textSize="26dp"
+                            tools:text="" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Starred"
+                            android:textColor="?colorOnSecondaryContainer" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/repo_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/starred"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="?colorPrimaryContainer"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/starred_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider">
 
-                <Button
-                    android:id="@+id/profile_btn_repository"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/repo_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_started"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_started"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_started" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/profile_btn_organization"
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{numberUtils.format(viewmodel.user.public_repos +viewmodel.user.total_private_repos)}"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="26dp"
+                            tools:text="13" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Repository"
+                            android:textColor="?colorOnPrimaryContainer" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/org_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/organization_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_repository"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
+                    android:layout_height="130dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="?colorTertiaryContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/starred_btn"
+                    app:layout_constraintTop_toTopOf="@+id/starred_btn">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textSize="26dp"
+                            tools:text="" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Orgs"
+                            android:textColor="?colorOnTertiaryContainer" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     set_readme="@{viewmodel.markdown}"
@@ -615,9 +716,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:paddingBottom="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_organization"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_organization"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_organization" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/org_btn" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -628,6 +729,8 @@
     <data>
 
         <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="com.milad.githoob.utils.GlobalState" />
 
         <import type="android.view.View" />
 

@@ -2,6 +2,7 @@ package com.milad.githoob.ui.launch
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -10,6 +11,8 @@ import com.milad.githoob.R
 import com.milad.githoob.utils.AppConstants.CLIENT_ID
 import com.milad.githoob.utils.AppConstants.CLIENT_SECRET
 import com.milad.githoob.utils.AppConstants.REDIRECT_URI
+import com.milad.githoob.utils.GlobalState
+import com.milad.githoob.utils.mixTwoColors
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +23,18 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch)
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        mixTwoColors(
+            R.attr.colorPrimary,
+            R.attr.colorSurface,
+            GlobalState.default_percent_6
+        ).apply {
+            window.statusBarColor = this
+        }
+
 
         onNewIntent(intent);
     }

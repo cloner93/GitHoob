@@ -1,0 +1,68 @@
+package com.milad.githoob.ui.profile.connection
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.milad.githoob.data.MainRepository
+import com.milad.githoob.data.model.User
+import com.milad.githoob.utils.Result
+import com.milad.githoob.utils.Status
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
+
+@HiltViewModel
+class ConnectionViewModel @Inject constructor(
+    private val mainRepository: MainRepository,
+    private val ioDispatcher: CoroutineDispatcher
+) : ViewModel() {
+    private var _connectionList = MutableLiveData<ArrayList<User>>()
+
+    val connectionList: LiveData<ArrayList<User>> = _connectionList
+
+    fun setUser(token: String = "", userId: String = "", type: String) {
+        getStarredRepo(token, userId, type)
+    }
+
+    private fun getStarredRepo(
+        token: String,
+        userId: String,
+        type: String
+    ) {
+        viewModelScope.launch(ioDispatcher) {
+            getConnections(token, userId, type).collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        _connectionList.postValue((it.data!!))
+                    }
+                    Status.LOADING -> {
+                        // TODO: 2/1/2022 set loading
+                    }
+                    Status.ERROR -> {
+                        Timber.d(it.message.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    private suspend fun getConnections(
+        token: String,
+        userId: String,
+        type: String
+    ): Flow<Result<ArrayList<User>>> {
+        if (token != "")
+            return mainRepository.getAuthenticatedUserConnections(token, type)
+        if (userId != "")
+            return mainRepository.getUserConnection(userId, type)
+        return flow {
+            emit(Result.error(msg = "I can't load any User.", data = null))
+        }
+    }
+}

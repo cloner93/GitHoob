@@ -46,6 +46,20 @@ interface ApiService {
         @Path("username") username: String
     ): Response<ArrayList<Repo>>
 
+    @Headers("Content-Type: application/json")
+    @GET("/user/{type}")
+    suspend fun getAuthenticatedUserConnections(
+        @Header("Authorization") token: String,
+        @Path("type") type: String,
+    ): Response<ArrayList<User>>
+
+    @Headers("Content-Type: application/json")
+    @GET("/users/{username}/{type}")
+    suspend fun getUserConnections(
+        @Path("username") username: String,
+        @Path("type") type: String,
+    ): Response<ArrayList<User>>
+
     @GET("/user/orgs")
     suspend fun getAuthenticatedUserOrgs(
         @Header("Authorization") token: String
