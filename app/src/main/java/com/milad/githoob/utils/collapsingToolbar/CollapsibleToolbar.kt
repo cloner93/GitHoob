@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.milad.githoob.R
-import com.milad.githoob.utils.GlobalState.default_percent_2
+import com.milad.githoob.utils.GlobalState.default_percent_4
 import com.milad.githoob.utils.mixTwoColors
 
 class CollapsibleToolbar @JvmOverloads constructor(
@@ -23,7 +23,7 @@ class CollapsibleToolbar @JvmOverloads constructor(
         context.mixTwoColors(
             R.attr.colorPrimary,
             R.attr.colorSurface,
-            default_percent_2
+            default_percent_4
         ).apply {
             setBackgroundColor(this)
         }
