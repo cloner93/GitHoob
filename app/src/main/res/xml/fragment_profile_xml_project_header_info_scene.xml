@@ -4,51 +4,45 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/profile_image1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
-            app:layout_constraintStart_toStartOf="@id/bgToolbar"
-            app:layout_constraintTop_toTopOf="@id/bgToolbar" />
-        <Constraint
             android:id="@+id/bgToolbar"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <Constraint
-            android:id="@+id/profile_user_name1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
-            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended" />
-        <Constraint
-            android:id="@+id/profile_user_login1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
-            app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
-            app:layout_constraintTop_toBottomOf="@+id/profile_user_name1" />
-    </ConstraintSet>
-
-    <ConstraintSet android:id="@+id/end">
-        <Constraint
             android:id="@+id/profile_image1"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
             app:layout_constraintStart_toStartOf="@id/bgToolbar"
+            app:layout_constraintTag="collapsedTag"
             app:layout_constraintTop_toTopOf="@id/bgToolbar" />
+        <Constraint
+            android:id="@+id/profile_user_login1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
+            app:layout_constraintTag="collapsedTag"
+            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_collapsed" />
+        <Constraint
+            android:id="@+id/profile_project_name1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_collapsed"
+            app:layout_constraintEnd_toEndOf="@+id/profile_user_login1"
+            app:layout_constraintStart_toStartOf="@+id/profile_user_login1"
+            app:layout_constraintTag="collapsedTag"
+            app:layout_constraintTop_toBottomOf="@+id/profile_user_login1" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/bgToolbar"
             android:layout_height="?attr/actionBarSize"
@@ -56,22 +50,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
         <Constraint
+            android:id="@+id/profile_image1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
+            app:layout_constraintStart_toStartOf="@id/bgToolbar"
+            app:layout_constraintTag="collapsedTag"
+            app:layout_constraintTop_toTopOf="@id/bgToolbar" />
+        <Constraint
             android:id="@+id/profile_user_login1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_extended"
-            app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toStartOf="@+id/profile_user_name1"
-            app:layout_constraintTop_toBottomOf="@+id/profile_user_name1" />
-        <Constraint
-            android:id="@+id/profile_user_name1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_extended"
-            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_extended" />
+            app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
+            app:layout_constraintTag="collapsedTag"
+            app:layout_constraintTop_toTopOf="@+id/back_btn_on_project_collapsed" />
+        <Constraint
+            android:id="@+id/profile_project_name1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn_on_project_collapsed"
+            app:layout_constraintEnd_toEndOf="@+id/profile_user_login1"
+            app:layout_constraintStart_toStartOf="@+id/profile_user_login1"
+            app:layout_constraintTag="collapsedTag"
+            app:layout_constraintTop_toBottomOf="@+id/profile_user_login1" />
     </ConstraintSet>
 
     <Transition

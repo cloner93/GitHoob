@@ -14,7 +14,7 @@ import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileProjectFragment : Fragment() {
+class ProfileProjectFragment : Fragment(), View.OnClickListener {
 
     private lateinit var adapter: ProfileProjectContributorsAdapter
 
@@ -39,8 +39,12 @@ class ProfileProjectFragment : Fragment() {
         viewModel.setUser(token, userId, projectName)
 
         setupRecyclerView()
+        binding.backBtnOnProjectCollapsed.setOnClickListener(this)
+        binding.backBtnOnProjectExtended.setOnClickListener(this)
+
         return binding.root
     }
+
 
     private fun setupRecyclerView() {
         val viewmodel = binding.viewmodel
@@ -56,5 +60,9 @@ class ProfileProjectFragment : Fragment() {
             }
             binding.profileContributorList.adapter = adapter
         }
+    }
+
+    override fun onClick(view: View?) {
+        findNavController().popBackStack()
     }
 }

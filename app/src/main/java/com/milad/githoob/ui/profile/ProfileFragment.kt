@@ -6,18 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentProfileBinding
 import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), View.OnClickListener {
 
     private lateinit var token: String
     private lateinit var userId: String
@@ -51,28 +50,41 @@ class ProfileFragment : Fragment() {
 
         initNavigation(navigate)
 
+        binding.backBtnOnProjectCollapsed.setOnClickListener(this);
+        binding.backBtnOnProjectExtended.setOnClickListener(this);
+
         return binding.root
     }
 
     private fun initNavigation(navigate: NavController) {
 
-        binding.profileBtnRepository.setOnClickListener {
+        binding.repoBtn.setOnClickListener {
             val destination =
                 InternalDeepLink.makeRepositoryUserDeepLink(userId = userId, token = token)
             navigate.navigate(destination)
         }
 
-        binding.profileBtnStarted.setOnClickListener {
+        binding.starredBtn.setOnClickListener {
             val destination =
                 InternalDeepLink.makeStarredUserDeepLink(userId = userId, token = token)
             navigate.navigate(destination)
         }
 
-        binding.profileBtnOrganization.setOnClickListener {
+        binding.orgBtn.setOnClickListener {
             val destination =
                 InternalDeepLink.makeOrganizationDeepLink(userId = userId, token = token)
             navigate.navigate(destination)
         }
+
+        binding.profileBtnConnection.setOnClickListener {
+            val destination =
+                InternalDeepLink.makeConnectionDeepLink(userId = userId, token = token)
+            navigate.navigate(destination)
+        }
+    }
+
+    override fun onClick(view: View?) {
+        findNavController().popBackStack()
     }
 
 }

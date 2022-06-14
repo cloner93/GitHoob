@@ -32,10 +32,10 @@ class MainRepository @Inject constructor(
         apiRequest { apiService.getAuthenticatedRepositories(token, page) }
 
     suspend fun getProject(token: String?, owner: String, project: String) =
-        apiRequest { apiService.getProject(token, owner, project)}
+        apiRequest { apiService.getProject(token, owner, project) }
 
     suspend fun getProjectContributors(token: String?, owner: String, project: String) =
-        apiRequest { apiService.getProjectContributors(token, owner, project)}
+        apiRequest { apiService.getProjectContributors(token, owner, project) }
 
     suspend fun getProjectReadMe(token: String?, owner: String, project: String) =
         apiRequest { apiService.getProjectReadMe(token, owner, project) }
@@ -60,4 +60,10 @@ class MainRepository @Inject constructor(
 
     suspend fun getUserOrgs(username: String) =
         apiRequest { apiService.getUserOrgs(username) }
+
+    suspend fun getAuthenticatedUserConnections(token: String, type: String) =
+        apiRequest { apiService.getAuthenticatedUserConnections(token, type) }
+
+    suspend fun getUserConnection(username: String, type: String) =
+        apiRequest { apiService.getUserConnections(username, type) }
 }

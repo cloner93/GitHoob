@@ -1,6 +1,7 @@
 package com.milad.githoob.utils.contributions;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,10 +11,14 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.annotation.ColorInt;
+
+import com.google.android.material.color.MaterialColors;
 import com.milad.githoob.R;
 import com.milad.githoob.utils.contributions.utils.ColorsUtils;
 import com.milad.githoob.utils.contributions.utils.DatesUtils;
@@ -74,6 +79,8 @@ public class GitHubContributionsView extends View {
         monthTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         blockPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         blockPaint.setStyle(Paint.Style.FILL);
+
+        baseEmptyColor = MaterialColors.getColor(context, R.attr.colorSecondaryContainer, Color.BLACK);
     }
 
     private void initAttributes(TypedArray attributes) {

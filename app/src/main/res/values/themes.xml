@@ -28,4 +28,9 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_primaryInverse</item>
     </style>
+
+    <style name="Theme.MyApp.CardStyle" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+    </style>
+
 </resources>

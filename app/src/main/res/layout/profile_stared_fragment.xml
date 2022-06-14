@@ -16,23 +16,22 @@
                 android:id="@+id/motionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorSecondaryContainer"
                 android:minHeight="?attr/actionBarSize"
                 app:layoutDescription="@xml/motion_app_scene"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <TextView
                     android:id="@+id/expandedTitle"
+                    style="@style/TextAppearance.Material3.TitleLarge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?attr/actionBarSize"
                     android:paddingStart="16dp"
                     android:paddingTop="24dp"
                     android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="28dp"
                     android:text="Starred"
-                    android:textAppearance="?attr/textAppearanceHeadline4"
-                    android:textColor="?colorOnPrimaryContainer"
+                    android:textColor="?colorOnSurface"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -41,32 +40,35 @@
                 <View
                     android:id="@+id/bgToolbar"
                     android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize" />
+                    android:layout_height="?attr/actionBarSize"
+                    tools:layout_editor_absoluteY="82dp" />
 
                 <TextView
                     android:id="@+id/collapsedTitle"
+                    style="@style/TextAppearance.Material3.TitleMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:text="Starred"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?colorOnPrimaryContainer"
+                    android:textColor="?colorOnSurface"
                     app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
                     app:layout_constraintEnd_toEndOf="@+id/bgToolbar"
-                    app:layout_constraintStart_toEndOf="@+id/back"
+                    app:layout_constraintStart_toEndOf="@+id/back_btn_on_project_collapsed"
                     app:layout_constraintTop_toTopOf="@+id/bgToolbar"
-                    tools:text="@tools:sample/lorem" />
+                    tools:text="Starred" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/back"
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/back_btn_on_project_collapsed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:background="@android:color/transparent"
+                    android:padding="14dp"
                     android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintBottom_toBottomOf="@+id/bgToolbar"
-                    app:layout_constraintStart_toStartOf="@+id/bgToolbar"
-                    app:layout_constraintTop_toTopOf="@+id/bgToolbar" />
+                    app:layout_constraintBottom_toBottomOf="@id/bgToolbar"
+                    app:layout_constraintStart_toStartOf="@id/bgToolbar"
+                    app:layout_constraintTag="extendedTag"
+                    app:layout_constraintTop_toTopOf="@id/bgToolbar" />
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
 
