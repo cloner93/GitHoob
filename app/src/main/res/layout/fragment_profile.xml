@@ -360,8 +360,8 @@
                         <LinearLayout
                             android:id="@+id/profile_btn_connection"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -578,44 +578,136 @@
                     app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_graph_title"
                     app:textColor="?colorOnSurface" />
 
-                <Button
-                    android:id="@+id/profile_btn_started"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/starred_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="?colorSecondaryContainer"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/org_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/repo_btn"
+                    app:layout_constraintTop_toTopOf="@+id/repo_btn">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textColor="?colorOnSecondaryContainer"
+                            android:textSize="26dp"
+                            tools:text="" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Starred"
+                            android:textColor="?colorOnSecondaryContainer" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/repo_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/starred"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintStart_toStartOf="@+id/profile_all_contributions_graph"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider" />
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="?colorPrimaryContainer"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/starred_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_all_contributions_divider">
 
-                <Button
-                    android:id="@+id/profile_btn_repository"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/repo_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_started"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_started"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_started" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/profile_btn_organization"
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{numberUtils.format(viewmodel.user.public_repos +viewmodel.user.total_private_repos)}"
+                            android:textColor="?colorOnPrimaryContainer"
+                            android:textSize="26dp"
+                            tools:text="13" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Repository"
+                            android:textColor="?colorOnPrimaryContainer" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/org_btn"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/organization_event"
-                    android:textAlignment="textStart"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_repository"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_repository"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_repository" />
+                    android:layout_height="130dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="?colorTertiaryContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/starred_btn"
+                    app:layout_constraintTop_toTopOf="@+id/starred_btn">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.TitleLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textSize="26dp"
+                            tools:text="" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.Material3.LabelLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Orgs"
+                            android:textColor="?colorOnTertiaryContainer" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     set_readme="@{viewmodel.markdown}"
@@ -624,9 +716,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:paddingBottom="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_btn_organization"
-                    app:layout_constraintStart_toStartOf="@+id/profile_btn_organization"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_organization" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/org_btn" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -637,6 +729,8 @@
     <data>
 
         <import type="com.milad.githoob.utils.numberUtils" />
+
+        <import type="com.milad.githoob.utils.GlobalState" />
 
         <import type="android.view.View" />
 
