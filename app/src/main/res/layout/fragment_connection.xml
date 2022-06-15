@@ -88,7 +88,7 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/connection_tablayout"
                 android:layout_width="match_parent"
-                set_color="@{GlobalState.default_percent_2}"
+                set_color="@{GlobalState.default_percent_4}"
                 android:layout_height="wrap_content"
                 app:tabMode="fixed" />
 
