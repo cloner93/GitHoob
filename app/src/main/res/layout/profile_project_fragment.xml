@@ -198,6 +198,7 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="4"
+                            android:lineSpacingMultiplier="1.3"
                             android:singleLine="false"
                             android:text="@{viewmodel.repo.description}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
