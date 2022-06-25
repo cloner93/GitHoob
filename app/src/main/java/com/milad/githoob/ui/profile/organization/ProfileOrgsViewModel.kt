@@ -26,6 +26,9 @@ class ProfileOrgsViewModel @Inject constructor(
     private val _orgsList: MutableLiveData<ArrayList<Org>> = MutableLiveData()
     val orgsList: LiveData<ArrayList<Org>> = _orgsList
 
+    private val _dataLoading = MutableLiveData(true)
+    val dataLoading: LiveData<Boolean> = _dataLoading
+
     fun setUser(token: String, userId: String) {
         getOrgs(token, userId)
     }
@@ -37,12 +40,14 @@ class ProfileOrgsViewModel @Inject constructor(
                     Status.SUCCESS -> {
                         Log.d("@@", "getOrgs: ${it.data?.size}")
                         _orgsList.postValue((it.data!!))
+                        _dataLoading.postValue(false)
                     }
                     Status.LOADING -> {
-                        // TODO: 2/1/2022 set loading
+                        _dataLoading.postValue(true)
                     }
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
+                        _dataLoading.postValue(false)
                     }
                 }
             }

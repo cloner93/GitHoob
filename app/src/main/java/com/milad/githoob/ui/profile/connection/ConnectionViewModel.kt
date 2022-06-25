@@ -25,6 +25,8 @@ class ConnectionViewModel @Inject constructor(
     private var _connectionList = MutableLiveData<ArrayList<User>>()
 
     val connectionList: LiveData<ArrayList<User>> = _connectionList
+    private val _dataLoading = MutableLiveData(true)
+    val dataLoading: LiveData<Boolean> = _dataLoading
 
     fun setUser(token: String = "", userId: String = "", type: String) {
         getStarredRepo(token, userId, type)
@@ -40,12 +42,14 @@ class ConnectionViewModel @Inject constructor(
                 when (it.status) {
                     Status.SUCCESS -> {
                         _connectionList.postValue((it.data!!))
+                        _dataLoading.postValue(false)
                     }
                     Status.LOADING -> {
-                        // TODO: 2/1/2022 set loading
+                        _dataLoading.postValue(true)
                     }
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
+                        _dataLoading.postValue(false)
                     }
                 }
             }

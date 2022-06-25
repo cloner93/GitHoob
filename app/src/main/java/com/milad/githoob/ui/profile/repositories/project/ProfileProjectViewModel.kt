@@ -29,6 +29,9 @@ class ProfileProjectViewModel @Inject constructor(
     private val _markdown = MutableLiveData<String>("")
     val markdown: LiveData<String> = _markdown
 
+    private val _dataLoading = MutableLiveData(true)
+    val dataLoading: LiveData<Boolean> = _dataLoading
+
     fun setUser(token: String?, userId: String, projectName: String) =
         loadProjectData(token, userId, projectName)
 
@@ -62,12 +65,14 @@ class ProfileProjectViewModel @Inject constructor(
             when (it.status) {
                 Status.SUCCESS -> {
                     _repo.postValue(it.data!!)
+                    _dataLoading.postValue(false)
                 }
                 Status.LOADING -> {
-                    // TODO: 2/1/2022 set loading
+                    _dataLoading.postValue(true)
                 }
                 Status.ERROR -> {
                     Timber.d(it.message.toString())
+                    _dataLoading.postValue(false)
                 }
             }
         }

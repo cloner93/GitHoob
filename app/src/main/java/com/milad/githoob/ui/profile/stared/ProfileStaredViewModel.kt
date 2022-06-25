@@ -29,6 +29,9 @@ class ProfileStaredViewModel @Inject constructor(
         getRepoLangColor(it)
     }
 
+    private val _dataLoading = MutableLiveData(true)
+    val  dataLoading: LiveData<Boolean> = _dataLoading
+
     private fun getRepoLangColor(list: ArrayList<Repo>): LiveData<ArrayList<Repo>> {
         val d = MutableLiveData<ArrayList<Repo>>()
         val jsonUser = JsonUtils(context)
@@ -51,12 +54,14 @@ class ProfileStaredViewModel @Inject constructor(
                 when (it.status) {
                     Status.SUCCESS -> {
                         _starredList.postValue((it.data!!))
+                        _dataLoading.postValue(false)
                     }
                     Status.LOADING -> {
-                        // TODO: 2/1/2022 set loading
+                        _dataLoading.postValue(true)
                     }
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
+                        _dataLoading.postValue(false)
                     }
                 }
             }

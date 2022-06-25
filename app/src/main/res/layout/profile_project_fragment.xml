@@ -346,6 +346,15 @@
                 </LinearLayout>
 
             </com.milad.githoob.utils.collapsingToolbar.CollapsibleToolbar>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:indeterminate="true"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewmodel.dataLoading == true ? View.VISIBLE: View.GONE}"
+                tools:visibility="visible" />
+
         </com.milad.githoob.utils.collapsingToolbar.CollapsibleAppbar>
 
         <androidx.core.widget.NestedScrollView

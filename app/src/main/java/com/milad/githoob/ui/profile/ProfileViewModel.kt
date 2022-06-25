@@ -27,11 +27,10 @@ class ProfileViewModel @Inject constructor(
     private lateinit var token: String
 
     private val _forceUpdate = MutableLiveData(false)
-    private val _dataLoading = MutableLiveData<Boolean>()
+    private val _dataLoading = MutableLiveData(true)
     private val _user = Transformations.switchMap(_forceUpdate) { bool ->
         val user = MutableLiveData<User>()
         if (bool) {
-            _dataLoading.postValue(true)
             viewModelScope.launch(ioDispatcher) {
 
                 getUserInfo(token, userId).collect {
@@ -84,22 +83,18 @@ class ProfileViewModel @Inject constructor(
     val userContributes: LiveData<List<ContributionsDay>> = Transformations.switchMap(_user) {
         val list = MutableLiveData<List<ContributionsDay>>()
 
-        _dataLoading.postValue(true)
         val url = String.format(AppConstants.CONTRIBUTE_URL, it.login)
 
         viewModelScope.launch(ioDispatcher) {
             mainRepository.getUserContribute(url).collect {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        _dataLoading.postValue(false)
                         val listCont = ContributionsProvider().getContributions(it.data?.string())
                         list.postValue(listCont)
                     }
                     Status.LOADING -> {
-                        _dataLoading.postValue(true)
                     }
                     Status.ERROR -> {
-                        _dataLoading.postValue(false)
                     }
                 }
             }

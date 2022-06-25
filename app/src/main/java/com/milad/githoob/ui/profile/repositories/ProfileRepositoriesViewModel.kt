@@ -30,6 +30,9 @@ class ProfileRepositoriesViewModel @Inject constructor(
         switchMatData(it)
     }
 
+    private val _dataLoading = MutableLiveData(true)
+    val dataLoading: LiveData<Boolean> = _dataLoading
+
     private fun switchMatData(list: ArrayList<Repo>): LiveData<ArrayList<Repo>> {
         val d = MutableLiveData<ArrayList<Repo>>()
         val jsonUser = JsonUtils(context)
@@ -52,12 +55,14 @@ class ProfileRepositoriesViewModel @Inject constructor(
                 when (it.status) {
                     Status.SUCCESS -> {
                         _repoList.postValue(it.data!!)
+                        _dataLoading.postValue(false)
                     }
                     Status.LOADING -> {
-                        // TODO: 2/1/2022 set loading
+                        _dataLoading.postValue(true)
                     }
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
+                        _dataLoading.postValue(false)
                     }
                 }
             }
