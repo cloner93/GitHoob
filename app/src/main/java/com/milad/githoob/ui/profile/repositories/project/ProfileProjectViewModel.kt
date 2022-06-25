@@ -1,12 +1,11 @@
 package com.milad.githoob.ui.profile.repositories.project
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
 import com.milad.githoob.data.model.event.Contributor
 import com.milad.githoob.data.model.event.Repo
+import com.milad.githoob.utils.GlobalState.TAG
 import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,11 +19,21 @@ class ProfileProjectViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
+    private lateinit var userId: String
     private val _repo = MutableLiveData<Repo>()
     val repo: LiveData<Repo> = _repo
 
     private val _contributors = MutableLiveData<List<Contributor>>()
-    val contributors: LiveData<List<Contributor>> = _contributors
+    val contributors: LiveData<List<Contributor>> = Transformations.switchMap(_contributors) {
+        it.forEach { item -> Log.d(TAG, item.toString()) }
+        val readme = MutableLiveData<List<Contributor>>()
+         if (it.size == 1 && it.first().login == userId){
+            readme.postValue(emptyList<Contributor>())
+        }else
+             readme.postValue(it)
+
+        return@switchMap readme
+    }
 
     private val _markdown = MutableLiveData<String>("")
     val markdown: LiveData<String> = _markdown
@@ -32,8 +41,10 @@ class ProfileProjectViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData(true)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    fun setUser(token: String?, userId: String, projectName: String) =
+    fun setUser(token: String?, userId: String, projectName: String) {
+        this.userId = userId;
         loadProjectData(token, userId, projectName)
+    }
 
     private fun loadProjectData(token: String?, userId: String, projectName: String) {
         viewModelScope.launch(ioDispatcher) {

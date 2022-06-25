@@ -414,6 +414,13 @@
                     app:layout_constraintStart_toStartOf="@+id/profile_contributor_list"
                     app:layout_constraintTop_toBottomOf="@+id/profile_contributor_list" />
 
+                <androidx.constraintlayout.widget.Group
+                    android:visibility="@{viewmodel.contributors.size() == 0 ? View.GONE : View.VISIBLE}"
+                    android:id="@+id/group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="profile_contributor_list,profile_all_contributions_graph_title" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
