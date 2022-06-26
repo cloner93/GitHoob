@@ -6,5 +6,6 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
+
+include(":app")
 rootProject.name = "GitHoob"
-include ':app'
