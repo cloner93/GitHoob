@@ -35,6 +35,9 @@ object AppDependencies {
     private val junit = "junit:junit:${Versions.junit}"
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private val testCore ="androidx.arch.core:core-testing:${Versions.testCore}"
+    private val mockWebServer ="com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
+    private val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinetest}"
 
     //  hilt
     private val hilt_android = "com.google.dagger:hilt-android:${Versions.hilt_android}"
@@ -102,6 +105,9 @@ object AppDependencies {
 
     val testLibraries = arrayListOf<String>().apply {
         add(junit)
+        add(testCore)
+        add(mockWebServer)
+        add(coroutineTest)
     }
 }
 

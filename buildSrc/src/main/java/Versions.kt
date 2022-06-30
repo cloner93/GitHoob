@@ -46,4 +46,7 @@ object Versions {
     val junit = "4.12"
     val extJunit = "1.1.3"
     val espresso = "3.4.0"
+    val testCore = "2.1.0"
+    val mockWebServer = "4.10.0"
+    val coroutinetest ="1.6.3"
 }
