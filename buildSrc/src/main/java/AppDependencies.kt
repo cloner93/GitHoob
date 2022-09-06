@@ -56,6 +56,7 @@ object AppDependencies {
     private val markwon_html= "io.noties.markwon:html:${Versions.markwon}"
     private val markwon_image= "io.noties.markwon:image:${Versions.markwon}"
 
+    private val leakCanary= "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 
     val appLibraries = arrayListOf<String>().apply {
         add(appcompat)
@@ -91,6 +92,10 @@ object AppDependencies {
 
     val annotationLibraries = arrayListOf<String>().apply {
         add(glide_compiler)
+    }
+
+    val debugLib = arrayListOf<String>().apply {
+        add(leakCanary)
     }
 
     val kaptLibraries = arrayListOf<String>().apply {

@@ -42,11 +42,13 @@ object Versions {
     val timber = "5.0.1"
     val datastore = "1.0.0"
 
+    val leakCanary = "2.9.1"
+
     //test
     val junit = "4.12"
     val extJunit = "1.1.3"
     val espresso = "3.4.0"
     val testCore = "2.1.0"
     val mockWebServer = "4.10.0"
-    val coroutinetest ="1.6.3"
+    val coroutinetest = "1.6.3"
 }

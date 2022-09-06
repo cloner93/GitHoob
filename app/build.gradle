@@ -35,6 +35,7 @@ android {
     productFlavors {
         create("staging") {
             applicationIdSuffix = ".staging"
+            versionNameSuffix = "(staging)"
             setDimension(AppConfig.dimension)
         }
 
@@ -60,6 +61,7 @@ dependencies {
 //  implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(AppDependencies.appLibraries)
     kapt(AppDependencies.kaptLibraries)
+//    debugImplementation(AppDependencies.debugLib)
     annotationProcessor(AppDependencies.annotationLibraries)
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
