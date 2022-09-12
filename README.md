@@ -1,11 +1,39 @@
-# GitHoob
+![cover_small](https://user-images.githubusercontent.com/14924296/189586322-7a521867-3567-4ab4-99e2-073ef1384bdf.png)
 
-![githooh](https://user-images.githubusercontent.com/14924296/156920145-94af0bf4-7ed0-402d-9381-76e860eef321.png)
+## GitHoob
 
-Githoob is alternative android client of @GitHub.
+Githoob is alternative android client of [GitHub](https://www.github.com).
+
+GitHoob works by [GitHub Api](https://docs.github.com/en/rest) and login with [GitHub OAuth](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps).
+
+## Architecture
+
+The architecture is built around [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) and follows the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide). Logic is kept away from Activities and Fragments and moved to [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel). Data is observed using [Kotlin Flows](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow) and the [Data Binding Library](https://developer.android.com/topic/libraries/data-binding/) binds UI components in layouts to the app's data sources.
+The [Navigation component](https://developer.android.com/guide/navigation) is used to implement navigation in the app, handling Fragment transactions and providing a consistent user experience.
+
+<!-- 1. i most create Architect graph with image and desc -->
+
+## Features
+
+- [x] login with github [OAuth](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
+- [x] handle github link with [deeplink](https://developer.android.com/training/app-links)
+- [x] show all details of user profile, repository, connections and etc.
+- [ ] add unit, integration and E2E test. 
+- [ ] edit profile
+- [ ] add, edit and delete repository
+- [ ] set app online-first in v3.0.
+- [ ] replce xml with [jetpack compose](https://developer.android.com/jetpack/compose)
+
+<!-- ### MAD Score -->
+
+## Contributions
+
+If you've found an error in the project, please file an issue.
+
+Patches are encouraged and may be submitted by forking this project and submitting a pull request. Since this project is still in its very early stages, if your change is substantial, please raise an issue first to discuss it.
 
 
-# License
+### License
 
     MIT License
 
