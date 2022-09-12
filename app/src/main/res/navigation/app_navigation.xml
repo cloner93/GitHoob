@@ -78,9 +78,9 @@
         <deepLink
             app:action="ACTION_VIEW"
             app:uri="githoob://repository/?token={token}&amp;userId={userId}" />
-        <deepLink
-            app:action="ACTION_VIEW"
-            app:uri="https://github.com/{userId}?tab=repositories" />
+<!--        <deepLink-->
+<!--            app:action="ACTION_VIEW"-->
+<!--            app:uri="https://github.com/{userId}?tab=repositories" />-->
     </fragment>
     <fragment
         tools:layout="@layout/profile_stared_fragment"
@@ -100,9 +100,9 @@
         <deepLink
             app:action="ACTION_VIEW"
             app:uri="githoob://starred/?token={token}&amp;userId={userId}" />
-        <deepLink
-            app:action="ACTION_VIEW"
-            app:uri="https://github.com/{userId}?tab=starred" />
+<!--        <deepLink-->
+<!--            app:action="ACTION_VIEW"-->
+<!--            app:uri="https://github.com/{userId}?tab=starred" />-->
     </fragment>
     <fragment
         android:id="@+id/profileOrgFragment"
@@ -180,12 +180,12 @@
         <deepLink
             app:action="ACTION_VIEW"
             app:uri="githoob://connection/?token={token}&amp;userId={userId}&amp;tab={tab}" />
-        <deepLink
-            app:action="ACTION_VIEW"
-            app:uri="https://github.com/{userId}?tab=following" />
-        <deepLink
-            app:action="ACTION_VIEW"
-            app:uri="https://github.com/{userId}?tab=followers" />
+<!--        <deepLink-->
+<!--            app:action="ACTION_VIEW"-->
+<!--            app:uri="https://github.com/{userId}?tab=following" />-->
+<!--        <deepLink-->
+<!--            app:action="ACTION_VIEW"-->
+<!--            app:uri="https://github.com/{userId}?tab=followers" />-->
 
     </fragment>
 </navigation>
