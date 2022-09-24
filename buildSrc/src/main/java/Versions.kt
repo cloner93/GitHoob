@@ -1,7 +1,7 @@
 object Versions {
 
     //app level
-    const val gradle = "7.1.1"
+    const val gradle = "7.3.0"
 
     const val kotlin = "1.6.21"
     const val hilt = "2.38.1"
@@ -21,7 +21,7 @@ object Versions {
     val coroutinesCore = "1.5.0"
     val coroutinesAndroid = "1.5.0"
 
-    val lifecycleScope = "2.3.1"
+    val lifecycleScope = "2.4.0"
     val lifecycleScope_extensions = "2.2.0"
     val lifecycleArch = "1.1.1"
 

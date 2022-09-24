@@ -19,7 +19,8 @@ object AppDependencies {
     private val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"
 
     //  lifecycle
-    private val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleScope}"
+    private val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycleScope}"
+    private val lifecycleViewmodelKts = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleScope}"
     private val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleScope}"
     private val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleScope}"
     private val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleScope_extensions}"
@@ -67,6 +68,7 @@ object AppDependencies {
         add(coroutinesCore)
         add(coroutinesAndroid)
         add(lifecycleViewmodel)
+        add(lifecycleViewmodelKts)
         add(lifecycleRuntime)
         add(lifecycleLivedata)
         add(lifecycleExtensions)

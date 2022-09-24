@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk(AppConfig.compileSdk)
+    compileSdkVersion(AppConfig.compileSdk)
 //    buildToolsVersion(AppConfig.buildToolsVersion)
 
     defaultConfig {
@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled = false
+//            minifyEnabled = false
             proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -60,7 +60,7 @@ dependencies {
 //  implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(AppDependencies.appLibraries)
     kapt(AppDependencies.kaptLibraries)
-    annotationProcessor(AppDependencies.annotationLibraries)
+//    annotationProcessor(AppDependencies.annotationLibraries)
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
 }
