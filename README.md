@@ -20,11 +20,12 @@ The [Navigation component](https://developer.android.com/guide/navigation) is us
 - [x] login with github [OAuth](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
 - [x] handle github link with [deeplink](https://developer.android.com/training/app-links)
 - [x] show all details of user profile, repository, connections and etc.
-- [ ] add unit, integration and E2E test. 
+- [ ] Currently I try to Modularize app and use convention plugin. https://github.com/cloner93/GitHoob/pull/5 in **dev-modularization**
+- [ ] add unit, integration and E2E test.
 - [ ] edit profile
 - [ ] add, edit and delete repository
 - [ ] set app online-first in v3.0.
-- [ ] replce xml with [jetpack compose](https://developer.android.com/jetpack/compose)
+- [ ] replace xml with [jetpack compose](https://developer.android.com/jetpack/compose)
 
 <!-- ### MAD Score -->
 
