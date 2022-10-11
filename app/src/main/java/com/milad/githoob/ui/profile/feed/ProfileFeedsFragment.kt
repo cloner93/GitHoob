@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.milad.githoob.R
-import com.milad.githoob.data.model.User
+import com.milad.model.User
 import com.milad.githoob.databinding.ProfileFeedsFragmentBinding
-import com.milad.githoob.ui.profile.repositories.ProfileRepositoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

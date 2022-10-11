@@ -3,8 +3,7 @@ package com.milad.githoob.ui.profile.repositories
 import android.content.Context
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.User
-import com.milad.githoob.data.model.event.Repo
+import com.milad.model.event.Repo
 import com.milad.githoob.utils.JsonUtils
 import com.milad.githoob.utils.Result
 import com.milad.githoob.utils.Status
@@ -12,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import timber.log.Timber

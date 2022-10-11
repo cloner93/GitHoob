@@ -101,7 +101,7 @@
     <data>
         <variable
             name="event"
-            type="com.milad.githoob.data.model.event.Event" />
+            type="com.milad.model.event.Event" />
 
         <variable
             name="viewmodel"

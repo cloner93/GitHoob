@@ -3,8 +3,8 @@ package com.milad.githoob.ui.profile.repositories.project
 import android.util.Log
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.event.Contributor
-import com.milad.githoob.data.model.event.Repo
+import com.milad.model.event.Contributor
+import com.milad.model.event.Repo
 import com.milad.githoob.utils.GlobalState.TAG
 import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel

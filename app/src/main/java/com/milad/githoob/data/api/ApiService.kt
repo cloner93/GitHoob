@@ -1,11 +1,11 @@
 package com.milad.githoob.data.api
 
-import com.milad.githoob.data.model.AccessToken
-import com.milad.githoob.data.model.Org
-import com.milad.githoob.data.model.User
-import com.milad.githoob.data.model.event.Contributor
-import com.milad.githoob.data.model.event.Event
-import com.milad.githoob.data.model.event.Repo
+import com.milad.model.AccessToken
+import com.milad.model.Org
+import com.milad.model.User
+import com.milad.model.event.Contributor
+import com.milad.model.event.Event
+import com.milad.model.event.Repo
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*

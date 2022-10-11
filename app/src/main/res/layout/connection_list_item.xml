@@ -17,7 +17,7 @@
 
         <variable
             name="user"
-            type="com.milad.githoob.data.model.User" />
+            type="com.milad.model.User" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

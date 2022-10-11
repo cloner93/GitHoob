@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.event.Event
+import com.milad.model.event.Event
 
 @BindingAdapter("feeds_items")
 fun setFeedsItems(

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.milad.githoob.R
-import com.milad.githoob.data.model.event.Repo
+import com.milad.model.event.Repo
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat

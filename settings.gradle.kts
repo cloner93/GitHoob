@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "GitHoob"
 
 include(":app")
+include(":core:model")

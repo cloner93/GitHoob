@@ -2,18 +2,16 @@ package com.milad.githoob.ui.profile.feed
 
 import android.graphics.Color
 import android.text.SpannableStringBuilder
-import android.util.Log
 import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.lifecycle.*
 import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.User
-import com.milad.githoob.data.model.event.Event
-import com.milad.githoob.data.model.type.EventType
 import com.milad.githoob.utils.Status
+import com.milad.model.event.Event
+import com.milad.model.User
+import com.milad.model.type.EventType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject

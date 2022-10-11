@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.R
-import com.milad.githoob.data.model.User
+import com.milad.model.User
 import com.milad.githoob.utils.mixTwoColors
 
 @BindingAdapter("connection_items")

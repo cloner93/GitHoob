@@ -2,7 +2,7 @@ package com.milad.githoob.ui.profile.organization
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.Org
+import com.milad.model.Org
 
 @BindingAdapter("organisation_items")
 fun setOrgsItems(
