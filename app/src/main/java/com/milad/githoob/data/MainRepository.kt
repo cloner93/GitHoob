@@ -1,8 +1,8 @@
 package com.milad.githoob.data
 
-import com.milad.githoob.data.api.ApiService
 import com.milad.githoob.utils.AppConstants.URL_access_token
 import com.milad.githoob.utils.SafeApiRequest
+import com.milad.network.api.ApiService
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(

@@ -1,4 +1,4 @@
-package com.milad.githoob.data.api
+package com.milad.network.api
 
 import com.milad.model.AccessToken
 import com.milad.model.Org

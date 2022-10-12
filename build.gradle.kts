@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.safearges) apply false
+    alias(libs.plugins.android.kotlin) apply false
 }
 
 tasks {

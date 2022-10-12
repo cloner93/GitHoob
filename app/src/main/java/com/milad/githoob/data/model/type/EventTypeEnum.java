@@ -8,7 +8,7 @@ import androidx.annotation.StringRes;
 
 import com.milad.githoob.R;
 
-public enum EventType {
+enum EventTypeEnum {
     WatchEvent(R.string.starred, R.drawable.ic_star),
     CreateEvent(R.string.created_repo, R.drawable.ic_repo),
     ForkEvent(R.string.forked2, R.drawable.ic_fork),
@@ -43,7 +43,7 @@ public enum EventType {
     int drawableRes;
 
 
-    EventType(@StringRes int type, @DrawableRes int drawableRes) {
+    EventTypeEnum(@StringRes int type, @DrawableRes int drawableRes) {
         this.type = type;
         this.drawableRes = drawableRes;
     }

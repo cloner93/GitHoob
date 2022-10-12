@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:network"))
 
     implementation(libs.coreKtx)
     implementation(libs.appcompat)
@@ -71,8 +72,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
-//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0")
-//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
     implementation(libs.glide)
     implementation(libs.glide.compiler)
