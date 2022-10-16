@@ -1,4 +1,4 @@
-package com.milad.githoob.utils
+package com.milad.data.utils
 
 data class Result<out T>(val status: Status, val data: T?, val message: String?) {
 

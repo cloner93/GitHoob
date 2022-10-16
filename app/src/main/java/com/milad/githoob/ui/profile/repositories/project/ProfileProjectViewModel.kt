@@ -2,21 +2,20 @@ package com.milad.githoob.ui.profile.repositories.project
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.milad.githoob.data.MainRepository
+import com.milad.data.utils.Status
+import com.milad.githoob.utils.GlobalState.TAG
 import com.milad.model.event.Contributor
 import com.milad.model.event.Repo
-import com.milad.githoob.utils.GlobalState.TAG
-import com.milad.githoob.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileProjectViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
+    private val mainRepository: com.milad.data.MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private lateinit var userId: String
@@ -55,7 +54,7 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getMarkdown(token: String?, userId: String, projectName: String) {
-        mainRepository.getProjectReadMe(token, userId, projectName).collect {
+        mainRepository.getProjectReadMe(token, userId, projectName).collectLatest {
             when (it.status) {
                 Status.SUCCESS -> {
                     val data = it.data!!.string()
@@ -72,16 +71,16 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getProjectData(token: String?, userId: String, projectName: String) {
-        mainRepository.getProject(token, userId, projectName).collect {
+        mainRepository.getProject(token, userId, projectName).collectLatest {
             when (it.status) {
-                Status.SUCCESS -> {
+                com.milad.data.utils.Status.SUCCESS -> {
                     _repo.postValue(it.data!!)
                     _dataLoading.postValue(false)
                 }
-                Status.LOADING -> {
+                com.milad.data.utils.Status.LOADING -> {
                     _dataLoading.postValue(true)
                 }
-                Status.ERROR -> {
+                com.milad.data.utils.Status.ERROR -> {
                     Timber.d(it.message.toString())
                     _dataLoading.postValue(false)
                 }
@@ -90,15 +89,15 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getContributor(token: String?, userId: String, projectName: String) {
-        mainRepository.getProjectContributors(token, userId, projectName).collect {
+        mainRepository.getProjectContributors(token, userId, projectName).collectLatest {
             when (it.status) {
-                Status.SUCCESS -> {
+                com.milad.data.utils.Status.SUCCESS -> {
                     _contributors.postValue(it.data!!)
                 }
-                Status.LOADING -> {
+                com.milad.data.utils.Status.LOADING -> {
                     // TODO: 2/1/2022 set loading
                 }
-                Status.ERROR -> {
+                com.milad.data.utils.Status.ERROR -> {
                     Timber.d(it.message.toString())
                 }
             }

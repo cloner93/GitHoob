@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:network"))
+    implementation(project(":core:data"))
 
     implementation(libs.coreKtx)
     implementation(libs.appcompat)
@@ -50,7 +51,7 @@ dependencies {
     implementation(libs.navigationFragment)
     implementation(libs.navigationUi)
     implementation(libs.coroutinesCore)
-    implementation(libs.coroutinesAndroid)
+//    implementation(libs.coroutinesAndroid)
     implementation(libs.legacy)
     implementation(libs.recyclerview)
     testImplementation(libs.junit)

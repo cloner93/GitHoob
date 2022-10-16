@@ -1,4 +1,4 @@
-package com.milad.githoob.utils
+package com.milad.data.utils
 
 enum class Status {
     SUCCESS,

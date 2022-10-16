@@ -1,10 +1,10 @@
 package com.milad.githoob.ui.splash
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -13,8 +13,7 @@ import com.milad.githoob.databinding.FragmentSplashBinding
 import com.milad.githoob.utils.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import timber.log.Timber
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
@@ -29,7 +28,7 @@ class SplashFragment : Fragment() {
         binding = FragmentSplashBinding.bind(view)
 
         lifecycleScope.launch {
-            viewModel.checkUserAuth().collect {
+            viewModel.checkUserAuth().collectLatest {
                 withContext(Dispatchers.Main) {
                     if (it.equals("")) {
                         delay(3000)

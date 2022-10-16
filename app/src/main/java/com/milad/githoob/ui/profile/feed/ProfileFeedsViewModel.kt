@@ -5,13 +5,14 @@ import android.text.SpannableStringBuilder
 import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.lifecycle.*
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.utils.Status
-import com.milad.model.event.Event
+import com.milad.data.MainRepository
+import com.milad.data.utils.Status
 import com.milad.model.User
+import com.milad.model.event.Event
 import com.milad.model.type.EventType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -207,7 +208,7 @@ class ProfileFeedsViewModel @Inject constructor(
     fun setUser(token: String, user: User) {
 
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.getMyEvents(token, user.login, 1).collect {
+            mainRepository.getMyEvents(token, user.login, 1).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         _eventsList.postValue(it.data!!)

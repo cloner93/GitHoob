@@ -1,10 +1,13 @@
-package com.milad.githoob.data
+package com.milad.data
 
-import com.milad.githoob.utils.AppConstants.URL_access_token
-import com.milad.githoob.utils.SafeApiRequest
+import com.milad.data.utils.SafeApiRequest
 import com.milad.network.api.ApiService
 import javax.inject.Inject
 
+/**
+ * change all flow collect to collectLatest because in collect terminal flow operator that collects the given flow but ignores all emitted values. The crucial difference from collect is that when the original flow emits a new value then the action block for the previous value is cancelled.
+ *
+ */
 class MainRepository @Inject constructor(
     private val apiService: ApiService
 ) : SafeApiRequest() {
@@ -14,7 +17,7 @@ class MainRepository @Inject constructor(
         clientSecret: String,
         code: String
     ) = apiRequest {
-        apiService.getAccessToken(URL_access_token, clientId, clientSecret, code)
+        apiService.getAccessToken("https://github.com/login/oauth/access_token/", clientId, clientSecret, code)
     }
 
     suspend fun getAuthenticatedUser(token: String) =

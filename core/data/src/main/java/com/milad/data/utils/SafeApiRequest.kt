@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.milad.githoob.utils
+package com.milad.data.utils
 
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
