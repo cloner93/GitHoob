@@ -9,9 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.milad.common.InternalDeepLink
 import androidx.navigation.fragment.NavHostFragment
-import com.milad.githoob.R
-import com.milad.githoob.databinding.FragmentSplashBinding
-import com.milad.githoob.utils.InternalDeepLink
+import com.milad.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
@@ -35,8 +33,13 @@ class SplashFragment : Fragment() {
                         delay(3000)
                         binding.progressBar.visibility = View.GONE
 
-                        NavHostFragment.findNavController(this@SplashFragment)
-                            .navigate(R.id.action_splashFragment_to_loginFragment)
+                        val destination =
+                            InternalDeepLink.makeLoginDeepLink()
+
+                        NavHostFragment
+                            .findNavController(this@SplashFragment)
+                            .navigate(destination)
+
                         this.cancel()
 
                     } else {

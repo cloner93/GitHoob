@@ -16,7 +16,20 @@ dependencyResolutionManagement {
 
 rootProject.name = "GitHoob"
 
-include(":app")
-include(":core:model")
-include(":core:network")
-include(":core:data")
+//  Platform
+include(
+    ":app"
+)
+
+//  Core
+include(
+    ":core:model",
+    ":core:network",
+    ":core:data",
+    ":core:common"
+)
+
+//  Feature
+include(
+    ":feature:splash"
+)

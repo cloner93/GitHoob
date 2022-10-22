@@ -5,7 +5,7 @@
     android:id="@+id/splash_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.splash.SplashFragment">
+    tools:context="com.milad.splash.SplashFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
