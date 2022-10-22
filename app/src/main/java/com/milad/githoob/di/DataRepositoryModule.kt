@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.milad.data.MainRepository
 import com.milad.network.api.ApiService
-import com.milad.githoob.utils.AppConstants.PREFERENCES_STORE_NAME
+import com.milad.common.AppConstants.PREFERENCES_STORE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

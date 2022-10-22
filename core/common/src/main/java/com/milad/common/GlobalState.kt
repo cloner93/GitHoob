@@ -1,4 +1,4 @@
-package com.milad.githoob.utils
+package com.milad.common
 
 object GlobalState {
     const val default_percent_1: Float = 0.05F

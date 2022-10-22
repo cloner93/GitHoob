@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.milad.data.MainRepository
 import com.milad.model.User
 import com.milad.model.event.Event
-import com.milad.githoob.utils.AppConstants
+import com.milad.common.AppConstants
 import com.milad.data.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider

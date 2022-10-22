@@ -1,4 +1,4 @@
-package com.milad.githoob.ui.splash
+package com.milad.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.milad.common.InternalDeepLink
 import androidx.navigation.fragment.NavHostFragment
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentSplashBinding

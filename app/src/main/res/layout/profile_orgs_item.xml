@@ -80,7 +80,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.milad.githoob.utils.numberUtils" />
+        <import type="com.milad.common.numberUtils" />
 
         <import type="android.graphics.Color" />
 

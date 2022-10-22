@@ -737,9 +737,9 @@
 
     <data>
 
-        <import type="com.milad.githoob.utils.numberUtils" />
+        <import type="com.milad.common.numberUtils" />
 
-        <import type="com.milad.githoob.utils.GlobalState" />
+        <import type="com.milad.common.GlobalState" />
 
         <import type="android.view.View" />
 

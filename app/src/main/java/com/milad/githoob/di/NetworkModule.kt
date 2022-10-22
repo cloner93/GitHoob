@@ -1,6 +1,6 @@
 package com.milad.githoob.di
 
-import com.milad.githoob.utils.AppConstants.BASE_URL_API
+import com.milad.common.AppConstants.BASE_URL_API
 import com.milad.network.api.ApiService
 import dagger.Module
 import dagger.Provides

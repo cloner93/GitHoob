@@ -1,7 +1,6 @@
-package com.milad.githoob.utils
+package com.milad.common
 
 import androidx.core.net.toUri
-import com.milad.githoob.ui.profile.connection.ConnectionType
 
 object InternalDeepLink {
     private const val DOMAIN = "githoob://"
@@ -27,12 +26,14 @@ object InternalDeepLink {
 
     fun makeConnectionDeepLink(
         userId: String = "",
-        token: String = "",
-        type: ConnectionType = ConnectionType.followers
+        token: String = ""
     ) =
         ("${DOMAIN}connection/" +
                 "?userId=${userId}" +
                 "&token=${token}" +
-                "&tab=${type.name}")
+                "&tab=Followers")
             .toUri()
+
+    fun makeLoginDeepLink() =
+        "${DOMAIN}login".toUri()
 }

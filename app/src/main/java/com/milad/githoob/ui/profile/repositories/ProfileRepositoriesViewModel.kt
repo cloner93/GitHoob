@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import com.milad.data.MainRepository
 import com.milad.model.event.Repo
-import com.milad.githoob.utils.JsonUtils
+import com.milad.common.JsonUtils
 import com.milad.data.utils.Result
 import com.milad.data.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel

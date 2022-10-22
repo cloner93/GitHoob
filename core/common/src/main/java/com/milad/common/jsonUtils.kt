@@ -1,8 +1,7 @@
-package com.milad.githoob.utils
+package com.milad.common
 
 import android.content.Context
 import android.util.Log
-import com.milad.githoob.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.*

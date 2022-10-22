@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.milad.githoob.R
-import com.milad.githoob.utils.GlobalState.default_percent_4
-import com.milad.githoob.utils.mixTwoColors
+import com.milad.common.GlobalState.default_percent_4
+import com.milad.common.mixTwoColors
 
 class CollapsibleToolbar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

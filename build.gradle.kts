@@ -10,10 +10,11 @@ buildscript {
 
 plugins {
     alias(libs.plugins.android.application) apply false
+//    alias(libs.plugins.android.library) apply false   //todo: check this library most import like this or dosent import
+    alias(libs.plugins.android.kotlin) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.safearges) apply false
-    alias(libs.plugins.android.kotlin) apply false
 }
 
 tasks {

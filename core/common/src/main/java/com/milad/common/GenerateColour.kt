@@ -1,4 +1,4 @@
-package com.milad.githoob.utils
+package com.milad.common
 
 import android.content.Context
 import android.util.TypedValue

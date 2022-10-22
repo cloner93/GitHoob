@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.milad.githoob.R
 import com.milad.model.User
-import com.milad.githoob.utils.mixTwoColors
+import com.milad.common.mixTwoColors
 
 @BindingAdapter("connection_items")
 fun setConnectionItems(

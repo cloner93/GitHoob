@@ -3,17 +3,15 @@ package com.milad.githoob.ui.profile
 import androidx.lifecycle.*
 import com.milad.data.MainRepository
 import com.milad.model.User
-import com.milad.githoob.utils.AppConstants
+import com.milad.common.AppConstants
 import com.milad.data.utils.Result
 import com.milad.data.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import timber.log.Timber
 import javax.inject.Inject
 

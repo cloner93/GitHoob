@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.milad.githoob.R
 import com.milad.githoob.databinding.FragmentConnectionListBinding
-import com.milad.githoob.utils.InternalDeepLink
+import com.milad.common.InternalDeepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

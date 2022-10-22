@@ -3,12 +3,12 @@ package com.milad.githoob.ui.launch
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.milad.data.utils.Status
-import com.milad.githoob.utils.AppConstants.KEY_DATA_STORE_TOKEN
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collectLatest
@@ -23,6 +23,8 @@ class LaunchViewModel @Inject constructor(
     private val dataStore: DataStore<Preferences>,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
+
+    private val KEY_DATA_STORE_TOKEN = stringPreferencesKey("KEY_DATA_STORE_TOKEN")
 
     private var _token = MutableLiveData<String>()
     var token: LiveData<String> = _token
