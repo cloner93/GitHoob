@@ -14,6 +14,7 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:network"))
+    implementation(project(":core:datastore"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
@@ -24,5 +25,7 @@ dependencies {
 
     implementation(libs.coroutinesCore)
     implementation(libs.coroutinesAndroid)
+
+    implementation(libs.datastore)
 
 }

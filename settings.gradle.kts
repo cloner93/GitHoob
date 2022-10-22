@@ -25,6 +25,7 @@ include(
 include(
     ":core:model",
     ":core:network",
+    ":core:datastore",
     ":core:data",
     ":core:common"
 )

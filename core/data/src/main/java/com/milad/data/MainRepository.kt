@@ -1,5 +1,7 @@
 package com.milad.data
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.milad.data.utils.SafeApiRequest
 import com.milad.network.api.ApiService
 import javax.inject.Inject
@@ -9,7 +11,8 @@ import javax.inject.Inject
  *
  */
 class MainRepository @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val datastore: DataStore<Preferences>
 ) : SafeApiRequest() {
 
     suspend fun getAccessToken(
