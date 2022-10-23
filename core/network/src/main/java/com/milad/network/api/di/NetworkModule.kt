@@ -1,4 +1,4 @@
-package com.milad.githoob.di
+package com.milad.network.api.di
 
 import com.milad.common.AppConstants.BASE_URL_API
 import com.milad.network.api.ApiService
@@ -12,6 +12,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -58,6 +59,7 @@ object NetworkModule {
             .build()
     }
 
+    @Singleton
     @Provides
     fun provideRestApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)

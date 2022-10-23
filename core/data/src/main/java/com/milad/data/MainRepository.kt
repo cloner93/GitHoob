@@ -1,9 +1,11 @@
 package com.milad.data
 
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.milad.common.AppConstants
 import com.milad.data.utils.SafeApiRequest
+import com.milad.datastore.DataStoreManager
 import com.milad.network.api.ApiService
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -12,7 +14,7 @@ import javax.inject.Inject
  */
 class MainRepository @Inject constructor(
     private val apiService: ApiService,
-    private val datastore: DataStore<Preferences>
+    private val datastore: DataStoreManager
 ) : SafeApiRequest() {
 
     suspend fun getAccessToken(
@@ -20,7 +22,12 @@ class MainRepository @Inject constructor(
         clientSecret: String,
         code: String
     ) = apiRequest {
-        apiService.getAccessToken("https://github.com/login/oauth/access_token/", clientId, clientSecret, code)
+        apiService.getAccessToken(
+            AppConstants.URL_access_token,
+            clientId,
+            clientSecret,
+            code
+        )
     }
 
     suspend fun getAuthenticatedUser(token: String) =
@@ -72,4 +79,12 @@ class MainRepository @Inject constructor(
 
     suspend fun getUserConnection(username: String, type: String) =
         apiRequest { apiService.getUserConnections(username, type) }
+
+    suspend fun <T> saveDataStore(key: Preferences.Key<T>, value: T) {
+        datastore.storeValue(key, value)
+    }
+
+    suspend fun <T> readDataStore(key: Preferences.Key<T>): Flow<T?> {
+        return datastore.readValue(key)
+    }
 }

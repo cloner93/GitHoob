@@ -1,20 +1,21 @@
-package com.milad.githoob.di
+package com.milad.data.di
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.milad.data.MainRepository
+import com.milad.datastore.DataStoreManager
 import com.milad.network.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DataRepositoryModule {
 
+    @Singleton
     @Provides
-    fun provideDataRepository(apiService: ApiService, datastore: DataStore<Preferences>): MainRepository {
-        return MainRepository(apiService, datastore)
-    }
+    fun provideDataRepository(apiService: ApiService, storeManager: DataStoreManager) =
+        MainRepository(apiService, storeManager)
+
 }

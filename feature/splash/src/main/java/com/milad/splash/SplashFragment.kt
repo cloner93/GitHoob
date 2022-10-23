@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.milad.common.InternalDeepLink
 import androidx.navigation.fragment.NavHostFragment
+import com.milad.common.InternalDeepLink
 import com.milad.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -29,7 +29,7 @@ class SplashFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.checkUserAuth().collectLatest {
                 withContext(Dispatchers.Main) {
-                    if (it.equals("")) {
+                    if (it.isNullOrBlank()) {
                         delay(3000)
                         binding.progressBar.visibility = View.GONE
 
