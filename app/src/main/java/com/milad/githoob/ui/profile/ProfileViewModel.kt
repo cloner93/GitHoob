@@ -1,18 +1,16 @@
 package com.milad.githoob.ui.profile
 
 import androidx.lifecycle.*
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.User
-import com.milad.githoob.utils.AppConstants
-import com.milad.githoob.utils.Result
-import com.milad.githoob.utils.Status
+import com.milad.data.MainRepository
+import com.milad.model.User
+import com.milad.common.AppConstants
+import com.milad.data.utils.Result
+import com.milad.data.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -33,7 +31,7 @@ class ProfileViewModel @Inject constructor(
         if (bool) {
             viewModelScope.launch(ioDispatcher) {
 
-                getUserInfo(token, userId).collect {
+                getUserInfo(token, userId).collectLatest {
                     when (it.status) {
                         Status.SUCCESS -> {
                             _dataLoading.postValue(false)
@@ -60,7 +58,7 @@ class ProfileViewModel @Inject constructor(
 
             val url = "https://raw.githubusercontent.com/${it.login}/${it.login}/master/README.md"
 
-            mainRepository.getUserReadMe(url).collect {
+            mainRepository.getUserReadMe(url).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         val data = it.data!!.string()
@@ -86,7 +84,7 @@ class ProfileViewModel @Inject constructor(
         val url = String.format(AppConstants.CONTRIBUTE_URL, it.login)
 
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.getUserContribute(url).collect {
+            mainRepository.getUserContribute(url).collectLatest  {
                 when (it.status) {
                     Status.SUCCESS -> {
                         val listCont = ContributionsProvider().getContributions(it.data?.string())

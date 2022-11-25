@@ -9,7 +9,7 @@ import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.event.Event
+import com.milad.model.event.Event
 import com.milad.githoob.ui.profile.ProfileOverviewAdapter
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.GitHubContributionsView

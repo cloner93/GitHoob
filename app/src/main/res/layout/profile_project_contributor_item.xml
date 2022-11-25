@@ -41,7 +41,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.milad.githoob.utils.numberUtils" />
+        <import type="com.milad.common.numberUtils" />
 
         <variable
             name="viewmodel"
@@ -49,6 +49,6 @@
 
         <variable
             name="contributor"
-            type="com.milad.githoob.data.model.event.Contributor" />
+            type="com.milad.model.event.Contributor" />
     </data>
 </layout>

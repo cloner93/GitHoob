@@ -1,18 +1,15 @@
 package com.milad.githoob.ui.launch
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.utils.AppConstants.KEY_DATA_STORE_TOKEN
-import com.milad.githoob.utils.Status
+import com.milad.data.MainRepository
+import com.milad.data.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,9 +18,10 @@ import javax.inject.Inject
 @HiltViewModel
 class LaunchViewModel @Inject constructor(
     private val mainRepository: MainRepository,
-    private val dataStore: DataStore<Preferences>,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
+
+    private val KEY_DATA_STORE_TOKEN = stringPreferencesKey("KEY_DATA_STORE_TOKEN")
 
     private var _token = MutableLiveData<String>()
     var token: LiveData<String> = _token
@@ -38,13 +36,15 @@ class LaunchViewModel @Inject constructor(
                 clientId,
                 clientSecret,
                 code
-            ).collect {
+            ).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        it.data.let {
-                            if (it?.access_token != null && !it.access_token.equals("")) {
-                                val token = "token ${it.access_token}"
+                        it.data.let {accessToken->
+                            if (!accessToken?.access_token.isNullOrBlank()) {
+
+                                val token = "token ${accessToken?.access_token}"
                                 _token.postValue(token)
+
                                 saveToken(token)
                             }
                         }
@@ -59,9 +59,7 @@ class LaunchViewModel @Inject constructor(
         }
     }
 
-    suspend fun saveToken(token: String) {
-        dataStore.edit {
-            it[KEY_DATA_STORE_TOKEN] = token
-        }
+    private suspend fun saveToken(token: String) {
+        mainRepository.saveDataStore(KEY_DATA_STORE_TOKEN, token)
     }
 }

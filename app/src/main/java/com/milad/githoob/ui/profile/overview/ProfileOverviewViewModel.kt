@@ -1,20 +1,18 @@
 package com.milad.githoob.ui.profile.overview
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.User
-import com.milad.githoob.data.model.event.Event
-import com.milad.githoob.utils.AppConstants
-import com.milad.githoob.utils.Status
+import com.milad.model.User
+import com.milad.model.event.Event
+import com.milad.common.AppConstants
+import com.milad.data.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -22,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileOverviewViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
+    private val mainRepository: com.milad.data.MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private val _userContributes = MutableLiveData<List<ContributionsDay>>()
@@ -57,7 +55,7 @@ class ProfileOverviewViewModel @Inject constructor(
                 token,
                 username,
                 page
-            ).collect {
+            ).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         _feedsList.postValue(it.data!!)

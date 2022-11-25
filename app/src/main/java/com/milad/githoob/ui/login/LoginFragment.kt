@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.milad.githoob.R
-import com.milad.githoob.utils.AppConstants
+import com.milad.common.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*
 import java.util.concurrent.TimeUnit

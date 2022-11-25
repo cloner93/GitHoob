@@ -3,13 +3,18 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+
+        maven { url = uri("../githoob-prebuilts/m2repository") }
     }
-    dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.gradle}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgs}")
-    }
+}
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+//    alias(libs.plugins.android.library) apply false   //todo: check this library most import like this or dosent import
+    alias(libs.plugins.android.kotlin) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.safearges) apply false
 }
 
 tasks {
