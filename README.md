@@ -8,6 +8,8 @@ GitHoob works by [GitHub Api](https://docs.github.com/en/rest) and login with [G
 
 this app designed in figma. ypu can view design in [here](https://www.figma.com/file/vHbOlF5xPMIHd731HToKfu/GitHoob?node-id=0%3A1).
 
+⚠️ curently I work on dev-modularization branch. (managing gradle dependency wtih **version catalogs**) ✨
+
 ## Architecture
 
 The architecture is built around [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) and follows the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide). Logic is kept away from Activities and Fragments and moved to [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel). Data is observed using [Kotlin Flows](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow) and the [Data Binding Library](https://developer.android.com/topic/libraries/data-binding/) binds UI components in layouts to the app's data sources.
