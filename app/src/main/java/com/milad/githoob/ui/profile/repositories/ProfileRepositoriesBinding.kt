@@ -39,7 +39,7 @@ fun setItemChip(
                 val chipChild: Chip = Chip(
                     chipGroup.context,
                     null,
-                    R.style.Widget_Material3_Chip_Suggestion_Elevated
+                    com.google.android.material.R.style.Widget_Material3_Chip_Suggestion_Elevated
                 ).apply {
                     text = topic
                 }

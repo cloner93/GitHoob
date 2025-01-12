@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.milad.githoob.R
 import com.milad.common.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.login_fragment.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
                 "&state=" + STATE +
                 "&redirect_uri=" + AppConstants.REDIRECT_URI
 
-        github_login_btn.setOnClickListener {
+        view?.findViewById<Button>(R.id.github_login_btn)?.setOnClickListener {
             openWebIntent(githubAuthURLFull)
         }
     }

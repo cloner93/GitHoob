@@ -1,15 +1,20 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.milad.splash"
-    compileSdk = 31
-
+    compileSdk = 34
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -17,15 +22,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
-    implementation(project(":core:data"))
+    implementation(projects.core.model)
+    implementation(projects.core.common)
+    implementation(projects.core.data)
 
     implementation(libs.coreKtx)
     implementation(libs.activity)
     implementation(libs.constraintLayout)
 
-    implementation(libs.lifecycleArch)
     implementation(libs.lifecycleViewmodel)
     implementation(libs.lifecycleRuntime)
     implementation(libs.lifecycleLivedata)

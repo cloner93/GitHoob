@@ -1,13 +1,13 @@
 package com.milad.githoob.ui.profile
 
 import androidx.lifecycle.*
-import com.milad.data.MainRepository
-import com.milad.model.User
 import com.milad.common.AppConstants
+import com.milad.data.MainRepository
 import com.milad.data.utils.Result
 import com.milad.data.utils.Status
 import com.milad.githoob.utils.contributions.ContributionsDay
 import com.milad.githoob.utils.contributions.ContributionsProvider
+import com.milad.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
@@ -26,7 +26,7 @@ class ProfileViewModel @Inject constructor(
 
     private val _forceUpdate = MutableLiveData(false)
     private val _dataLoading = MutableLiveData(true)
-    private val _user = Transformations.switchMap(_forceUpdate) { bool ->
+    private val _user = _forceUpdate.switchMap { bool ->
         val user = MutableLiveData<User>()
         if (bool) {
             viewModelScope.launch(ioDispatcher) {
@@ -37,9 +37,11 @@ class ProfileViewModel @Inject constructor(
                             _dataLoading.postValue(false)
                             user.postValue(it.data)
                         }
+
                         Status.LOADING -> {
                             _dataLoading.postValue(true)
                         }
+
                         Status.ERROR -> {
                             _dataLoading.postValue(false)
                             Timber.d(it.message.toString())
@@ -52,7 +54,7 @@ class ProfileViewModel @Inject constructor(
         }
         return@switchMap user
     }
-    private val _markdown = Transformations.switchMap(_user) {
+    private val _markdown = _user.switchMap {
         val readme = MutableLiveData<String>("")
         viewModelScope.launch(ioDispatcher) {
 
@@ -64,9 +66,11 @@ class ProfileViewModel @Inject constructor(
                         val data = it.data!!.string()
                         readme.postValue(data)
                     }
+
                     Status.LOADING -> {
                         // TODO: 2/1/2022 set loading
                     }
+
                     Status.ERROR -> {
                         Timber.d(it.message.toString())
                     }
@@ -78,20 +82,22 @@ class ProfileViewModel @Inject constructor(
 
     val dataLoading: LiveData<Boolean> = _dataLoading
     val user: LiveData<User?> = _user
-    val userContributes: LiveData<List<ContributionsDay>> = Transformations.switchMap(_user) {
+    val userContributes: LiveData<List<ContributionsDay>> = _user.switchMap {
         val list = MutableLiveData<List<ContributionsDay>>()
 
         val url = String.format(AppConstants.CONTRIBUTE_URL, it.login)
 
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.getUserContribute(url).collectLatest  {
+            mainRepository.getUserContribute(url).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         val listCont = ContributionsProvider().getContributions(it.data?.string())
                         list.postValue(listCont)
                     }
+
                     Status.LOADING -> {
                     }
+
                     Status.ERROR -> {
                     }
                 }

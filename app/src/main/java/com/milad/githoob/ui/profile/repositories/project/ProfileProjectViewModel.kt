@@ -1,9 +1,12 @@
 package com.milad.githoob.ui.profile.repositories.project
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.milad.data.utils.Status
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.milad.common.GlobalState.TAG
+import com.milad.data.utils.Status
 import com.milad.model.event.Contributor
 import com.milad.model.event.Repo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,13 +26,13 @@ class ProfileProjectViewModel @Inject constructor(
     val repo: LiveData<Repo> = _repo
 
     private val _contributors = MutableLiveData<List<Contributor>>()
-    val contributors: LiveData<List<Contributor>> = Transformations.switchMap(_contributors) {
-        it.forEach { item -> Log.d(TAG, item.toString()) }
+    val contributors: LiveData<List<Contributor>> = _contributors.switchMap {
+        it.forEach { item -> Timber.tag(TAG).d(item.toString()) }
         val readme = MutableLiveData<List<Contributor>>()
-         if (it.size == 1 && it.first().login == userId){
+        if (it.size == 1 && it.first().login == userId) {
             readme.postValue(emptyList<Contributor>())
-        }else
-             readme.postValue(it)
+        } else
+            readme.postValue(it)
 
         return@switchMap readme
     }
@@ -73,14 +76,14 @@ class ProfileProjectViewModel @Inject constructor(
     private suspend fun getProjectData(token: String?, userId: String, projectName: String) {
         mainRepository.getProject(token, userId, projectName).collectLatest {
             when (it.status) {
-                com.milad.data.utils.Status.SUCCESS -> {
+                Status.SUCCESS -> {
                     _repo.postValue(it.data!!)
                     _dataLoading.postValue(false)
                 }
-                com.milad.data.utils.Status.LOADING -> {
+                Status.LOADING -> {
                     _dataLoading.postValue(true)
                 }
-                com.milad.data.utils.Status.ERROR -> {
+                Status.ERROR -> {
                     Timber.d(it.message.toString())
                     _dataLoading.postValue(false)
                 }
@@ -91,13 +94,13 @@ class ProfileProjectViewModel @Inject constructor(
     private suspend fun getContributor(token: String?, userId: String, projectName: String) {
         mainRepository.getProjectContributors(token, userId, projectName).collectLatest {
             when (it.status) {
-                com.milad.data.utils.Status.SUCCESS -> {
+                Status.SUCCESS -> {
                     _contributors.postValue(it.data!!)
                 }
-                com.milad.data.utils.Status.LOADING -> {
+                Status.LOADING -> {
                     // TODO: 2/1/2022 set loading
                 }
-                com.milad.data.utils.Status.ERROR -> {
+                Status.ERROR -> {
                     Timber.d(it.message.toString())
                 }
             }

@@ -5,6 +5,7 @@ import android.util.Log
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
+import java.util.Locale
 
 
 class JsonUtils(private val context: Context) {
@@ -49,7 +50,7 @@ class JsonUtils(private val context: Context) {
     private fun findColor(language: String?): String {
         if (language != null) {
             for ((key, value) in color) {
-                if (key == language.toLowerCase()) {
+                if (key == language.lowercase(Locale.getDefault())) {
                     return value
                 }
             }

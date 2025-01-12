@@ -1,19 +1,19 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-android-extensions")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.safearges)
 }
 
 android {
-    compileSdk = 31
+    namespace = "com.milad.githoob"
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.milad.githoob"
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -34,18 +34,19 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
         dataBinding = true
     }
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":core:network"))
-    implementation(project(":core:data"))
-    implementation(project(":core:common"))
+    implementation(projects.core.model)
+    implementation(projects.core.network)
+    implementation(projects.core.data)
+    implementation(projects.core.common)
 
-    implementation(project(":feature:splash"))
+    implementation(projects.feature.splash)
 
     implementation(libs.coreKtx)
     implementation(libs.appcompat)
@@ -54,7 +55,7 @@ dependencies {
     implementation(libs.navigationFragment)
     implementation(libs.navigationUi)
     implementation(libs.coroutinesCore)
-//    implementation(libs.coroutinesAndroid)
+
     implementation(libs.legacy)
     implementation(libs.recyclerview)
     testImplementation(libs.junit)
@@ -67,7 +68,6 @@ dependencies {
     implementation(libs.lifecycleExtensions)
 
     implementation(libs.activity)
-    implementation(libs.lifecycleArch)
     implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.retrofitGson)

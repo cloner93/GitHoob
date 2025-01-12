@@ -1,5 +1,6 @@
 package com.milad.githoob.ui.launch
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
@@ -20,6 +21,7 @@ class LaunchActivity : AppCompatActivity() {
 
     private val mainViewModel: LaunchViewModel by viewModels()
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch)
@@ -27,9 +29,11 @@ class LaunchActivity : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // color should be dynamic
         mixTwoColors(
-            R.attr.colorPrimary,
-            R.attr.colorSurface,
+            com.google.android.material.R.color.design_default_color_primary,
+            com.google.android.material.R.color.design_default_color_surface,
             GlobalState.default_percent_6
         ).apply {
             window.statusBarColor = this
@@ -39,9 +43,9 @@ class LaunchActivity : AppCompatActivity() {
         onNewIntent(intent);
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        val uri = intent?.data
+        val uri = intent.data
         if (uri != null && uri.toString().startsWith(REDIRECT_URI)) {
             val code = uri.getQueryParameter("code")
             requestForAccessToken(code!!)

@@ -1,7 +1,7 @@
 package com.milad.githoob.utils.contributions;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,18 +11,16 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-
-import androidx.annotation.ColorInt;
 
 import com.google.android.material.color.MaterialColors;
 import com.milad.githoob.R;
 import com.milad.githoob.utils.contributions.utils.ColorsUtils;
 import com.milad.githoob.utils.contributions.utils.DatesUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,6 +67,7 @@ public class GitHubContributionsView extends View {
         init(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    @SuppressLint("ResourceType")
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getSize(point);
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(
@@ -80,7 +79,7 @@ public class GitHubContributionsView extends View {
         blockPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         blockPaint.setStyle(Paint.Style.FILL);
 
-        baseEmptyColor = MaterialColors.getColor(context, R.attr.colorSecondaryContainer, Color.BLACK);
+        baseEmptyColor = MaterialColors.getColor(context, com.google.android.material.R.color.design_default_color_secondary_variant, Color.BLACK);
     }
 
     private void initAttributes(TypedArray attributes) {
@@ -385,6 +384,9 @@ public class GitHubContributionsView extends View {
     }
 
     public List<ContributionsDay> getLastContributions(List<ContributionsDay> contributions) {
+        if (contributions.isEmpty())
+            return new ArrayList<>();
+
         int lastWeekDays = contributions.size() % 7;
         int lastDays = (lastWeekDays > 0) ? lastWeekDays + (lastWeeks - 1) * 7 : lastWeeks * 7;
         return contributions.subList(contributions.size() - lastDays, contributions.size());
