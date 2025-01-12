@@ -12,10 +12,5 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-            Timber.tag("@@")
-        }
     }
 }

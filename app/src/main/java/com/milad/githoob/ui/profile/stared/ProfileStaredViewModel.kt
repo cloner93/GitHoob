@@ -2,16 +2,16 @@ package com.milad.githoob.ui.profile.stared
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.event.Repo
-import com.milad.githoob.utils.JsonUtils
-import com.milad.githoob.utils.Result
-import com.milad.githoob.utils.Status
+import com.milad.data.MainRepository
+import com.milad.model.event.Repo
+import com.milad.common.JsonUtils
+import com.milad.data.utils.Result
+import com.milad.data.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -50,7 +50,7 @@ class ProfileStaredViewModel @Inject constructor(
 
     private fun getStarredRepo(token: String, userId: String) {
         viewModelScope.launch(ioDispatcher) {
-            getStarred(token, userId).collect {
+            getStarred(token, userId).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         _starredList.postValue((it.data!!))

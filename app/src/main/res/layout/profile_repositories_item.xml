@@ -251,7 +251,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.milad.githoob.utils.numberUtils" />
+        <import type="com.milad.common.numberUtils" />
 
         <import type="android.graphics.Color" />
 
@@ -261,6 +261,6 @@
 
         <variable
             name="repo"
-            type="com.milad.githoob.data.model.event.Repo" />
+            type="com.milad.model.event.Repo" />
     </data>
 </layout>

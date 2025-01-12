@@ -1,19 +1,24 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        google()
+        google{
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.gradle}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgs}")
+
+        maven { url = uri("../githoob-prebuilts/m2repository") }
     }
 }
 
-tasks {
-    register("clean", Delete::class) {
-        delete(rootProject.buildDir)
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kapt) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.safearges) apply false
 }

@@ -1,11 +1,41 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+pluginManagement {
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        gradlePluginPortal()
     }
 }
 
-include(":app")
+dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+    }
+}
+
 rootProject.name = "GitHoob"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include(
+    ":app",
+    ":core:model",
+    ":core:network",
+    ":core:datastore",
+    ":core:data",
+    ":core:common",
+    ":feature:splash"
+)

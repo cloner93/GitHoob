@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.Org
-import com.milad.githoob.utils.Result
-import com.milad.githoob.utils.Status
+import com.milad.data.MainRepository
+import com.milad.data.utils.Status
+import com.milad.data.utils.Result
+import com.milad.model.Org
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -35,7 +35,7 @@ class ProfileOrgsViewModel @Inject constructor(
 
     private fun getOrgs(token: String, userId: String) {
         viewModelScope.launch(ioDispatcher) {
-            getOrgsFlow(token, userId).collect {
+            getOrgsFlow(token, userId).collectLatest {
                 when (it.status) {
                     Status.SUCCESS -> {
                         Log.d("@@", "getOrgs: ${it.data?.size}")

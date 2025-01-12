@@ -1,22 +1,24 @@
 package com.milad.githoob.ui.profile.repositories.project
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.milad.githoob.data.MainRepository
-import com.milad.githoob.data.model.event.Contributor
-import com.milad.githoob.data.model.event.Repo
-import com.milad.githoob.utils.GlobalState.TAG
-import com.milad.githoob.utils.Status
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.milad.common.GlobalState.TAG
+import com.milad.data.utils.Status
+import com.milad.model.event.Contributor
+import com.milad.model.event.Repo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileProjectViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
+    private val mainRepository: com.milad.data.MainRepository,
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private lateinit var userId: String
@@ -24,13 +26,13 @@ class ProfileProjectViewModel @Inject constructor(
     val repo: LiveData<Repo> = _repo
 
     private val _contributors = MutableLiveData<List<Contributor>>()
-    val contributors: LiveData<List<Contributor>> = Transformations.switchMap(_contributors) {
-        it.forEach { item -> Log.d(TAG, item.toString()) }
+    val contributors: LiveData<List<Contributor>> = _contributors.switchMap {
+        it.forEach { item -> Timber.tag(TAG).d(item.toString()) }
         val readme = MutableLiveData<List<Contributor>>()
-         if (it.size == 1 && it.first().login == userId){
+        if (it.size == 1 && it.first().login == userId) {
             readme.postValue(emptyList<Contributor>())
-        }else
-             readme.postValue(it)
+        } else
+            readme.postValue(it)
 
         return@switchMap readme
     }
@@ -55,7 +57,7 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getMarkdown(token: String?, userId: String, projectName: String) {
-        mainRepository.getProjectReadMe(token, userId, projectName).collect {
+        mainRepository.getProjectReadMe(token, userId, projectName).collectLatest {
             when (it.status) {
                 Status.SUCCESS -> {
                     val data = it.data!!.string()
@@ -72,7 +74,7 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getProjectData(token: String?, userId: String, projectName: String) {
-        mainRepository.getProject(token, userId, projectName).collect {
+        mainRepository.getProject(token, userId, projectName).collectLatest {
             when (it.status) {
                 Status.SUCCESS -> {
                     _repo.postValue(it.data!!)
@@ -90,7 +92,7 @@ class ProfileProjectViewModel @Inject constructor(
     }
 
     private suspend fun getContributor(token: String?, userId: String, projectName: String) {
-        mainRepository.getProjectContributors(token, userId, projectName).collect {
+        mainRepository.getProjectContributors(token, userId, projectName).collectLatest {
             when (it.status) {
                 Status.SUCCESS -> {
                     _contributors.postValue(it.data!!)

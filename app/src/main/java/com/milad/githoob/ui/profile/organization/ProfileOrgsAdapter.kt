@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.Org
+import com.milad.model.Org
 import com.milad.githoob.databinding.ProfileOrgsItemBinding
 
 class ProfileOrgsAdapter(private val viewModel: ProfileOrgsViewModel) :

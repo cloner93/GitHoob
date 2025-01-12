@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.milad.githoob.data.model.event.Repo
+import com.milad.model.event.Repo
 import com.milad.githoob.databinding.ProfileStaredItemBinding
 
 class ProfileStaredAdapter(
